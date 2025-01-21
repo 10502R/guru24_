@@ -60,7 +60,7 @@
                     android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/person"
+                    android:src="@drawable/person"/>
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -77,8 +77,7 @@
                     android:textSize="16sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="@swu.ac.kr"
-                    />
+                    android:text="@swu.ac.kr" />
             </LinearLayout>
             <TextView
                 android:id="@+id/ruo81mdhzcm"
@@ -158,6 +157,7 @@
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:textStyle="bold"
                     android:text="로그인"
                     />
             </LinearLayout>

@@ -19,7 +19,7 @@ class IntroActivity : AppCompatActivity() {
 
         // 2초 후에 SingupActivity로 이동
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, SignupActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent) // MainActivity 시작
             finish() // IntroActivity 종료
         }, 2000) // 2000ms = 2초
