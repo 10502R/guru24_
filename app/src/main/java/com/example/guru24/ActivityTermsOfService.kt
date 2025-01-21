@@ -13,15 +13,6 @@ class ActivityTermsOfService : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_terms_of_service)
 
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.rse1hzepg5bs))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.r5dehqajg09w))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.r67ab11dpoyg))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.rve2eycar1ub))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.rounrhz8d5u9))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.r2q1nehv6w4o))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.rqhyv5jn4fm))
-        Glide.with(this).load("https://i.imgur.com/1tMFzp8.png").into(findViewById(R.id.r01r2go573dpf))
-
         // 체크박스와 버튼 선언
         val checkAll = findViewById<CheckBox>(R.id.checkbox_all) // 전체 동의하기
         val checkTerms = findViewById<CheckBox>(R.id.checkbox_service) // 서비스 이용약관
