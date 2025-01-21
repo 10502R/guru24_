@@ -106,9 +106,7 @@
                     android:layout_height="24dp"
                     android:layout_marginEnd="7dp"
                     android:src="@mipmap/ic_launcher"
-                    android:scaleType="fitXY"
-                    />
-
+                    android:scaleType="fitXY" />
                 <EditText
                     android:id="@+id/ruu9qga7b9ic"
                     android:layout_width="0dp"
