@@ -1,29 +1,93 @@
-package com.example.guru24
-
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        // 테이블 생성 (user_email을 PRIMARY KEY로 설정)
         db.execSQL(
             "CREATE TABLE DB_login (" +
-                    "user_email TEXT PRIMARY KEY," + // PK 설정
+                    "user_email TEXT PRIMARY KEY," +
                     "user_number INTEGER," +
-                    "user_password TEXT)" // user_password 컬럼 추가
+                    "user_password TEXT);"
+        )
+
+        db.execSQL(
+            "CREATE TABLE DB_student_info (" +
+                    "user_email TEXT," +
+                    "user_number INTEGER," +
+                    "PRIMARY KEY(user_email, user_number))"
         )
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // 기존 테이블 삭제 후 재생성
         db.execSQL("DROP TABLE IF EXISTS DB_login")
+        db.execSQL("DROP TABLE IF EXISTS DB_student_info")
         onCreate(db)
     }
 
+    fun insertStudentInfo(email: String, number: Int) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("user_email", email)
+            put("user_number", number)
+        }
+
+        try {
+            val rowId = db.insert("DB_student_info", null, values)
+            if (rowId != -1L) {
+                Log.d("DBHelper", "학생 정보 저장 성공!")
+            } else {
+                Log.d("DBHelper", "학생 정보 저장 실패!")
+            }
+        } catch (e: Exception) {
+            Log.e("DBHelper", "학생 정보 저장 중 오류 발생: ${e.message}")
+        } finally {
+            db.close()
+        }
+    }
+
+    fun isStudentInfoExist(email: String, number: Int): Boolean {
+        val db = readableDatabase
+        val cursor = db.query(
+            "DB_student_info",
+            arrayOf("user_email", "user_number"),
+            "user_email = ? AND user_number = ?",
+            arrayOf(email, number.toString()),
+            null, null, null
+        )
+
+        val isExist = cursor.moveToFirst() // moveToFirst()로 첫 번째 결과가 있는지 확인
+        cursor.close()
+        db.close()
+        return isExist
+    }
+
+    // 로그인 확인 메서드
+    fun isValidLogin(email: String, password: String): Boolean {
+        val db = readableDatabase
+        val cursor = db.query(
+            "DB_login",
+            arrayOf("user_email", "user_password"),
+            "user_email = ? AND user_password = ?",
+            arrayOf(email, password),
+            null, null, null
+        )
+
+        val isExist = cursor.moveToFirst() // 이메일과 비밀번호가 일치하면 true
+        cursor.close()
+        db.close()
+
+        return isExist
+    }
+
+
     companion object {
         private const val DATABASE_NAME = "Login.db"
-        private const val DATABASE_VERSION = 2 // 버전 업데이트
+        private const val DATABASE_VERSION = 3
     }
+
+
 }

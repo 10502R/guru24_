@@ -1,6 +1,8 @@
 package com.example.guru24
 
+import DBHelper
 import android.content.ContentValues
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Toast
@@ -27,13 +29,30 @@ class PasswordActivity : AppCompatActivity() {
 
             if (password.isNotBlank()) {
                 if (email != null) {
-                    savePassword(email, password) // 비밀번호 저장
+                    // 비밀번호 저장
+                    savePassword(email, password)
+
+                    // 비밀번호 저장 성공 후 메시지 띄우기
+                    Toast.makeText(this, "비밀번호가 저장되었습니다!", Toast.LENGTH_SHORT).show()
+
+                    // LoginActivity로 이동
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+
+                    // 현재 액티비티 종료
+                    finish()
                 } else {
                     Toast.makeText(this, "유효한 이메일 정보가 없습니다!", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "비밀번호를 입력하세요!", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // 로그인 버튼 클릭 시 SignupActivity로 이동
+        binding.login.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 

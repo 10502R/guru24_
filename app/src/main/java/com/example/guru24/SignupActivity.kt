@@ -1,8 +1,10 @@
 package com.example.guru24
 
+import DBHelper
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.guru24.databinding.ActivitySignupBinding
@@ -19,39 +21,58 @@ class SignupActivity : AppCompatActivity() {
 
         dbHelper = DBHelper(this)
 
+        // 예시: DB_student_info 테이블에 이메일과 학번 삽입
+        dbHelper.insertStudentInfo("minjukim30604", 2023111741)
+        dbHelper.insertStudentInfo("koyejun23", 2023111735)
+
         binding.ButtonCheckSignup.setOnClickListener {
             val email = binding.email.text.toString()
             val numberString = binding.number.text.toString()
 
-            // 이메일과 번호가 올바르게 입력되었는지 확인
             if (email.isNotBlank() && numberString.isNotBlank()) {
-                val number = numberString.toIntOrNull() // 숫자로 변환
+                val number = numberString.toIntOrNull()
 
                 if (number != null) {
                     if (isEmailExists(email)) {
                         Toast.makeText(this, "겹치는 이메일입니다!", Toast.LENGTH_SHORT).show()
                     } else {
-                        saveData(email, number) // 데이터 저장
-                        val intent = Intent(this, PasswordActivity::class.java)
-                        intent.putExtra("user_email", email) // 이메일을 PasswordActivity로 전달
-                        startActivity(intent)
+                        if (isEmailAndNumberInStudentInfo(email, number)) {
+                            saveData(email, number) // DB_login에 데이터 저장
+                            saveStudentInfo(email, number) // DB_student_info에 데이터 저장
+                            val intent = Intent(this, PasswordActivity::class.java)
+                            intent.putExtra("user_email", email)
+                            startActivity(intent)
 
-                        // 현재 액티비티 종료
-                        finish()
+                            // 현재 액티비티 종료
+                            finish()
+                        } else {
+                            Toast.makeText(this, "이메일과 학번 정보가 일치하지 않습니다!", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
-                    Toast.makeText(this, "전화번호를 올바르게 입력하세요!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "학번을 올바르게 입력하세요", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "모든 필드를 올바르게 입력하세요!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "모든 필드를 입력해주세요", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // 로그인 버튼 클릭 시 SignupActivity로 이동
+        binding.login.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mBinding = null // 메모리 누수 방지
-        dbHelper.close() // DBHelper 자원 해제
+        // dbHelper.close()는 불필요, SQLiteOpenHelper가 자동으로 처리합니다.
+    }
+
+    // 이메일과 학번 정보가 DB_student_info에 저장되도록 변경
+    private fun saveStudentInfo(email: String, number: Int) {
+        dbHelper.insertStudentInfo(email, number)  // DB_student_info에 데이터 삽입
     }
 
     // 데이터 저장 함수
@@ -62,13 +83,19 @@ class SignupActivity : AppCompatActivity() {
             put("user_number", number)
         }
 
-        val newRowId = db.insert("DB_login", null, values)
-        if (newRowId != -1L) {
-            Toast.makeText(this, "데이터 저장 성공!", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "데이터 저장 실패!", Toast.LENGTH_SHORT).show()
+        try {
+            val newRowId = db.insert("DB_login", null, values)
+            if (newRowId != -1L) {
+                Toast.makeText(this, "이메일과 학번 정보가 일치합니다 :)", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "데이터 저장 실패!", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Log.e("DBHelper", "데이터 저장 중 오류 발생: ${e.message}")
+            Toast.makeText(this, "데이터 저장 중 오류 발생: ${e.message}", Toast.LENGTH_SHORT).show()
+        } finally {
+            db.close()
         }
-        db.close()
     }
 
     // 이메일 중복 체크 함수
@@ -82,7 +109,25 @@ class SignupActivity : AppCompatActivity() {
             null, null, null
         )
 
-        val isExists = cursor.count > 0 // 이메일이 이미 존재하면 true
+        val isExists = cursor.moveToFirst() // 결과가 있으면 true
+        cursor.close()
+        db.close()
+
+        return isExists
+    }
+
+    // 이메일과 학번이 두 번째 테이블에 있는지 확인하는 메서드
+    private fun isEmailAndNumberInStudentInfo(email: String, number: Int): Boolean {
+        val db = dbHelper.readableDatabase
+        val cursor = db.query(
+            "DB_student_info", // 테이블명
+            arrayOf("user_email", "user_number"), // 검색할 컬럼
+            "user_email = ? AND user_number = ?", // WHERE 조건
+            arrayOf(email, number.toString()), // ?에 들어갈 값
+            null, null, null
+        )
+
+        val isExists = cursor.moveToFirst() // 결과가 있으면 true
         cursor.close()
         db.close()
 
