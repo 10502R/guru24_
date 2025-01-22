@@ -36,7 +36,7 @@ class ActivityTermsOfService : AppCompatActivity() {
         // "확인" 버튼 클릭 시 모든 체크박스가 선택되었는지 확인
         binding.ButtonCheck.setOnClickListener {
             if (binding.checkboxService.isChecked && binding.checkboxPrivacy.isChecked) {
-                val intent = Intent(this, TermsActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "모든 필수 항목에 동의해주세요.", Toast.LENGTH_SHORT).show()
@@ -46,7 +46,7 @@ class ActivityTermsOfService : AppCompatActivity() {
         // 각 체크박스를 클릭했을 때 해당 페이지로 이동
         binding.checkboxService.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                val intent = Intent(this, TermsActivity::class.java)
+                val intent = Intent(this, ServTermsActivity::class.java)
                 startActivity(intent)
             }
             binding.checkboxAll.isChecked =
@@ -55,11 +55,24 @@ class ActivityTermsOfService : AppCompatActivity() {
 
         binding.checkboxPrivacy.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                val intent = Intent(this, TermsActivity::class.java)
+                val intent = Intent(this, PrivTermsActivity::class.java)
                 startActivity(intent)
             }
             binding.checkboxAll.isChecked =
                 binding.checkboxService.isChecked && binding.checkboxPrivacy.isChecked
         }
+
+        binding.textViewServiceDetails.setOnClickListener {
+            // Service Terms Activity로 이동
+            val intent = Intent(this, ServTermsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.textViewPrivacyDetails.setOnClickListener {
+            // Privacy Terms Activity로 이동
+            val intent = Intent(this, PrivTermsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

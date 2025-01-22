@@ -72,7 +72,6 @@
                 android:text="필수 약관을 동의하셔야 서비스를 이용할 수 있어요."
                 />
             <LinearLayout
-                android:id="@+id/ry5ysv0tnb2p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -90,7 +89,6 @@
                     android:text="전체 동의하기" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rrqi65ua5k5g"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -106,20 +104,22 @@
                     android:text="[필수] 서비스 이용약관"
                     />
                 <LinearLayout
-                    android:id="@+id/rn468pkhhsf"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/textViewServiceDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=">"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/r35588aknitg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -136,17 +136,21 @@
                     android:text="[필수] 개인정보 처리방침"
                     />
                 <LinearLayout
-                    android:id="@+id/r529jjnxcxtl"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
                 </LinearLayout>
+
                 <TextView
+                    android:id="@+id/textViewPrivacyDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:text=">"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="?attr/selectableItemBackground"/>
             </LinearLayout>
             <Button
                 android:id="@+id/ButtonCheck"

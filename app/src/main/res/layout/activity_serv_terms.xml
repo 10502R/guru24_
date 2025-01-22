@@ -1,0 +1,165 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="0.9"
+        android:scaleY="0.9">
+        <ScrollView
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:id="@+id/redlfejxe34d"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:paddingTop="50dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/rao53xg6h575"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="38dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="149dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/r5da47wzk4rt"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="109dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:scaleType="fitXY"
+                        />
+                    <TextView
+                        android:id="@+id/r67jkbk3x71l"
+                        android:textColor="#111111"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:text="약관 동의"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/r7546vp212yd"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="개인 정보 보호"
+                    />
+                <TextView
+                    android:id="@+id/rahiyhax1p2c"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="291dp"
+                    android:text="회원이 제공한 모든 개인 정보는 개인정보 처리방침에 따라 처리됩니다.\n	카카오톡 계정 연동 시, 회원의 최소한의 정보(예: 이메일)를 수집하며, 이는 회원 동의 하에 이루어집니다.\n	회사는 회원의 동의 없이 제3자에게 개인 정보를 제공하지 않습니다."
+                    />
+                <TextView
+                    android:id="@+id/rdk6rtfb3exj"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="회원의 의무"
+                    />
+                <TextView
+                    android:id="@+id/ru04guirkub"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="291dp"
+                    android:text="회원은 다음 행위를 해서는 안 됩니다: •	부정확한 정보 제공. •	타인의 계정을 무단으로 사용하는 행위. •	법령 및 약관에 위반되는 행위.\n서비스 이용 중 부적절한 행동(허위 정보 게시, 비속어 사용 등)이 발견될 경우 서비스 이용이 제한될 수 있습니다."
+                    />
+
+                <TextView
+                    android:id="@+id/rsl2ipwmlesn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginBottom="14dp"
+                    android:text="서비스 제공 및 변경"
+                    android:textColor="#111111"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rm1h9a9hl9bm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/rxhhmhhngjm"
+                            android:layout_width="284dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="서비스는 24시간 제공을 원칙으로 하나, 기술적 문제나 운영상의 사유로 중단될 수 있습니다.\n회사는 서비스 내용을 변경할 경우 사전 공지하며, 이용자는 이를 확인할 책임이 있습니다."
+                            android:textColor="#111111"
+                            android:textSize="14sp" />
+                        <LinearLayout
+                            android:id="@+id/agreerServ"
+                            android:layout_width="360dp"
+                            android:layout_height="58dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="-8dp"
+                            android:layout_marginEnd="-29dp"
+                            android:background="@drawable/cr10b30303d"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="143dp">
+
+                            <TextView
+                                android:id="@+id/rgbyo2mhgs6t"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="22dp"
+                                android:text="동의합니다"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</LinearLayout>
