@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#808080</color> <!-- 기본 아이템 색 (회색) -->
+    <color name="yellow">#FFD700</color> <!-- 선택된 아이템 색 (노란색) -->
 </resources>
