@@ -2,7 +2,10 @@ package com.example.guru24
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.example.guru24.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,16 +17,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // 기존 setContentView 를 제거
-        //setContentView(R.layout.activity_main)
 
         // 자동 생성된 뷰 바인딩 클래스에서의 inflate라는 메서드를 활용해서
         // 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
         mBinding = ActivityMainBinding.inflate(layoutInflater)
 
         // getRoot 메서드로 레이아웃 내부의 최상위 위치 뷰의
-        // 인스턴스를 활용하여 생성된 뷰를 액티비티에 표시 합니다.
+        // 인스턴스를 활용하여 생성된 뷰를 액티비티에 표시합니다.
         setContentView(binding.root)
 
     }
+
+        override fun onDestroy() {
+            super.onDestroy()
+            mBinding = null
+        }
+
 }
