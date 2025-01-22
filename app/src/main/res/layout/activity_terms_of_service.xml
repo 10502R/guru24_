@@ -163,7 +163,6 @@
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 android:textStyle="bold" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

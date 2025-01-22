@@ -28,10 +28,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity_password"
+            android:name=".SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".ActivityTermsOfService"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
