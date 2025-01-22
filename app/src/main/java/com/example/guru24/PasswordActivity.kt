@@ -36,7 +36,7 @@ class PasswordActivity : AppCompatActivity() {
                     Toast.makeText(this, "비밀번호가 저장되었습니다!", Toast.LENGTH_SHORT).show()
 
                     // LoginActivity로 이동
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = Intent(this, ActivityTermsOfService::class.java)
                     startActivity(intent)
 
                     // 현재 액티비티 종료
@@ -54,6 +54,7 @@ class PasswordActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun onDestroy() {
