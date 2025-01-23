@@ -11,6 +11,8 @@ class ServTermsActivity : AppCompatActivity() {
     private var mBinding: ActivityServTermsBinding? = null
     private val binding get() = mBinding!!
 
+    private var isChecked = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityServTermsBinding.inflate(layoutInflater)
