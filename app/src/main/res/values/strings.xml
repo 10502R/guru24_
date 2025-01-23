@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">guru24</string>
 
-    <string name="terms_content">서비스 이용약관 내용</string>
-    <string name="privacy_content">개인정보 처리방침 내용</string>
 </resources>
