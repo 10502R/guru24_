@@ -79,14 +79,12 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="232dp"
                 android:orientation="horizontal">
-                <CheckBox
+                <ImageView
                     android:id="@+id/checkbox_all"
-                    android:textColor="#111111"
-                    android:textSize="14sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="전체 동의하기" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/check_circle"
+                    android:layout_marginEnd="8dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,13 +93,17 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginHorizontal="24dp"
                 android:orientation="horizontal">
-                <CheckBox
+                <ImageView
                     android:id="@+id/checkbox_service"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/check_small" />
+                <TextView
                     android:textColor="#2A2926"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="[필수] 서비스 이용약관"
+                    android:text=" [필수] 서비스 이용약관"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
@@ -126,14 +128,17 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="24dp"
                 android:orientation="horizontal">
-                <CheckBox
+                <ImageView
                     android:id="@+id/checkbox_privacy"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/check_small" />
+                <TextView
                     android:textColor="#2A2926"
                     android:textSize="14sp"
-                    android:layout_marginEnd="7dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="[필수] 개인정보 처리방침"
+                    android:text=" [필수] 개인정보처리방침"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
