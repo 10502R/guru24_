@@ -9,20 +9,25 @@ import com.example.guru24.databinding.FragmentMypageBinding
 
 class MypageFragment : Fragment() {
 
-    private var binding: FragmentMypageBinding? = null
+    private var _binding: FragmentMypageBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // 뷰 바인딩 초기화
-        binding = FragmentMypageBinding.inflate(inflater, container, false)
+        _binding = FragmentMypageBinding.inflate(inflater, container, false)
 
-        return binding?.root // 바인딩된 뷰 반환
+        // 전달된 이메일 정보 가져오기
+        val email = arguments?.getString("USER_EMAIL")
+        binding.tvID.text = email // 바인딩을 통해 TextView에 이메일 설정
+
+        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null // 메모리 누수를 방지하기 위해 바인딩 객체 해제
+        _binding = null // 메모리 누수 방지
     }
 }
