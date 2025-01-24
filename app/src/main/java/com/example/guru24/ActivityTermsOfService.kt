@@ -2,7 +2,6 @@ package com.example.guru24
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.guru24.databinding.ActivityTermsOfServiceBinding
@@ -20,7 +19,18 @@ class ActivityTermsOfService : AppCompatActivity() {
         mBinding = ActivityTermsOfServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // "전체 동의하기" 클릭 시 다른 체크박스 상태 동기화
+        // 상태 복원
+        if (savedInstanceState != null) {
+            isServiceChecked = savedInstanceState.getBoolean("isServiceChecked", false)
+            isPrivacyChecked = savedInstanceState.getBoolean("isPrivacyChecked", false)
+            isAllChecked = isServiceChecked && isPrivacyChecked
+        }
+
+        updateServiceCheckboxImage()
+        updatePrivacyCheckboxImage()
+        updateAllCheckboxImage()
+
+        // "전체 동의하기" 클릭 시 상태 동기화
         binding.checkboxAll.setOnClickListener {
             isAllChecked = !isAllChecked
             updateAllCheckboxImage()
@@ -46,7 +56,7 @@ class ActivityTermsOfService : AppCompatActivity() {
 
         // "확인" 버튼 클릭 시 모든 체크박스가 선택되었는지 확인
         binding.ButtonCheck.setOnClickListener {
-            if (isServiceChecked && isPrivacyChecked) {
+            if (isAllChecked) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             } else {
@@ -54,19 +64,29 @@ class ActivityTermsOfService : AppCompatActivity() {
             }
         }
 
-        // 각 체크박스를 클릭했을 때 해당 페이지로 이동
-        binding.checkboxService.setOnClickListener {
-            if (isServiceChecked) {
-                val intent = Intent(this, ServTermsActivity::class.java)
-                startActivity(intent)
-            }
+        // 각 체크박스의 '>' 클릭했을 때 해당 페이지로 이동
+        binding.textViewServiceDetails.setOnClickListener {
+            val intent = Intent(this, ServTermsActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_SERVICE_TERMS)
         }
 
-        binding.checkboxPrivacy.setOnClickListener {
-            if (isPrivacyChecked) {
-                val intent = Intent(this, PrivTermsActivity::class.java)
-                startActivity(intent)
-            }
+        binding.textViewPrivacyDetails.setOnClickListener {
+            val intent = Intent(this, PrivTermsActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_PRIVACY_TERMS)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            // 체크 상태 복원
+            isServiceChecked = data?.getBooleanExtra("isServiceChecked", isServiceChecked) ?: isServiceChecked
+            isPrivacyChecked = data?.getBooleanExtra("isPrivacyChecked", isPrivacyChecked) ?: isPrivacyChecked
+            isAllChecked = isServiceChecked && isPrivacyChecked
+
+            updateServiceCheckboxImage()
+            updatePrivacyCheckboxImage()
+            updateAllCheckboxImage()
         }
     }
 
@@ -87,6 +107,7 @@ class ActivityTermsOfService : AppCompatActivity() {
     }
 
     private fun updateAllCheckboxImage() {
+        isAllChecked = isServiceChecked && isPrivacyChecked
         if (isAllChecked) {
             binding.checkboxAll.setImageResource(R.drawable.check_circle1) // 체크된 상태 이미지
         } else {
@@ -94,8 +115,21 @@ class ActivityTermsOfService : AppCompatActivity() {
         }
     }
 
+    // 상태 저장
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("isServiceChecked", isServiceChecked)
+        outState.putBoolean("isPrivacyChecked", isPrivacyChecked)
+        outState.putBoolean("isAllChecked", isAllChecked)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mBinding = null
+    }
+
+    companion object {
+        private const val REQUEST_CODE_SERVICE_TERMS = 1
+        private const val REQUEST_CODE_PRIVACY_TERMS = 2
     }
 }
