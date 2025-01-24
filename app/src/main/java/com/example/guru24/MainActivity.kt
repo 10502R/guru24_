@@ -7,6 +7,9 @@ import com.example.guru24.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.MenuItem
 
+
+
+
 class MainActivity : AppCompatActivity() {
 
     // 전역 변수로 바인딩 객체 선언
