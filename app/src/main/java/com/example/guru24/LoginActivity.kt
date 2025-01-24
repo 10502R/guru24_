@@ -19,6 +19,9 @@ class LoginActivity : AppCompatActivity() {
 
         dbHelper = DBHelper(this) // DBHelper 인스턴스 초기화
 
+        // SharedPreferences 초기화
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+
         // 로그인 버튼 클릭 시 처리
         binding.ButtonCheck.setOnClickListener {
             val email = binding.email.text.toString()
