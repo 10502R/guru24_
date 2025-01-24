@@ -1,16 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FMMypage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ff00ff"
     tools:context=".MypageFragment">
-
-    <TextView
+    <ScrollView
+        android:id="@+id/rsoqlivn6spn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mypage Fragment"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:paddingTop="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/rh4y734plp6t"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="18dp"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/ro6oekeuo1zl"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="38dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="마이페이지"
+                />
+            <TextView
+                android:id="@+id/rw4fkwg80j9"
+                android:textColor="#2A2926"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="프로필"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="32dp"
+                android:layout_marginHorizontal="24dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="#111111"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="아이디" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tvID"
+                    android:textColor="#696866"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvLogout"
+                android:textColor="#111111"
+                android:textSize="16sp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="로그아웃"
+                />
+            <TextView
+                android:id="@+id/rlpg96w7ax1g"
+                android:textColor="#2A2926"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="33dp"
+                android:layout_marginStart="17dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="약관 및 정보"
+                />
+            <LinearLayout
+                android:id="@+id/rv7kd317a3t"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="33dp"
+                android:layout_marginHorizontal="24dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/rk7z85m0fjh"
+                    android:textColor="#111111"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="이용 약관"
+                    />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+                <TextView
+                    android:id="@+id/textViewPrivacyDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text=">"
+                    android:textSize="25sp"
+                    android:background="?attr/selectableItemBackground"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/rfwnno2ycbr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="222dp"
+                android:layout_marginHorizontal="25dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>
