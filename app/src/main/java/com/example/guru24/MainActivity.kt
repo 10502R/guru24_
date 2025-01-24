@@ -2,38 +2,59 @@ package com.example.guru24
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.view.MenuItem
-
-
-
 
 class MainActivity : AppCompatActivity() {
 
-    // 전역 변수로 바인딩 객체 선언
     private var mBinding: ActivityMainBinding? = null
-
-    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
     private val binding get() = mBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 자동 생성된 뷰 바인딩 클래스에서의 inflate라는 메서드를 활용해서
-        // 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
         mBinding = ActivityMainBinding.inflate(layoutInflater)
-
-        // getRoot 메서드로 레이아웃 내부의 최상위 위치 뷰의
-        // 인스턴스를 활용하여 생성된 뷰를 액티비티에 표시합니다.
         setContentView(binding.root)
 
-    }
-
-        override fun onDestroy() {
-            super.onDestroy()
-            mBinding = null
+        // 기본 Fragment 설정
+        if (savedInstanceState == null) {
+            // 앱 시작 시 기본 Fragment를 설정 (예: HomeFragment)
+            replaceFragment(HomeFragment())
         }
 
+        // BottomNavigationView 클릭 리스너 설정
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tabHome -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, HomeFragment()).commit()
+                    true
+                }
+                R.id.tabMap -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, MapFragment()).commit()
+                    true
+                }
+                R.id.tabTrophy -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, TrophyFragment()).commit()
+                    true
+                }
+                R.id.tabMypage -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, MypageFragment()).commit()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    // Fragment 교체 함수
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.rootlayout, fragment) // fragmentContainer는 실제 프래그먼트를 담을 컨테이너의 ID
+        transaction.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBinding = null // 메모리 누수 방지
+    }
 }
