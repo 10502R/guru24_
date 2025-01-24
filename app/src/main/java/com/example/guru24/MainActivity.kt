@@ -16,9 +16,11 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // LoginActivity에서 전달된 이메일 데이터 받기
+        val email = intent.getStringExtra("USER_EMAIL")
+
         // 기본 Fragment 설정
         if (savedInstanceState == null) {
-            // 앱 시작 시 기본 Fragment를 설정 (예: HomeFragment)
             replaceFragment(HomeFragment())
         }
 
@@ -26,19 +28,25 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tabHome -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, HomeFragment()).commit()
+                    replaceFragment(HomeFragment())
                     true
                 }
                 R.id.tabMap -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, MapFragment()).commit()
+                    replaceFragment(MapFragment())
                     true
                 }
                 R.id.tabTrophy -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, TrophyFragment()).commit()
+                    replaceFragment(TrophyFragment())
                     true
                 }
                 R.id.tabMypage -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.rootlayout, MypageFragment()).commit()
+                    // 이메일 데이터를 MypageFragment로 전달
+                    val mypageFragment = MypageFragment().apply {
+                        arguments = Bundle().apply {
+                            putString("USER_EMAIL", email) // 이메일 전달
+                        }
+                    }
+                    replaceFragment(mypageFragment)
                     true
                 }
                 else -> false
@@ -48,9 +56,9 @@ class MainActivity : AppCompatActivity() {
 
     // Fragment 교체 함수
     private fun replaceFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.rootlayout, fragment) // fragmentContainer는 실제 프래그먼트를 담을 컨테이너의 ID
-        transaction.commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.rootlayout, fragment) // rootlayout은 FrameLayout ID
+            .commit()
     }
 
     override fun onDestroy() {
