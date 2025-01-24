@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,12 @@ class MypageFragment : Fragment() {
     ): View? {
         // 뷰 바인딩 초기화
         binding = FragmentMypageBinding.inflate(inflater, container, false)
+
+        // ">" 아이콘 클릭 시 MypageTerms 액티비티로 이동
+        binding?.mypageTerms?.setOnClickListener {
+            val intent = Intent(requireContext(), MypageTerms::class.java)
+            startActivity(intent)
+        }
 
         return binding?.root // 바인딩된 뷰 반환
     }

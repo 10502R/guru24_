@@ -39,7 +39,7 @@
                     android:layout_marginEnd="16dp"
                     android:orientation="horizontal">
                     <ImageView
-                        android:id="@+id/close_icon"
+                        android:id="@+id/mypage_termsclose"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="8dp"
@@ -73,7 +73,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/rxhhmhhngjm"
+                            android:id="@+id/terms_detail"
                             android:layout_width="350dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -109,22 +109,6 @@
 본 약관의 해석 및 적용에 있어 대한민국 법률을 적용하며, 서비스와 관련된 분쟁은 [관할 법원]의 관할로 한다."
                             android:textColor="#111111"
                             android:textSize="14sp" />
-
-                        <Button
-                            android:id="@+id/agreeServ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:background="@drawable/button"
-                            android:backgroundTint="@color/black"
-                            android:gravity="center"
-                            android:padding="15dp"
-                            android:layout_marginTop="10dp"
-                            android:text="동의합니다"
-                            android:textColor="@color/white"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
                     </LinearLayout>
 
                 </RelativeLayout>
