@@ -2,38 +2,70 @@ package com.example.guru24
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.view.MenuItem
-
-
-
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 class MainActivity : AppCompatActivity() {
 
-    // 전역 변수로 바인딩 객체 선언
     private var mBinding: ActivityMainBinding? = null
-
-    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
     private val binding get() = mBinding!!
 
+    @OptIn(ExperimentalEncodingApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 자동 생성된 뷰 바인딩 클래스에서의 inflate라는 메서드를 활용해서
-        // 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
         mBinding = ActivityMainBinding.inflate(layoutInflater)
-
-        // getRoot 메서드로 레이아웃 내부의 최상위 위치 뷰의
-        // 인스턴스를 활용하여 생성된 뷰를 액티비티에 표시합니다.
         setContentView(binding.root)
 
+        // LoginActivity에서 전달된 이메일 데이터 받기
+        val email = intent.getStringExtra("USER_EMAIL")
+
+        // 기본 Fragment 설정
+        if (savedInstanceState == null) {
+            replaceFragment(HomeFragment())
+        }
+
+        // BottomNavigationView 클릭 리스너 설정
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tabHome -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+                R.id.tabMap -> {
+                    replaceFragment(MapFragment())
+                    true
+                }
+                R.id.tabTrophy -> {
+                    replaceFragment(TrophyFragment())
+                    true
+                }
+                R.id.tabMypage -> {
+                    // 이메일 데이터를 MypageFragment로 전달
+                    val mypageFragment = MypageFragment().apply {
+                        arguments = Bundle().apply {
+                            putString("USER_EMAIL", email) // 이메일 전달
+                        }
+                    }
+                    replaceFragment(mypageFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
-        override fun onDestroy() {
-            super.onDestroy()
-            mBinding = null
-        }
+    // Fragment 교체 함수
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.rootlayout, fragment) // rootlayout은 FrameLayout ID
+            .commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBinding = null // 메모리 누수 방지
+    }
 
 }
