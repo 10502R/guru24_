@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "734047445426",
+    "project_id": "guru241-d063f",
+    "storage_bucket": "guru241-d063f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734047445426:android:d4a144f71d02a6af4b04ab",
+        "android_client_info": {
+          "package_name": "com.example.guru24"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB56BKjUIY9QsjxO6X0xfkHfndty695qY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
