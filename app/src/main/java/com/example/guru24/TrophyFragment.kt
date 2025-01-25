@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,6 @@ import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.FragmentTrophyBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-
 
 class TrophyFragment : Fragment() {
 
@@ -28,6 +28,17 @@ class TrophyFragment : Fragment() {
         // 기본 탭 설정
         if (savedInstanceState == null) {
             replaceFragment(StampCardFragment())
+        }
+
+        // 버튼 클릭 리스너 설정
+        binding.btnScanQr.setOnClickListener {
+            val intent = Intent(context, QrCodeScanActivity::class.java)
+            startActivityForResult(intent, QR_SCAN_REQUEST_CODE)
+        }
+
+        binding.btnLearnHow.setOnClickListener {
+            val intent = Intent(context, StampInstructionsActivity::class.java)
+            startActivity(intent)
         }
 
         // TabLayout 클릭 리스너 설정
@@ -74,5 +85,9 @@ class TrophyFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // 메모리 누수 방지
+    }
+
+    companion object {
+        const val QR_SCAN_REQUEST_CODE = 1001
     }
 }
