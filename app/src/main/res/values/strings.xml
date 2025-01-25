@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">guru24</string>
 
+
+    <string name="tab_layout_description">탭 레이아웃</string>
+    <string name="stamp_count">스탬프: 0</string>
+    <string name="badge_count">뱃지: 0</string>
 </resources>
