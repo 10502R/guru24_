@@ -19,6 +19,9 @@ class LoginActivity : AppCompatActivity() {
 
         dbHelper = DBHelper(this) // DBHelper 인스턴스 초기화
 
+        // SharedPreferences 초기화
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+
         // 로그인 버튼 클릭 시 처리
         binding.ButtonCheck.setOnClickListener {
             val email = binding.email.text.toString()
@@ -26,19 +29,20 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isNotBlank() && password.isNotBlank()) {
                 if (dbHelper.isValidLogin(email, password)) {
-                    // 로그인 성공 시 MainActivity로 이동
-                    val intent = Intent(this, MainActivity::class.java)
+                    // 로그인 성공 시 MainActivity로 이동하며 이메일 전달
+                    val intent = Intent(this, MainActivity::class.java).apply {
+                        putExtra("USER_EMAIL", email)
+                    }
                     startActivity(intent)
-                    finish() // 로그인 후 현재 액티비티 종료
+                    finish() // 로그인 액티비티 종료
                 } else {
-                    // 로그인 실패 시 Toast 메시지 표시
                     Toast.makeText(this, "이메일 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                // 이메일 또는 비밀번호 입력되지 않았을 경우 메시지 표시
                 Toast.makeText(this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         // 회원가입 버튼 클릭 시 SignupActivity로 이동
         binding.signup.setOnClickListener {
