@@ -1,5 +1,4 @@
 import java.io.FileInputStream
-import java.lang.System.load
 import java.util.Properties
 
 plugins {
@@ -13,7 +12,7 @@ android {
 
     packagingOptions {
         resources {
-            excludes += ("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+            excludes += listOf("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         }
     }
 
@@ -35,8 +34,7 @@ android {
         }
 
         // KAKAO_MAP_KEY 추가
-        buildConfigField("String", "KAKAO_MAP_KEY",
-            "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
+        buildConfigField("String", "KAKAO_MAP_KEY", "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
     }
 
     buildTypes {
@@ -51,8 +49,7 @@ android {
 
     buildFeatures {
         viewBinding = true
-        // BuildConfig 사용 가능하도록 설정
-        buildConfig = true
+        buildConfig = true // BuildConfig 사용 가능하도록 설정
     }
 
     compileOptions {
@@ -72,7 +69,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation("com.kakao.maps.open:android:2.12.8")
-    implementation(libs.identity.android.legacy) // Kakao Maps 라이브러리
+    implementation(libs.identity.android.legacy)
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
