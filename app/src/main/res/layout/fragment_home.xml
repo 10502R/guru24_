@@ -1,16 +1,563 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff00ff"
-    tools:context=".HomeFragment">
+    android:orientation="vertical"
+    android:background="#FFFFFF">
 
-    <TextView
+    <!-- 상단 이미지 -->
+    <ImageView
+        android:id="@+id/rzwvq5bp7xlp"
+        android:layout_width="85dp"
+        android:layout_height="25dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/campuswu"
+        android:scaleType="fitXY" />
+
+    <!-- 스탬프 찍기 섹션 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:textSize="18sp"/>
-</FrameLayout>
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="16dp"
+        android:background="#F7F7F7"
+        android:gravity="center_vertical">
+
+        <!-- 아이콘 -->
+        <LinearLayout
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#D9D9D9"
+            android:layout_marginEnd="8dp" />
+
+        <!-- 텍스트 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/stampTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스탬프 찍으러 가기"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#111111" />
+
+            <TextView
+                android:id="@+id/stampDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="귀여운 슈니즈 뱃지를 모아보세요"
+                android:textSize="12sp"
+                android:textColor="#696866" />
+        </LinearLayout>
+
+        <!-- 화살표 아이콘 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">"
+            android:textSize="24sp"
+            android:textColor="#111111" />
+    </LinearLayout>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 혼밥하기 좋은 식당 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="혼밥하기 좋은 식당"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:textColor="#111111" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="감탄떡볶이 서울여대점"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
+                            android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#F13FA1" />
+                    </LinearLayout>
+
+                    <!-- 아이템 2 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="오니기리와 이규동"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
+                            android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#F13FA1" />
+                    </LinearLayout>
+
+                    <!-- 아이템 3 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="츄츄바앤츄밥"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_stu"
+                            android:text="학생누리관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            android:textColor="#4A39B6" />
+                    </LinearLayout>
+
+                    <!-- 아이템 4 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="교직원 식당"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
+                            android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#F13FA1" />
+                    </LinearLayout>
+
+                    <!-- 더 많은 아이템 추가 가능 -->
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- 팀플하기 좋은 공간 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="팀플하기 좋은 공간"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#111111" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="세미나실"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_lib"
+                            android:text="도서관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            android:textColor="#F16C3F" />
+                    </LinearLayout>
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="러닝커머스"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_sc"
+                            android:text="제2과학관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#4A39B6" />
+                    </LinearLayout>
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="스터디룸"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_human"
+                            android:text="인문사회관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#FF0000" />
+                    </LinearLayout>
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="카페 ING"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
+                            android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#F13FA1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- 교내 동아리 추천 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교내 동아리 추천"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#111111" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SWU FC"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111"
+                            android:layout_marginTop="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
+                            android:text="축구"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
+                    </LinearLayout>
+
+                    <!-- 아이템 2 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="무한비트"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
+                            android:text="창업"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
+                    </LinearLayout>
+
+                    <!-- 아이템 3 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="서우회"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
+                            android:text="서예"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
+                    </LinearLayout>
+
+                    <!-- 아이템 1 -->
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="#D9D9D9" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="캐슈넛"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#111111" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
+                            android:text="고양이"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

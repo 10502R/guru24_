@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.guru24.databinding.ActivityMainBinding
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 class MainActivity : AppCompatActivity() {
 
@@ -130,4 +131,5 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         mBinding = null // 메모리 누수 방지
     }
+
 }

@@ -1,4 +1,5 @@
 import java.io.FileInputStream
+import java.lang.System.load
 import java.util.Properties
 
 plugins {
@@ -12,7 +13,7 @@ android {
 
     packagingOptions {
         resources {
-            excludes += listOf("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+            excludes += ("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         }
     }
 
@@ -34,7 +35,8 @@ android {
         }
 
         // KAKAO_MAP_KEY 추가
-        buildConfigField("String", "KAKAO_MAP_KEY", "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
+        buildConfigField("String", "KAKAO_MAP_KEY",
+            "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
     }
 
     buildTypes {
@@ -49,7 +51,8 @@ android {
 
     buildFeatures {
         viewBinding = true
-        buildConfig = true // BuildConfig 사용 가능하도록 설정
+        // BuildConfig 사용 가능하도록 설정
+        buildConfig = true
     }
 
     compileOptions {
@@ -74,4 +77,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.android.material:material:1.7.0")
+    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
 }
