@@ -122,7 +122,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
                             android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
                             android:textColor="#F13FA1" />
                     </LinearLayout>
@@ -151,7 +155,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
                             android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
                             android:textColor="#F13FA1" />
                     </LinearLayout>
@@ -180,7 +188,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
                             android:text="학생누리관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
                             android:textColor="#F13FA1" />
                     </LinearLayout>
