@@ -1,5 +1,5 @@
+
 import java.io.FileInputStream
-import java.lang.System.load
 import java.util.Properties
 
 plugins {
