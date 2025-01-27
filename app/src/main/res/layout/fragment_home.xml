@@ -128,6 +128,7 @@
                             android:paddingRight="3dp"
                             android:paddingBottom="1dp"
                             android:textSize="10sp"
+                            android:textStyle="bold"
                             android:textColor="#F13FA1" />
                     </LinearLayout>
 
@@ -161,6 +162,7 @@
                             android:paddingRight="3dp"
                             android:paddingBottom="1dp"
                             android:textSize="10sp"
+                            android:textStyle="bold"
                             android:textColor="#F13FA1" />
                     </LinearLayout>
 
@@ -188,13 +190,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/design_ani50"
+                            android:background="@drawable/design_stu"
                             android:text="학생누리관"
                             android:paddingLeft="3dp"
                             android:paddingRight="3dp"
                             android:paddingBottom="1dp"
+                            android:textStyle="bold"
                             android:textSize="10sp"
-                            android:textColor="#F13FA1" />
+                            android:textColor="#4A39B6" />
                     </LinearLayout>
 
                     <!-- 아이템 4 -->
@@ -221,8 +224,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
                             android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
+                            android:textStyle="bold"
                             android:textColor="#F13FA1" />
                     </LinearLayout>
 
@@ -274,9 +282,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_lib"
                             android:text="도서관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textStyle="bold"
                             android:textSize="10sp"
-                            android:textColor="#3FA1F1" />
+                            android:textColor="#F16C3F" />
                     </LinearLayout>
 
                     <!-- 아이템 1 -->
@@ -303,9 +316,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_sc"
                             android:text="제2과학관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
-                            android:textColor="#3FA1F1" />
+                            android:textStyle="bold"
+                            android:textColor="#4A39B6" />
                     </LinearLayout>
 
                     <!-- 아이템 1 -->
@@ -332,9 +350,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_human"
                             android:text="인문사회관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
-                            android:textColor="#3FA1F1" />
+                            android:textStyle="bold"
+                            android:textColor="#FF0000" />
                     </LinearLayout>
 
                     <!-- 아이템 1 -->
@@ -361,9 +384,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_ani50"
                             android:text="50주년 기념관"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
                             android:textSize="10sp"
-                            android:textColor="#3FA1F1" />
+                            android:textStyle="bold"
+                            android:textColor="#F13FA1" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -413,8 +441,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
                             android:text="축구"
-                            android:textSize="10sp" />
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
                     </LinearLayout>
 
                     <!-- 아이템 2 -->
@@ -441,8 +476,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
                             android:text="창업"
-                            android:textSize="10sp"/>
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
                     </LinearLayout>
 
                     <!-- 아이템 3 -->
@@ -469,8 +511,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
                             android:text="서예"
-                            android:textSize="10sp"/>
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
                     </LinearLayout>
 
                     <!-- 아이템 1 -->
@@ -497,9 +546,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/design_club"
+                            android:layout_marginTop="5dp"
                             android:text="고양이"
-                            android:background="@drawable/line"
-                            android:textSize="10sp"/>
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
