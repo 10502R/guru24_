@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.ActivityMainBinding
-import kotlin.io.encoding.ExperimentalEncodingApi
 
 class MainActivity : AppCompatActivity() {
 
     private var mBinding: ActivityMainBinding? = null
     private val binding get() = mBinding!!
 
-    @OptIn(ExperimentalEncodingApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -67,5 +65,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         mBinding = null // 메모리 누수 방지
     }
-
 }
