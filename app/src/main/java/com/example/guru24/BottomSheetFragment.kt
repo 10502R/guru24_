@@ -1,30 +1,48 @@
 package com.example.guru24
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.guru24.databinding.ActivityMainBinding
-import kotlin.io.encoding.ExperimentalEncodingApi
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class MainActivity : AppCompatActivity() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
 
-    private var mBinding: ActivityMainBinding? = null
-    private val binding get() = mBinding!!
-
-    private lateinit var storeList: List<Store>
     private lateinit var recyclerView: RecyclerView
     private lateinit var storeAdapter: StoreAdapter
+    private lateinit var storeList: List<Store>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
+    }
 
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // 가게 목록 초기화
-        storeList = listOf(
+        recyclerView = view.findViewById(R.id.bottomSheetRecyclerView)
+        storeList = getStoreList() // 목록을 가져오는 메서드 호출
+        storeAdapter = StoreAdapter(storeList, requireContext()) { store ->
+            // 가게 이름 클릭 시 상세 페이지로 이동
+            val fragment = StoreDetailFragment.newInstance(store)
+            (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        recyclerView.adapter = storeAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun getStoreList(): List<Store> {
+        return listOf(
             Store("퀴즈노스 서울여대점", "카페/베이커리", "학생누리관", "서울 노원구 화랑로 621 101호 (공릉동, 서울여자대학교 학생누리관)",
                 "02-977-7923", "\"월-금 08:00 - 17:00\n" +
                         "토, 일, 공휴일 정기 휴무\"\n"),
@@ -74,74 +92,7 @@ class MainActivity : AppCompatActivity() {
                     "토, 일, 공휴일 정기 휴무\"\n"),
             Store("교육심리학과", "학과사무실", "인문사회관", "서울 노원구 화랑로 621 인문사회관 517호", "02-970-5561", "\"월-금 09:00 - 17:30\n" +
                     "토, 일, 공휴일 정기 휴무\"\n")
-            )
 
-        // RecyclerView 설정
-        recyclerView = binding.recyclerView // ViewBinding을 사용하여 RecyclerView 참조
-        storeAdapter = StoreAdapter(
-            storeList, this@MainActivity // MainActivity의 Context를 전달
-        ) { store -> // 클릭 리스너 구현
-            val fragment = StoreDetailFragment.newInstance(store)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment) // 'fragment_container'는 Fragment가 표시될 View ID
-                .addToBackStack(null)
-                .commit()
-        }
-
-        recyclerView.adapter = storeAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-
-        // LoginActivity에서 전달된 이메일 데이터 받기
-        val email = intent.getStringExtra("USER_EMAIL")
-
-        // 기본 Fragment 설정
-        if (savedInstanceState == null) {
-            replaceFragment(HomeFragment())
-        }
-
-        // BottomNavigationView 클릭 리스너 설정
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.tabHome -> {
-                    replaceFragment(HomeFragment())
-                    true
-                }
-                R.id.tabMap -> {
-                    replaceFragment(MapFragment())
-                    true
-                }
-                R.id.tabTrophy -> {
-                    replaceFragment(TrophyFragment())
-                    true
-                }
-                R.id.tabMypage -> {
-                    // 이메일 데이터를 MypageFragment로 전달
-                    val mypageFragment = MypageFragment().apply {
-                        arguments = Bundle().apply {
-                            putString("USER_EMAIL", email) // 이메일 전달
-                        }
-                    }
-                    replaceFragment(mypageFragment)
-                    true
-                }
-                else -> false
-            }
-        }
+        )
     }
-
-    // Fragment 교체 함수
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment) // rootlayout은 FrameLayout ID
-            .addToBackStack(null)
-            .commit()
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mBinding = null // 메모리 누수 방지
-    }
-
 }
