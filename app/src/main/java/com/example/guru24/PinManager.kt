@@ -10,6 +10,15 @@ import com.kakao.vectormap.label.LabelStyles
 class PinManager(private val kakaoMap: KakaoMap) {
 
     private val labelManager = kakaoMap.labelManager
+    private val pinList = mutableListOf<PinData>() // 마커 데이터를 관리
+    private val pinsByGroup = mutableMapOf<String, MutableList<PinData>>() // 그룹별 핀 관리
+
+    data class PinData(
+        val latitude: Double,
+        val longitude: Double,
+        val group: String,
+        val iconResId: Int
+    )
 
     init {
         requireNotNull(labelManager) { "LabelManager is null" }
@@ -25,7 +34,7 @@ class PinManager(private val kakaoMap: KakaoMap) {
         return styles
     }
 
-    fun addPin(latitude: Double, longitude: Double, iconResId: Int) {
+    fun addPin(latitude: Double, longitude: Double, iconResId: Int, group: String) {
         val styles = createLabelStyle(iconResId) ?: return
         val options = LabelOptions.from(LatLng.from(latitude, longitude)).setStyles(styles)
 
@@ -38,14 +47,22 @@ class PinManager(private val kakaoMap: KakaoMap) {
         val label = layer.addLabel(options)
         if (label != null) {
             label.show()
-            Log.d("PinManager", "Added pin at Latitude=$latitude, Longitude=$longitude")
+            val pin = PinData(latitude, longitude, group, iconResId)
+            pinList.add(pin)
+            pinsByGroup.getOrPut(group) { mutableListOf() }.add(pin) // 그룹별로 핀 추가
         } else {
             Log.e("PinManager", "Failed to add label at Latitude=$latitude, Longitude=$longitude")
         }
     }
 
     fun removeAllPins() {
-        labelManager?.removeAllLabelLayer()
-        Log.d("PinManager", "All pins removed from map")
+        pinList.clear() // 핀 데이터 초기화
+        pinsByGroup.clear() // 그룹 데이터 초기화
+        labelManager?.removeAllLabelLayer() // 모든 라벨 숨기기
+        Log.d("PinManager", "All pins removed from map and list")
     }
+
+
 }
+
+

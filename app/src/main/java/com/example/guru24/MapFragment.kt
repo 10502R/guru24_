@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.FragmentMapBinding
-import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.KakaoMapSdk
+import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.camera.CameraPosition
 import com.kakao.vectormap.camera.CameraUpdateFactory
-import com.kakao.vectormap.label.LabelStyle
 
 class MapFragment : Fragment() {
 
@@ -24,6 +23,17 @@ class MapFragment : Fragment() {
     private lateinit var kakaoMap: KakaoMap // KakaoMap 변수 추가
 
     private lateinit var pinManager: PinManager
+
+    data class PinData(
+        val latitude: Double,
+        val longitude: Double,
+        val group: String,
+        val iconResId: Int
+    )
+
+
+
+    private val pinList = mutableListOf<PinData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,8 +77,11 @@ class MapFragment : Fragment() {
                 // 지도 위치 변경
                 setSeoulWomenUniversityLocation()
 
-                // 핀
-                addPins()
+                // 초기 맵 핀 설정
+                setInitialPins()
+
+                // 버튼
+                setupButtonActions()
             }
         })
     }
@@ -92,176 +105,101 @@ class MapFragment : Fragment() {
         val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
         kakaoMap.moveCamera(cameraUpdate)
     }
-
-    private fun addPins() {
+    
+    // 처음 맵 핀
+    private fun setInitialPins() {
         // PinManager가 null인지 확인
         if (!::pinManager.isInitialized) {
             Log.e("KakaoMap", "PinManager is not initialized")
             return
         }
+        // 은행
+        pinManager.addPin(37.628537642198594, 127.09028599694307, R.drawable.fork_s, "은행"); // 우리은행
 
-        // 퀴즈노스 서울여대점
-        pinManager.addPin(
-            latitude = 37.62848695743887,
-            longitude = 127.09029159983092,
-            iconResId = R.drawable.fork_s
-        )
+        // 음식점
+        pinManager.addPin(37.628747057327836, 127.09036979749189, R.drawable.fork_s, "음식점"); // 츄츄바앤츄밥
+        pinManager.addPin(37.62650837242462, 127.09292723713305, R.drawable.fork_s, "음식점"); // 감탄떡볶이
+        pinManager.addPin(37.62870745134154, 127.0906147268686, R.drawable.fork_s, "음식점"); // 버거ING
+        pinManager.addPin(37.62850356751727, 127.09066120899283, R.drawable.fork_s, "음식점"); // 구시아
 
-        // 츄츄바앤츄밥
-        pinManager.addPin(
-            latitude = 37.628747057327836,
-            longitude = 127.09036979749189,
-            iconResId = R.drawable.fork_s
-        )
+        // 카페/베이커리
+        pinManager.addPin(37.62848695743887, 127.09029159983092, R.drawable.fork_s, "카페/베이커리"); // 퀴즈노스 서울여대점
+        pinManager.addPin(37.62827783313655, 127.09129390726292, R.drawable.fork_s, "카페/베이커리"); // 카페 딕셔너리
+        pinManager.addPin(37.626305537946706, 127.09307000145742, R.drawable.fork_s, "카페/베이커리"); // 뚜레쥬르
+        pinManager.addPin(37.62626159367428, 127.0930968508079, R.drawable.fork_s, "카페/베이커리"); // 카페ING
+        pinManager.addPin(37.62761721768795, 127.09066721254787, R.drawable.fork_s, "카페/베이커리"); // 카페 팬도로시
 
-        // 카페 딕셔너리
-        pinManager.addPin(
-            latitude = 37.62827783313655,
-            longitude = 127.09129390726292,
-            iconResId = R.drawable.fork_s
-        )
+        // 편의점
+        pinManager.addPin(37.62645655460085, 127.0929413327344, R.drawable.fork_s, "편의점"); // CU 편의점
+        pinManager.addPin(37.628731155504575, 127.08906559214024, R.drawable.fork_s, "편의점"); // 세븐일레븐 편의점
+        pinManager.addPin(37.627877084582934, 127.09249563349782, R.drawable.fork_s, "편의점"); // GS25 편의점
 
-        // CU 편의점
-        pinManager.addPin(
-            latitude = 37.62645655460085,
-            longitude = 127.0929413327344,
-            iconResId = R.drawable.fork_s
-        )
+        // 편의시설
+        pinManager.addPin(37.62592368718219, 127.09314315740546, R.drawable.fork_s, "편의시설"); // 카피웍스 복사실
+        pinManager.addPin(37.6285148287459, 127.09066263872195, R.drawable.fork_s, "편의시설"); // SWEET U
+        pinManager.addPin(37.62602946687954, 127.093252321639, R.drawable.fork_s, "편의시설"); // 구내서점
+        pinManager.addPin(37.62897908431194, 127.09179888204653, R.drawable.fork_s, "편의시설"); // 설화방
 
-        // 뚜레쥬르
-        pinManager.addPin(
-            latitude = 37.626305537946706,
-            longitude = 127.09307000145742,
-            iconResId = R.drawable.fork_s
-        )
+        // 주차/셔틀
+        pinManager.addPin(37.62725719610109, 127.09308110025269, R.drawable.fork_s, "주차/셔틀"); // 셔틀버스
 
-        // 감탄떡볶이
-        pinManager.addPin(
-            latitude = 37.62650837242462,
-            longitude = 127.09292723713305,
-            iconResId = R.drawable.fork_s
-        )
+        // 동아리
+        pinManager.addPin(37.62866113323955, 127.09080017358565, R.drawable.fork_s, "동아리"); // SWU FC
 
-        // 카피웍스 복사실
-        pinManager.addPin(
-            latitude = 37.62592368718219,
-            longitude = 127.09314315740546,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 카페ING
-        pinManager.addPin(
-            latitude = 37.62626159367428,
-            longitude = 127.0930968508079,
-            iconResId = R.drawable.fork_s
-        )
-
-        // SWEET U
-        pinManager.addPin(
-            latitude = 37.6285148287459,
-            longitude = 127.09066263872195,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 버거ING
-        pinManager.addPin(
-            latitude = 37.62870745134154,
-            longitude = 127.0906147268686,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 세븐일레븐 편의점
-        pinManager.addPin(
-            latitude = 37.628731155504575,
-            longitude = 127.08906559214024,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 구내서점
-        pinManager.addPin(
-            latitude = 37.62602946687954,
-            longitude = 127.093252321639,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 카페 팬도로시
-        pinManager.addPin(
-            latitude = 37.62761721768795,
-            longitude = 127.09066721254787,
-            iconResId = R.drawable.fork_s
-        )
-
-        // GS25 편의점
-        pinManager.addPin(
-            latitude = 37.627877084582934,
-            longitude = 127.09249563349782,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 설화방
-        pinManager.addPin(
-            latitude = 37.62897908431194,
-            longitude = 127.09179888204653,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 구시아
-        pinManager.addPin(
-            latitude = 37.62850356751727,
-            longitude = 127.09066120899283,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 우리은행
-        pinManager.addPin(
-            latitude = 37.628537642198594,
-            longitude = 127.09028599694307,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 셔틀버스
-        pinManager.addPin(
-            latitude = 37.62725719610109,
-            longitude = 127.09308110025269,
-            iconResId = R.drawable.fork_s
-        )
-
-        // SWU FC
-        pinManager.addPin(
-            latitude = 37.62866113323955,
-            longitude = 127.09080017358565,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 정보보호학과
-        pinManager.addPin(
-            latitude = 37.62928875302238,
-            longitude = 127.09039877467993,
-            iconResId = R.drawable.fork_s
-        )
-
-        // 교육심리학과
-        pinManager.addPin(
-            latitude = 37.62822280107313,
-            longitude = 127.09254279140082,
-            iconResId = R.drawable.fork_s
-        )
+        // 학과사무실
+        pinManager.addPin(37.62928875302238, 127.09039877467993, R.drawable.fork_s, "학과사무실"); // 정보보호학과
+        pinManager.addPin(37.62822280107313, 127.09254279140082, R.drawable.fork_s, "학과사무실"); // 교육심리학과
 
     }
 
-
-    companion object {
-        fun setPinStyle(isSelected: Boolean): LabelStyle {
-            if (isSelected) {
-                LabelStyle.from(
-                    R.drawable.fork_s
-                ).setTextStyles(20, R.color.black)
+    private fun setupButtonActions() {
+        binding.button1.setOnClickListener {
+            if (!::pinManager.isInitialized) {
+                Log.e("MapFragment", "PinManager is not initialized")
+                return@setOnClickListener
             }
-            return LabelStyle.from(
-                R.drawable.check_circle
-            )
+
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+
+            // 음식점
+            pinManager.addPin(37.628747057327836, 127.09036979749189, R.drawable.fork_s, "음식점"); // 츄츄바앤츄밥
+            pinManager.addPin(37.62650837242462, 127.09292723713305, R.drawable.fork_s, "음식점"); // 감탄떡볶이
+            pinManager.addPin(37.62870745134154, 127.0906147268686, R.drawable.fork_s, "음식점"); // 버거ING
+            pinManager.addPin(37.62850356751727, 127.09066120899283, R.drawable.fork_s, "음식점"); // 구시아
+            Log.d("MapFragment", "Added pin for food_market")
+        }
+
+        binding.button2.setOnClickListener {
+            if (!::pinManager.isInitialized) {
+                Log.e("MapFragment", "PinManager is not initialized")
+                return@setOnClickListener
+            }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+
+            // 편의시설
+            pinManager.addPin(37.62592368718219, 127.09314315740546, R.drawable.fork_s, "편의시설"); // 카피웍스 복사실
+            pinManager.addPin(37.6285148287459, 127.09066263872195, R.drawable.fork_s, "편의시설"); // SWEET U
+            pinManager.addPin(37.62602946687954, 127.093252321639, R.drawable.fork_s, "편의시설"); // 구내서점
+            pinManager.addPin(37.62897908431194, 127.09179888204653, R.drawable.fork_s, "편의시설"); // 설화방
+        }
+
+        binding.button3.setOnClickListener {
+            if (!::pinManager.isInitialized) {
+                Log.e("MapFragment", "PinManager is not initialized")
+                return@setOnClickListener
+            }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+
+            // 학과사무실
+            pinManager.addPin(37.62928875302238, 127.09039877467993, R.drawable.fork_s, "학과사무실"); // 정보보호학과
+            pinManager.addPin(37.62822280107313, 127.09254279140082, R.drawable.fork_s, "학과사무실"); // 교육심리학과
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
