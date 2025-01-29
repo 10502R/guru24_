@@ -1,11 +1,13 @@
 package com.example.guru24
 
+import android.graphics.Color
 import android.util.Log
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.label.LabelOptions
 import com.kakao.vectormap.label.LabelStyle
 import com.kakao.vectormap.label.LabelStyles
+import com.kakao.vectormap.label.LabelTextBuilder
 
 class PinManager(private val kakaoMap: KakaoMap) {
 
@@ -17,7 +19,8 @@ class PinManager(private val kakaoMap: KakaoMap) {
         val latitude: Double,
         val longitude: Double,
         val group: String,
-        val iconResId: Int
+        val iconResId: Int,
+        val text: String? = null
     )
 
     init {
@@ -34,22 +37,40 @@ class PinManager(private val kakaoMap: KakaoMap) {
         return styles
     }
 
-    fun addPin(latitude: Double, longitude: Double, iconResId: Int, group: String) {
-        val styles = createLabelStyle(iconResId) ?: return
-        val options = LabelOptions.from(LatLng.from(latitude, longitude)).setStyles(styles)
-
-        val layer = labelManager?.layer
+    fun addPin(latitude: Double, longitude: Double, iconResId: Int, group: String, text: String? = null) {
+        val layer = kakaoMap?.labelManager?.layer
         if (layer == null) {
             Log.e("PinManager", "LabelLayer is null")
             return
         }
 
+        val labelStyle = LabelStyle.from(iconResId)
+            .setAnchorPoint(0.5f, 0.9f)
+            .setTextStyles(14, Color.BLACK, 2, Color.WHITE)
+
+        val styles = labelManager?.addLabelStyles(LabelStyles.from(labelStyle)) ?: return
+
+        val latLng = LatLng.from(latitude, longitude)
+
+        val options = LabelOptions.from(latLng)
+            .setStyles(styles)
+
+        // 텍스트가 있을 경우 추가
+        text?.let {
+            val labelText = LabelTextBuilder().setTexts(it)
+            options.setTexts(labelText)
+        }
+
         val label = layer.addLabel(options)
+
         if (label != null) {
             label.show()
-            val pin = PinData(latitude, longitude, group, iconResId)
-            pinList.add(pin)
-            pinsByGroup.getOrPut(group) { mutableListOf() }.add(pin) // 그룹별로 핀 추가
+            label.invalidate()
+            Log.d("PinManager", "Added pin at Latitude=$latitude, Longitude=$longitude with text=$text")
+
+            val pinData = PinData(latitude, longitude, group, iconResId, text)
+            pinList.add(pinData)
+            pinsByGroup.getOrPut(group) { mutableListOf() }.add(pinData)
         } else {
             Log.e("PinManager", "Failed to add label at Latitude=$latitude, Longitude=$longitude")
         }
@@ -61,8 +82,4 @@ class PinManager(private val kakaoMap: KakaoMap) {
         labelManager?.removeAllLabelLayer() // 모든 라벨 숨기기
         Log.d("PinManager", "All pins removed from map and list")
     }
-
-
 }
-
-

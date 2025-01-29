@@ -114,7 +114,7 @@ class MapFragment : Fragment() {
             return
         }
         // 은행
-        pinManager.addPin(37.628537642198594, 127.09028599694307, R.drawable.fork_s, "은행"); // 우리은행
+        pinManager.addPin(37.628537642198594, 127.09028599694307, R.drawable.fork_s, "은행", "우리은행"); // 우리은행
 
         // 음식점
         pinManager.addPin(37.628747057327836, 127.09036979749189, R.drawable.fork_s, "음식점"); // 츄츄바앤츄밥
