@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -44,6 +45,11 @@ class MapFragment : Fragment() {
         // 지도 표시 함수 호출
         showMapView()
 
+        // 검색창 클릭 시 SearchActivity로 이동
+        binding.searchView.setOnClickListener {
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 
