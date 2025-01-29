@@ -154,7 +154,7 @@ class MapFragment : Fragment() {
     }
 
     private fun setupButtonActions() {
-        binding.button1.setOnClickListener {
+        binding.layoutrestaurant.setOnClickListener {
             if (!::pinManager.isInitialized) {
                 Log.e("MapFragment", "PinManager is not initialized")
                 return@setOnClickListener
@@ -171,7 +171,7 @@ class MapFragment : Fragment() {
             Log.d("MapFragment", "Added pin for food_market")
         }
 
-        binding.button2.setOnClickListener {
+        binding.layoutstore.setOnClickListener {
             if (!::pinManager.isInitialized) {
                 Log.e("MapFragment", "PinManager is not initialized")
                 return@setOnClickListener
@@ -186,7 +186,7 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.62884475692359, 127.09073809048682, R.drawable.icon_market, "편의점", "누리스토어"); // 누리스토어
         }
 
-        binding.button3.setOnClickListener {
+        binding.layoutoffice.setOnClickListener {
             if (!::pinManager.isInitialized) {
                 Log.e("MapFragment", "PinManager is not initialized")
                 return@setOnClickListener
