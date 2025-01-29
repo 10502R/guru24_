@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
@@ -14,6 +15,7 @@ import com.kakao.vectormap.KakaoMapSdk
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.camera.CameraPosition
 import com.kakao.vectormap.camera.CameraUpdateFactory
+
 
 class MapFragment : Fragment() {
 
@@ -25,16 +27,14 @@ class MapFragment : Fragment() {
 
     private lateinit var pinManager: PinManager
 
+    private var selectedImageView: ImageView? = null
+
     data class PinData(
         val latitude: Double,
         val longitude: Double,
         val group: String,
         val iconResId: Int
     )
-
-
-
-    private val pinList = mutableListOf<PinData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +50,14 @@ class MapFragment : Fragment() {
             val intent = Intent(requireContext(), SearchActivity::class.java)
             startActivity(intent)
         }
+
+        // ImageView 클릭 리스너 설정
+        binding.image1.setOnClickListener { handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2) }
+        binding.image2.setOnClickListener { handleImageClick(binding.image2, R.drawable.ic_tour_air, R.drawable.ic_tour_air2) }
+        binding.image3.setOnClickListener { handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2) }
+        binding.image4.setOnClickListener { handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store) }
+        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2) }
+
         return binding.root
     }
 
@@ -206,7 +214,28 @@ class MapFragment : Fragment() {
         }
     }
 
+    private fun handleImageClick(imageView: ImageView, defaultImage: Int, toggledImage: Int) {
+        // 이전에 선택된 ImageView가 있으면 원래 이미지로 변경
+        selectedImageView?.setImageResource(
+            when (selectedImageView) {
+                binding.image1 -> R.drawable.ic_tour_tteokbokki
+                binding.image2 -> R.drawable.ic_tour_air
+                binding.image3 -> R.drawable.ic_tour_zz
+                binding.image4 -> R.drawable.ic_tour_store
+                binding.image5 -> R.drawable.ic_tour_zz2
+                else -> 0
+            }
+        )
 
+        // 현재 선택된 ImageView를 변경
+        selectedImageView = if (selectedImageView == imageView) {
+            imageView.setImageResource(defaultImage)
+            null
+        } else {
+            imageView.setImageResource(toggledImage)
+            imageView
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
