@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class RecentSearchAdapter(
 
     override fun getItemCount(): Int = searchList.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<String>) {
         searchList = newList
         notifyDataSetChanged()

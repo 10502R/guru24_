@@ -12,16 +12,22 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
     private lateinit var recentSearchAdapter: RecentSearchAdapter
-    private val recentSearches = mutableListOf("Java", "Python", "C++", "Android", "SQL", "JavaScript")
+    private val recentSearches = mutableListOf("츄츄바앤츄밥", "감탄떡볶이", "더큰도시락", "구시아", "스윗유",
+        "미디어룸", "리딩라운지", "구내서점", "카페 딕셔너리", "멀티플렉스존", "GS25", "세븐일레븐",
+        "누리스토어", "에땅", "팬도로시", "퀴즈노스", "카페잉", "퀴즈노스 서울여대점", "교직원 식당",
+        "CU 편의점", "뚜레쥬르", "카피웍스 복사실", "오니기리와이규동", "카페ING", "비틀주스",
+        "컴포즈커피", "SWEET U", "버거ING", "기숙사식당", "세븐일레븐 편의점", "카페 팬도로시",
+        "GS25 편의점", "설화방", "우리은행", "우리은행 CD기", "셔틀버스", "극예술연구회", "소리마당",
+        "마주보기", "캐슈넛", "스키부", "SWU FC", "불교학생회 세주", "CCC", "무한비트", "슈터플라이",
+        "만화방", "서우회", "보건실", "정보보호학과", "교육심리학과"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ✅ binding을 먼저 초기화
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ✅ 이제 binding이 초기화되었으므로, SearchView 내부 EditText 접근 가능
         val searchEditText = binding.searchView.findViewById<android.widget.EditText>(
             androidx.appcompat.R.id.search_src_text
         )

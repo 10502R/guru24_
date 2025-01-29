@@ -39,7 +39,7 @@ class MapFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
 
         // 지도 표시 함수 호출
@@ -101,7 +101,7 @@ class MapFragment : Fragment() {
         val cameraPosition = CameraPosition.from(
             latitude,
             longitude,
-            5,     // 줌 레벨 (15으로 설정하면 대학 캠퍼스를 자세히 볼 수 있음)
+            10,     // 줌 레벨 (15으로 설정하면 대학 캠퍼스를 자세히 볼 수 있음)
             0.0,    // 기울기
             0.0,    // 회전 각도
             0.0     // 고도
