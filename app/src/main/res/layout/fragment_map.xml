@@ -153,7 +153,6 @@
                         android:src="@mipmap/ic_launcher"
                         android:scaleType="fitXY" />
                     <TextView
-                        android:id="@+id/rydi91u5023g"
                         android:textColor="#2A2926"
                         android:textSize="12sp"
                         android:layout_height="wrap_content"
@@ -168,7 +167,6 @@
                     android:layout_weight="0"
                     android:orientation="vertical">
                     <ImageView
-                        android:id="@+id/rig88dq3kqhl"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
                         android:src="@mipmap/ic_launcher"

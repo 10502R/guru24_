@@ -134,51 +134,50 @@ class MapFragment : Fragment() {
         pinManager.addPin(37.62869873773617, 127.09022813360964, R.drawable.icon_bank, "은행", "우리은행"); // 우리은행
 
         // 음식점
-        pinManager.addPin(37.62885613457392, 127.09058800230274, R.drawable.icon_store, "음식점", "츄츄바앤츄밥"); // 츄츄바앤츄밥
-        pinManager.addPin(37.62659059850936, 127.09291317936346, R.drawable.icon_store, "음식점", "교직원 식당"); // 교직원 식당
-        pinManager.addPin(37.626347381443864, 127.0928505722139, R.drawable.icon_store, "음식점", "감탄떡볶이"); // 감탄떡볶이
-        pinManager.addPin(37.62622118326326, 127.09292687959817, R.drawable.icon_store, "음식점", "오니기리와이규동"); // 오니기리와이규동
-        pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_store, "음식점", "버거ING"); // 버거ING
-        pinManager.addPin(37.62880664558206, 127.09050297888797, R.drawable.icon_store, "음식점", "더큰도시락"); // 더큰도시락
-        pinManager.addPin(37.62857355250948, 127.08897336072911, R.drawable.icon_store, "음식점", "기숙사식당"); // 기숙사식당
+        pinManager.addPin(37.62885613457392, 127.09058800230274, R.drawable.icon_food, "음식점", "츄츄바앤츄밥"); // 츄츄바앤츄밥
+        pinManager.addPin(37.62659059850936, 127.09291317936346, R.drawable.icon_food, "음식점", "교직원 식당"); // 교직원 식당
+        pinManager.addPin(37.626347381443864, 127.0928505722139, R.drawable.icon_food, "음식점", "감탄떡볶이"); // 감탄떡볶이
+        pinManager.addPin(37.62622118326326, 127.09292687959817, R.drawable.icon_food, "음식점", "오니기리와이규동"); // 오니기리와이규동
+        pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food, "음식점", "버거ING"); // 버거ING
+        pinManager.addPin(37.62880664558206, 127.09050297888797, R.drawable.icon_food, "음식점", "더큰도시락"); // 더큰도시락
+        pinManager.addPin(37.62857355250948, 127.08897336072911, R.drawable.icon_food, "음식점", "기숙사식당"); // 기숙사식당
         pinManager.addPin(37.628687040925726, 127.09079454088958, R.drawable.icon_food, "음식점", "구시아"); // 구시아
 
         // 주차/셔틀
         pinManager.addPin(37.62712879896861, 127.09308943627939, R.drawable.icon_bus, "주차/셔틀", "셔틀버스"); // 셔틀버스
 
         // 카페/베이커리
-        pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_store, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
-        pinManager.addPin(37.62611302036721, 127.09298338513028, R.drawable.icon_store, "카페/베이커리", "뚜레쥬르"); // 뚜레쥬르
-        pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_store, "카페/베이커리", "카페ING"); // 카페ING
-        pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_store, "카페/베이커리", "비틀주스"); // 비틀주스
-        pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_store, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
-        pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_store, "카페/베이커리", "에땅"); // 에땅
-        pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_store, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
+        pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
+        pinManager.addPin(37.62611302036721, 127.09298338513028, R.drawable.icon_cafe, "카페/베이커리", "뚜레쥬르"); // 뚜레쥬르
+        pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe, "카페/베이커리", "카페ING"); // 카페ING
+        pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_cafe, "카페/베이커리", "비틀주스"); // 비틀주스
+        pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_cafe, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
+        pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe, "카페/베이커리", "에땅"); // 에땅
+        pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
 
         // 편의시설
-        pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_store, "편의시설", "카피웍스 복사실"); // 카피웍스 복사실
-        pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의시설", "누리스토어"); // 누리스토어
-        pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_store, "편의시설", "SWEET U"); // SWEET U
-        pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_store, "편의시설", "구내서점"); // 구내서점
-        pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_store, "편의시설", "보건실"); // 보건실
-        pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_store, "편의시설", "멀티플렉스존"); // 멀티플렉스존
-        pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_store, "편의시설", "미디어룸"); // 미디어룸
+        pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market, "편의시설", "카피웍스 복사실"); // 카피웍스 복사실
+        pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market, "편의시설", "SWEET U"); // SWEET U
+        pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market, "편의시설", "구내서점"); // 구내서점
+        pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_market, "편의시설", "보건실"); // 보건실
+        pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market, "편의시설", "멀티플렉스존"); // 멀티플렉스존
+        pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market, "편의시설", "미디어룸"); // 미디어룸
 
         // 편의점
         pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store, "편의점", "CU 편의점"); // CU 편의점
         pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
         pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store, "편의점", "GS25 편의점"); // GS25 편의점
+        pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의점", "누리스토어"); // 누리스토어
 
         // 학과사무실
-        pinManager.addPin(37.62925489443627, 127.0904921939158, R.drawable.icon_store, "학과사무실", "정보보호학과"); // 정보보호학과
-        pinManager.addPin(37.62822388842327, 127.09259235431496, R.drawable.icon_store, "학과사무실", "교육심리학과"); // 교육심리학과
+        pinManager.addPin(37.62925489443627, 127.0904921939158, R.drawable.icon_office, "학과사무실", "정보보호학과"); // 정보보호학과
+        pinManager.addPin(37.62822388842327, 127.09259235431496, R.drawable.icon_office, "학과사무실", "교육심리학과"); // 교육심리학과
 
         // 학습공간
-        pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_store, "학습공간", "리딩라운지"); // 리딩라운지
-        pinManager.addPin(37.62932261153444, 127.09030535535916, R.drawable.icon_store, "학습공간", "러닝커먼스"); // 러닝커먼스
-        pinManager.addPin(37.628228511041456, 127.09244225929751, R.drawable.icon_store, "학습공간", "스터디룸"); // 스터디룸
-        pinManager.addPin(37.628443477882534, 127.09117940990961, R.drawable.icon_store, "학습공간", "세미나실"); // 세미나실
-
+        pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study, "학습공간", "리딩라운지"); // 리딩라운지
+        pinManager.addPin(37.62932261153444, 127.09030535535916, R.drawable.icon_study, "학습공간", "러닝커먼스"); // 러닝커먼스
+        pinManager.addPin(37.628228511041456, 127.09244225929751, R.drawable.icon_study, "학습공간", "스터디룸"); // 스터디룸
+        pinManager.addPin(37.628443477882534, 127.09117940990961, R.drawable.icon_study, "학습공간", "세미나실"); // 세미나실
 
     }
 
@@ -193,10 +192,14 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 음식점
-            pinManager.addPin(37.628747057327836, 127.09036979749189, R.drawable.icon_rest, "음식점"); // 츄츄바앤츄밥
-            pinManager.addPin(37.62650837242462, 127.09292723713305, R.drawable.icon_rest, "음식점"); // 감탄떡볶이
-            pinManager.addPin(37.62870745134154, 127.0906147268686, R.drawable.icon_rest, "음식점"); // 버거ING
-            pinManager.addPin(37.62850356751727, 127.09066120899283, R.drawable.icon_rest, "음식점"); // 구시아
+            pinManager.addPin(37.62885613457392, 127.09058800230274, R.drawable.icon_food2, "음식점", "츄츄바앤츄밥"); // 츄츄바앤츄밥
+            pinManager.addPin(37.62659059850936, 127.09291317936346, R.drawable.icon_food2, "음식점", "교직원 식당"); // 교직원 식당
+            pinManager.addPin(37.626347381443864, 127.0928505722139, R.drawable.icon_food2, "음식점", "감탄떡볶이"); // 감탄떡볶이
+            pinManager.addPin(37.62622118326326, 127.09292687959817, R.drawable.icon_food2, "음식점", "오니기리와이규동"); // 오니기리와이규동
+            pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food2, "음식점", "버거ING"); // 버거ING
+            pinManager.addPin(37.62880664558206, 127.09050297888797, R.drawable.icon_food2, "음식점", "더큰도시락"); // 더큰도시락
+            pinManager.addPin(37.62857355250948, 127.08897336072911, R.drawable.icon_food2, "음식점", "기숙사식당"); // 기숙사식당
+            pinManager.addPin(37.628687040925726, 127.09079454088958, R.drawable.icon_food2, "음식점", "구시아"); // 구시아
             Log.d("MapFragment", "Added pin for food_market")
         }
 
@@ -209,10 +212,10 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 편의점
-            pinManager.addPin(37.62645655460085, 127.0929413327344, R.drawable.icon_market, "편의점"); // CU 편의점
-            pinManager.addPin(37.628731155504575, 127.08906559214024, R.drawable.icon_market, "편의점"); // 세븐일레븐 편의점
-            pinManager.addPin(37.627877084582934, 127.09249563349782, R.drawable.icon_market, "편의점"); // GS25 편의점
-            pinManager.addPin(37.62884475692359, 127.09073809048682, R.drawable.icon_market, "편의점", "누리스토어"); // 누리스토어
+            pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store2, "편의점", "CU 편의점"); // CU 편의점
+            pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store2, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
+            pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store2, "편의점", "GS25 편의점"); // GS25 편의점
+            pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store2, "편의점", "누리스토어"); // 누리스토어
         }
 
         binding.layoutoffice.setOnClickListener {
@@ -224,8 +227,75 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 학과사무실
-            pinManager.addPin(37.62928875302238, 127.09039877467993, R.drawable.icon_office, "학과사무실" ,"정보보호학과사무실"); // 정보보호학과
-            pinManager.addPin(37.62822280107313, 127.09254279140082, R.drawable.icon_office, "학과사무실", "교육심리학과사무실"); // 교육심리학과
+            pinManager.addPin(37.62925489443627, 127.0904921939158, R.drawable.icon_office, "학과사무실", "정보보호학과"); // 정보보호학과
+            pinManager.addPin(37.62822388842327, 127.09259235431496, R.drawable.icon_office, "학과사무실", "교육심리학과"); // 교육심리학과
+        }
+
+        binding.layoutmarket.setOnClickListener {
+            if (!::pinManager.isInitialized) {
+                Log.e("MapFragment", "PinManager is not initialized")
+                return@setOnClickListener
+            }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+
+            // 편의시설
+            pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market, "편의시설", "카피웍스 복사실"); // 카피웍스 복사실
+            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market, "편의시설", "SWEET U"); // SWEET U
+            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market, "편의시설", "구내서점"); // 구내서점
+            pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_market, "편의시설", "보건실"); // 보건실
+            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market, "편의시설", "멀티플렉스존"); // 멀티플렉스존
+            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market, "편의시설", "미디어룸"); // 미디어룸
+
+        }
+
+        binding.layoutstudy.setOnClickListener {
+            if (!::pinManager.isInitialized) return@setOnClickListener
+            pinManager.removeAllPins()
+
+            // 학습공간
+            pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study, "학습공간", "리딩라운지"); // 리딩라운지
+            pinManager.addPin(37.62932261153444, 127.09030535535916, R.drawable.icon_study, "학습공간", "러닝커먼스"); // 러닝커먼스
+            pinManager.addPin(37.628228511041456, 127.09244225929751, R.drawable.icon_study, "학습공간", "스터디룸"); // 스터디룸
+            pinManager.addPin(37.628443477882534, 127.09117940990961, R.drawable.icon_study, "학습공간", "세미나실"); // 세미나실
+        }
+
+        binding.layoutclub.setOnClickListener {
+            if (!::pinManager.isInitialized) return@setOnClickListener
+            pinManager.removeAllPins()
+
+            // 동아리
+            pinManager.addPin(37.62866684063515, 127.09070105680749, R.drawable.icon_club, "동아리", "동아리"); // 동아리
+        }
+
+        binding.layoutbank.setOnClickListener {
+            if (!::pinManager.isInitialized) return@setOnClickListener
+            pinManager.removeAllPins()
+
+            // 은행
+            pinManager.addPin(37.62869873773617, 127.09022813360964, R.drawable.icon_bank, "은행", "우리은행"); // 우리은행
+        }
+
+        binding.layoutbus.setOnClickListener {
+            if (!::pinManager.isInitialized) return@setOnClickListener
+            pinManager.removeAllPins()
+
+            // 주차/셔틀
+            pinManager.addPin(37.62712879896861, 127.09308943627939, R.drawable.icon_bus, "주차/셔틀", "셔틀버스"); // 셔틀버스
+        }
+
+        binding.layoutcafe.setOnClickListener {
+            if (!::pinManager.isInitialized) return@setOnClickListener
+            pinManager.removeAllPins()
+
+            // 카페/베이커리
+            pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
+            pinManager.addPin(37.62611302036721, 127.09298338513028, R.drawable.icon_cafe, "카페/베이커리", "뚜레쥬르"); // 뚜레쥬르
+            pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe, "카페/베이커리", "카페ING"); // 카페ING
+            pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_cafe, "카페/베이커리", "비틀주스"); // 비틀주스
+            pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_cafe, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
+            pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe, "카페/베이커리", "에땅"); // 에땅
+            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
         }
     }
 
