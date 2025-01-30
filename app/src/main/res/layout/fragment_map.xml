@@ -90,7 +90,7 @@
             android:layout_height="42dp"
             android:layout_marginBottom="270dp"
             android:layout_marginStart="15dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/icon_mappin"
             android:scaleType="fitXY" />
     </LinearLayout>
     <LinearLayout

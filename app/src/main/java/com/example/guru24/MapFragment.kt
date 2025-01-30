@@ -12,8 +12,9 @@ import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.KakaoMapSdk
+import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
-import com.kakao.vectormap.camera.CameraPosition
+import com.kakao.vectormap.camera.CameraAnimation
 import com.kakao.vectormap.camera.CameraUpdateFactory
 
 
@@ -83,10 +84,10 @@ class MapFragment : Fragment() {
             // 모든 핀 삭제
             pinManager.removeAllPins()
             // 벼락치기 투어
-            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
+            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
             pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
-            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market, "편의시설", "멀티플렉스존"); // 멀티플렉스존
-            pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food, "음식점", "버거ING"); // 버거ING
+            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market2, "편의시설", "멀티플렉스존"); // 멀티플렉스존
+            pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food2, "음식점", "버거ING"); // 버거ING
         }
         binding.image4.setOnClickListener {
             handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store)
@@ -95,10 +96,10 @@ class MapFragment : Fragment() {
             // 모든 핀 삭제
             pinManager.removeAllPins()
             // 편의점 투어
-            pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store, "편의점", "CU 편의점"); // CU 편의점
-            pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
-            pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store, "편의점", "GS25 편의점"); // GS25 편의점
-            pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의점", "누리스토어"); // 누리스토어
+            pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store2, "편의점", "CU 편의점"); // CU 편의점
+            pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store2, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
+            pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store2, "편의점", "GS25 편의점"); // GS25 편의점
+            pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store2, "편의점", "누리스토어"); // 누리스토어
         }
         binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2)
             if (!::pinManager.isInitialized) {
@@ -106,10 +107,10 @@ class MapFragment : Fragment() {
             // 모든 핀 삭제
             pinManager.removeAllPins()
             // 카페 투어
-            pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
-            pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe, "카페/베이커리", "카페ING"); // 카페ING
-            pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe, "카페/베이커리", "에땅"); // 에땅
-            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
+            pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe2, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
+            pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe2, "카페/베이커리", "카페ING"); // 카페ING
+            pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe2, "카페/베이커리", "에땅"); // 에땅
+            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
         }
 
         return binding.root
@@ -155,19 +156,21 @@ class MapFragment : Fragment() {
     }
 
     private fun setLocation() {
-        // 서울여자대학교 좌표
-        val latitude = 37.62613777291973
-        val longitude = 127.09301456807785
+        val latitude = 37.62765288945836
+        val longitude = 127.09114445931245
 
-        // 카메라 위치 설정
-        val cameraPosition =
-            CameraPosition.from(latitude, longitude, 18, 0.0, 0.0, 0.0)
+        // 카메라 이동 및 설정
+        val cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(latitude, longitude))
 
-        // 카메라 이동
-        val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
-        kakaoMap.moveCamera(cameraUpdate)
+        kakaoMap.moveCamera(cameraUpdate, CameraAnimation.from(500, true, true)) // 애니메이션 적용
+        kakaoMap.moveCamera(CameraUpdateFactory.newCenterPosition(LatLng.from(latitude, longitude)))
+        kakaoMap.moveCamera(CameraUpdateFactory.zoomTo(16)) // 줌 레벨 적용
+        kakaoMap.moveCamera(CameraUpdateFactory.tiltTo(Math.toRadians(0.0))) // 기울기 설정
+        kakaoMap.moveCamera(CameraUpdateFactory.rotateTo(Math.toRadians(0.0))) // 회전 설정
+        // 카메라 상태 확인 로그
+        Log.d("KakaoMap", "Camera position: ${kakaoMap.cameraPosition}")
     }
-    
+
     // 처음 맵 핀
     private fun setInitialPins() {
         // PinManager가 null인지 확인
@@ -343,7 +346,7 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe2, "카페/베이커리", "카페ING"); // 카페ING
             pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_cafe2, "카페/베이커리", "비틀주스"); // 비틀주스
             pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_cafe2, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
-            pinManager.addPin( 37.628245217323375, 127.09123580951733, R.drawable.icon_cafe, "카페/베이커리", "카페 딕셔너리"); // 카페 딕셔너리
+            pinManager.addPin( 37.628245217323375, 127.09123580951733, R.drawable.icon_cafe2, "카페/베이커리", "카페 딕셔너리"); // 카페 딕셔너리
             pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe2, "카페/베이커리", "에땅"); // 에땅
             pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
         }
