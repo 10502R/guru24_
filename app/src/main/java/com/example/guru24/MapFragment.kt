@@ -229,6 +229,7 @@ class MapFragment : Fragment() {
                 setupButtonActions()
             }
         })
+
     }
 
     private fun setLocation() {
@@ -368,12 +369,12 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 편의시설
-            pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market2, "편의시설", "카피웍스 복사실"); // 카피웍스 복사실
-            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
-            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market2, "편의시설", "구내서점"); // 구내서점
-            pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_market2, "편의시설", "보건실"); // 보건실
-            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market2, "편의시설", "멀티플렉스존"); // 멀티플렉스존
-            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market2, "편의시설", "미디어룸"); // 미디어룸
+            pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market2, "편의시설", "카피웍스 복사실") // 카피웍스 복사실
+            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U") // SWEET U
+            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market2, "편의시설", "구내서점") // 구내서점
+            pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_market2, "편의시설", "보건실") // 보건실
+            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market2, "편의시설", "멀티플렉스존") // 멀티플렉스존
+            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market2, "편의시설", "미디어룸") // 미디어룸
 
         }
 
@@ -455,4 +456,5 @@ class MapFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
