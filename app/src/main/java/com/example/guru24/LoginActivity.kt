@@ -3,6 +3,9 @@ package com.example.guru24
 import DBHelper
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.guru24.databinding.ActivityLoginBinding
@@ -22,7 +25,31 @@ class LoginActivity : AppCompatActivity() {
         // SharedPreferences 초기화
         val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 
-        // 로그인 버튼 클릭 시 처리
+        // 이메일과 비밀번호 입력 상태를 실시간으로 감지하기 위한 TextWatcher
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val email = binding.email.text.toString()
+                val password = binding.password.text.toString()
+
+                // 이메일과 비밀번호가 모두 입력되었을 경우 ButtonCheck 활성화
+                if (email.isNotBlank() && password.isNotBlank()) {
+                    binding.ButtonUncheck.visibility = View.GONE // ButtonUncheck 숨김
+                    binding.ButtonCheck.visibility = View.VISIBLE // ButtonCheck 표시
+                } else {
+                    binding.ButtonUncheck.visibility = View.VISIBLE // ButtonUncheck 표시
+                    binding.ButtonCheck.visibility = View.GONE // ButtonCheck 숨김
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        }
+
+        // TextWatcher를 이메일과 비밀번호 입력 필드에 추가
+        binding.email.addTextChangedListener(textWatcher)
+        binding.password.addTextChangedListener(textWatcher)
+
+        // 기존 로그인 버튼 클릭 처리
         binding.ButtonCheck.setOnClickListener {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
@@ -42,7 +69,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         // 회원가입 버튼 클릭 시 SignupActivity로 이동
         binding.signup.setOnClickListener {
