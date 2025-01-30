@@ -52,11 +52,65 @@ class MapFragment : Fragment() {
         }
 
         // ImageView 클릭 리스너 설정
-        binding.image1.setOnClickListener { handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2) }
-        binding.image2.setOnClickListener { handleImageClick(binding.image2, R.drawable.ic_tour_air, R.drawable.ic_tour_air2) }
-        binding.image3.setOnClickListener { handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2) }
-        binding.image4.setOnClickListener { handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store) }
-        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2) }
+        binding.image1.setOnClickListener {
+            handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2)
+            if (!::pinManager.isInitialized) {
+                return@setOnClickListener }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+            // 떡볶이 투어
+            pinManager.addPin(37.62885613457392, 127.09058800230274, R.drawable.icon_food2, "음식점", "츄츄바앤츄밥"); // 츄츄바앤츄밥
+            pinManager.addPin(37.626347381443864, 127.0928505722139, R.drawable.icon_food2, "음식점", "감탄떡볶이"); // 감탄떡볶이
+            pinManager.addPin(37.62880664558206, 127.09050297888797, R.drawable.icon_food2, "음식점", "더큰도시락"); // 더큰도시락
+            pinManager.addPin(37.628687040925726, 127.09079454088958, R.drawable.icon_food2, "음식점", "구시아"); // 구시아
+        }
+        binding.image2.setOnClickListener {
+            handleImageClick(binding.image2, R.drawable.ic_tour_air, R.drawable.ic_tour_air2)
+            if (!::pinManager.isInitialized) {
+                return@setOnClickListener }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+            // 공강 투어
+            pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study2, "학습공간", "리딩라운지"); // 리딩라운지
+            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
+            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market2, "편의시설", "미디어룸"); // 미디어룸
+            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market2, "편의시설", "구내서점"); // 구내서점
+        }
+        binding.image3.setOnClickListener {
+            handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2)
+            if (!::pinManager.isInitialized) {
+                return@setOnClickListener }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+            // 벼락치기 투어
+            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
+            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
+            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market, "편의시설", "멀티플렉스존"); // 멀티플렉스존
+            pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food, "음식점", "버거ING"); // 버거ING
+        }
+        binding.image4.setOnClickListener {
+            handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store)
+            if (!::pinManager.isInitialized) {
+                return@setOnClickListener }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+            // 편의점 투어
+            pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store, "편의점", "CU 편의점"); // CU 편의점
+            pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
+            pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store, "편의점", "GS25 편의점"); // GS25 편의점
+            pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의점", "누리스토어"); // 누리스토어
+        }
+        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2)
+            if (!::pinManager.isInitialized) {
+                return@setOnClickListener }
+            // 모든 핀 삭제
+            pinManager.removeAllPins()
+            // 편의점 투어
+            pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store, "편의점", "CU 편의점"); // CU 편의점
+            pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
+            pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store, "편의점", "GS25 편의점"); // GS25 편의점
+            pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의점", "누리스토어"); // 누리스토어
+        }
 
         return binding.root
     }
@@ -152,6 +206,7 @@ class MapFragment : Fragment() {
         pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe, "카페/베이커리", "카페ING"); // 카페ING
         pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_cafe, "카페/베이커리", "비틀주스"); // 비틀주스
         pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_cafe, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
+        pinManager.addPin( 37.628245217323375, 127.09123580951733, R.drawable.icon_cafe, "카페/베이커리", "카페 딕셔너리"); // 카페 딕셔너리
         pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe, "카페/베이커리", "에땅"); // 에땅
         pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
 
@@ -227,8 +282,8 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 학과사무실
-            pinManager.addPin(37.62925489443627, 127.0904921939158, R.drawable.icon_office, "학과사무실", "정보보호학과"); // 정보보호학과
-            pinManager.addPin(37.62822388842327, 127.09259235431496, R.drawable.icon_office, "학과사무실", "교육심리학과"); // 교육심리학과
+            pinManager.addPin(37.62925489443627, 127.0904921939158, R.drawable.icon_office2, "학과사무실", "정보보호학과"); // 정보보호학과
+            pinManager.addPin(37.62822388842327, 127.09259235431496, R.drawable.icon_office2, "학과사무실", "교육심리학과"); // 교육심리학과
         }
 
         binding.layoutmarket.setOnClickListener {
@@ -240,12 +295,12 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 편의시설
-            pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market, "편의시설", "카피웍스 복사실"); // 카피웍스 복사실
-            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market, "편의시설", "SWEET U"); // SWEET U
-            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market, "편의시설", "구내서점"); // 구내서점
-            pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_market, "편의시설", "보건실"); // 보건실
-            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market, "편의시설", "멀티플렉스존"); // 멀티플렉스존
-            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market, "편의시설", "미디어룸"); // 미디어룸
+            pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market2, "편의시설", "카피웍스 복사실"); // 카피웍스 복사실
+            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
+            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market2, "편의시설", "구내서점"); // 구내서점
+            pinManager.addPin(37.62876155285828, 127.09055956640816, R.drawable.icon_market2, "편의시설", "보건실"); // 보건실
+            pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market2, "편의시설", "멀티플렉스존"); // 멀티플렉스존
+            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market2, "편의시설", "미디어룸"); // 미디어룸
 
         }
 
@@ -254,10 +309,10 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 학습공간
-            pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study, "학습공간", "리딩라운지"); // 리딩라운지
-            pinManager.addPin(37.62932261153444, 127.09030535535916, R.drawable.icon_study, "학습공간", "러닝커먼스"); // 러닝커먼스
-            pinManager.addPin(37.628228511041456, 127.09244225929751, R.drawable.icon_study, "학습공간", "스터디룸"); // 스터디룸
-            pinManager.addPin(37.628443477882534, 127.09117940990961, R.drawable.icon_study, "학습공간", "세미나실"); // 세미나실
+            pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study2, "학습공간", "리딩라운지"); // 리딩라운지
+            pinManager.addPin(37.62932261153444, 127.09030535535916, R.drawable.icon_study2, "학습공간", "러닝커먼스"); // 러닝커먼스
+            pinManager.addPin(37.628228511041456, 127.09244225929751, R.drawable.icon_study2, "학습공간", "스터디룸"); // 스터디룸
+            pinManager.addPin(37.628443477882534, 127.09117940990961, R.drawable.icon_study2, "학습공간", "세미나실"); // 세미나실
         }
 
         binding.layoutclub.setOnClickListener {
@@ -265,7 +320,7 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 동아리
-            pinManager.addPin(37.62866684063515, 127.09070105680749, R.drawable.icon_club, "동아리", "동아리"); // 동아리
+            pinManager.addPin(37.62866684063515, 127.09070105680749, R.drawable.icon_club2, "동아리", "동아리"); // 동아리
         }
 
         binding.layoutbank.setOnClickListener {
@@ -273,7 +328,7 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 은행
-            pinManager.addPin(37.62869873773617, 127.09022813360964, R.drawable.icon_bank, "은행", "우리은행"); // 우리은행
+            pinManager.addPin(37.62869873773617, 127.09022813360964, R.drawable.icon_bank2, "은행", "우리은행"); // 우리은행
         }
 
         binding.layoutbus.setOnClickListener {
@@ -281,7 +336,7 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 주차/셔틀
-            pinManager.addPin(37.62712879896861, 127.09308943627939, R.drawable.icon_bus, "주차/셔틀", "셔틀버스"); // 셔틀버스
+            pinManager.addPin(37.62712879896861, 127.09308943627939, R.drawable.icon_bus2, "주차/셔틀", "셔틀버스"); // 셔틀버스
         }
 
         binding.layoutcafe.setOnClickListener {
@@ -289,13 +344,14 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // 카페/베이커리
-            pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
-            pinManager.addPin(37.62611302036721, 127.09298338513028, R.drawable.icon_cafe, "카페/베이커리", "뚜레쥬르"); // 뚜레쥬르
-            pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe, "카페/베이커리", "카페ING"); // 카페ING
-            pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_cafe, "카페/베이커리", "비틀주스"); // 비틀주스
-            pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_cafe, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
-            pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe, "카페/베이커리", "에땅"); // 에땅
-            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
+            pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe2, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
+            pinManager.addPin(37.62611302036721, 127.09298338513028, R.drawable.icon_cafe2, "카페/베이커리", "뚜레쥬르"); // 뚜레쥬르
+            pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe2, "카페/베이커리", "카페ING"); // 카페ING
+            pinManager.addPin(37.62851378841688, 127.09055076948754, R.drawable.icon_cafe2, "카페/베이커리", "비틀주스"); // 비틀주스
+            pinManager.addPin(37.62879745737408, 127.09073520087216, R.drawable.icon_cafe2, "카페/베이커리", "컴포즈커피"); // 컴포즈커피
+            pinManager.addPin( 37.628245217323375, 127.09123580951733, R.drawable.icon_cafe, "카페/베이커리", "카페 딕셔너리"); // 카페 딕셔너리
+            pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe2, "카페/베이커리", "에땅"); // 에땅
+            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
         }
     }
 
