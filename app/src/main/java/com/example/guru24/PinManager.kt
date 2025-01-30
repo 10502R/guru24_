@@ -45,7 +45,7 @@ class PinManager(private val kakaoMap: KakaoMap) {
         }
 
         val labelStyle = LabelStyle.from(iconResId)
-            .setAnchorPoint(0.5f, 0.9f)
+            .setAnchorPoint(0.5f, 1f)
             .setTextStyles(14, Color.BLACK, 2, Color.WHITE)
 
         val styles = labelManager?.addLabelStyles(LabelStyles.from(labelStyle)) ?: return
