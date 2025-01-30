@@ -10,76 +10,88 @@
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.kakao.vectormap.MapView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:background="@drawable/design_radius"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-            <SearchView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/searchView"
-                android:inputType="text"
-                android:background="@null"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:layout_weight="1"
-                android:paddingVertical="10dp" />
-        </LinearLayout>
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="10dp">
+                android:layout_margin="10dp"
+                android:background="@drawable/design_radius"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:inputType="text"
+                    android:paddingVertical="10dp"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="3dp">
-                    <ImageView
-                        android:id="@+id/image1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_tour_tteokbokki" />
-                    <ImageView
-                        android:id="@+id/image2"
+                    android:layout_marginStart="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
-                        android:src="@drawable/ic_tour_air" />
-                    <ImageView
-                        android:id="@+id/image3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:src="@drawable/ic_tour_zz" />
-                    <ImageView
-                        android:id="@+id/image4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:src="@drawable/ic_tour_store" />
-                    <ImageView
-                        android:id="@+id/image5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/ic_tour_cafe" />
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/image1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_tour_tteokbokki" />
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:src="@drawable/ic_tour_air" />
+
+                        <ImageView
+                            android:id="@+id/image3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:src="@drawable/ic_tour_zz" />
+
+                        <ImageView
+                            android:id="@+id/image4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:src="@drawable/ic_tour_store" />
+
+                        <ImageView
+                            android:id="@+id/image5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/ic_tour_cafe" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </com.kakao.vectormap.MapView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,6 +105,11 @@
             android:src="@drawable/icon_mappin"
             android:scaleType="fitXY" />
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:visibility="gone"  />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
