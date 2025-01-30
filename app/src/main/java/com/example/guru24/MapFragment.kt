@@ -1,6 +1,7 @@
 package com.example.guru24
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,13 @@ import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.camera.CameraAnimation
 import com.kakao.vectormap.camera.CameraUpdateFactory
+import com.kakao.vectormap.route.RouteLine
+import com.kakao.vectormap.route.RouteLineOptions
+import com.kakao.vectormap.route.RouteLineSegment
+import com.kakao.vectormap.route.RouteLineStyle
+import com.kakao.vectormap.route.RouteLineStyles
+import com.kakao.vectormap.route.RouteLineStylesSet
+import java.util.Arrays
 
 
 class MapFragment : Fragment() {
@@ -29,13 +37,7 @@ class MapFragment : Fragment() {
     private lateinit var pinManager: PinManager
 
     private var selectedImageView: ImageView? = null
-
-    data class PinData(
-        val latitude: Double,
-        val longitude: Double,
-        val group: String,
-        val iconResId: Int
-    )
+    private var currentRouteLine: RouteLine? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,28 +57,101 @@ class MapFragment : Fragment() {
         // ImageView 클릭 리스너 설정
         binding.image1.setOnClickListener {
             handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2)
+
             if (!::pinManager.isInitialized) {
-                return@setOnClickListener }
-            // 모든 핀 삭제
+                return@setOnClickListener
+            }
+
+            // 카메라 위치 이동
+            setLocation()
+
+            // 모든 핀 삭제 후 새로운 핀 추가
             pinManager.removeAllPins()
-            // 떡볶이 투어
-            pinManager.addPin(37.62885613457392, 127.09058800230274, R.drawable.icon_food2, "음식점", "츄츄바앤츄밥"); // 츄츄바앤츄밥
-            pinManager.addPin(37.626347381443864, 127.0928505722139, R.drawable.icon_food2, "음식점", "감탄떡볶이"); // 감탄떡볶이
-            pinManager.addPin(37.62880664558206, 127.09050297888797, R.drawable.icon_food2, "음식점", "더큰도시락"); // 더큰도시락
-            pinManager.addPin(37.628687040925726, 127.09079454088958, R.drawable.icon_food2, "음식점", "구시아"); // 구시아
+
+            pinManager.addPin(37.62885613457392, 127.09058800230274, R.drawable.icon_food2, "음식점", "츄츄바앤츄밥")
+            pinManager.addPin(37.626347381443864, 127.0928505722139, R.drawable.icon_food2, "음식점", "감탄떡볶이")
+            pinManager.addPin(37.62880664558206, 127.09050297888797, R.drawable.icon_food2, "음식점", "더큰도시락")
+            pinManager.addPin(37.628687040925726, 127.09079454088958, R.drawable.icon_food2, "음식점", "구시아")
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+            // RouteLineStylesSet 생성하기 (파란색 스타일)
+            val stylesSet = RouteLineStylesSet.from(
+                "blueStyles",
+                RouteLineStyles.from(RouteLineStyle.from(8f, Color.BLUE))
+            )
+
+            // RouteLineSegment 생성 - 핀 위치를 경로로 연결
+            val segment = RouteLineSegment.from(
+                Arrays.asList(
+                    LatLng.from(37.626347381443864, 127.0928505722139),
+                    LatLng.from(37.62655199375479, 127.09330961495466),
+                    LatLng.from(37.62696892541316, 127.09302409993029),
+                    LatLng.from(37.62752591750924, 127.09221765614906),
+                    LatLng.from(37.62785649159762, 127.08999771732479),
+                    LatLng.from(37.628635792096446, 127.09006662752111),
+                    LatLng.from(37.62885613457392, 127.09058800230274)
+                )
+            ).setStyles(stylesSet.getStyles(0))
+
+            // RouteLineOptions 생성
+            val options = RouteLineOptions.from(segment)
+                .setStylesSet(stylesSet)
+
+            // RouteLineLayer에 추가하여 새로운 RouteLine 생성
+            currentRouteLine = layer.addRouteLine(options)
         }
+
         binding.image2.setOnClickListener {
             handleImageClick(binding.image2, R.drawable.ic_tour_air, R.drawable.ic_tour_air2)
+
             if (!::pinManager.isInitialized) {
-                return@setOnClickListener }
+                return@setOnClickListener
+            }
+
             // 모든 핀 삭제
             pinManager.removeAllPins()
-            // 공강 투어
-            pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study2, "학습공간", "리딩라운지"); // 리딩라운지
-            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
-            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market2, "편의시설", "미디어룸"); // 미디어룸
-            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market2, "편의시설", "구내서점"); // 구내서점
+
+            // 카메라 위치 이동
+            setLocation()
+
+            // 공강 투어 핀 추가
+            pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study2, "학습공간", "리딩라운지")
+            pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U")
+            pinManager.addPin(37.62846592149489, 127.09128422497902, R.drawable.icon_market2, "편의시설", "미디어룸")
+            pinManager.addPin(37.62611959005892, 127.09322128212314, R.drawable.icon_market2, "편의시설", "구내서점")
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+            // RouteLineStylesSet 생성하기 (파란색 스타일)
+            val stylesSet = RouteLineStylesSet.from(
+                "blueStyles",
+                RouteLineStyles.from(RouteLineStyle.from(8f, Color.BLUE))
+            )
+
+            // RouteLineSegment 생성 (공강 투어는 경로 없음)
+            val segment = RouteLineSegment.from(
+                Arrays.asList()
+            ).setStyles(stylesSet.getStyles(0))
+
+            // RouteLineOptions 생성
+            val options = RouteLineOptions.from(segment)
+                .setStylesSet(stylesSet)
+
+            // RouteLineLayer에 추가하여 새로운 RouteLine 생성
+            currentRouteLine = layer.addRouteLine(options)
         }
+
         binding.image3.setOnClickListener {
             handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2)
             if (!::pinManager.isInitialized) {
@@ -156,8 +231,8 @@ class MapFragment : Fragment() {
     }
 
     private fun setLocation() {
-        val latitude = 37.62765288945836
-        val longitude = 127.09114445931245
+        val latitude = 37.62686435849172
+        val longitude = 127.09136156335997
 
         // 카메라 이동 및 설정
         val cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(latitude, longitude))
