@@ -2,10 +2,11 @@ package com.example.guru24
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.guru24.databinding.ActivityMainBinding
-import kotlin.io.encoding.ExperimentalEncodingApi
 
 class MainActivity : AppCompatActivity() {
 
@@ -76,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             )
 
         // RecyclerView 설정
-        recyclerView = binding.recyclerView // ViewBinding을 사용하여 RecyclerView 참조
+        recyclerView = binding.recy // ViewBinding을 사용하여 RecyclerView 참조
         storeAdapter = StoreAdapter(
             storeList, this@MainActivity // MainActivity의 Context를 전달
         ) { store -> // 클릭 리스너 구현

@@ -1,32 +1,35 @@
 package com.example.guru24
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.guru24.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private var _binding: FragmentBottomSheetBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var storeAdapter: StoreAdapter
     private lateinit var storeList: List<Store>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
+    ): View {
+        // 뷰 바인딩 초기화
+        _binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view.findViewById(R.id.bottomSheetRecyclerView)
+        // RecyclerView 설정
         storeList = getStoreList() // 목록을 가져오는 메서드 호출
         storeAdapter = StoreAdapter(storeList, requireContext()) { store ->
             // 가게 이름 클릭 시 상세 페이지로 이동
@@ -37,9 +40,16 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 .commit()
         }
 
-        recyclerView.adapter = storeAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.bottomSheetRecyclerView.adapter = storeAdapter
+        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 뷰 참조 해제
+    }
+}
+
 
     private fun getStoreList(): List<Store> {
         return listOf(
@@ -95,4 +105,3 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         )
     }
-}

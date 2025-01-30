@@ -47,10 +47,20 @@ class MapFragment : Fragment() {
 
         // 지도 표시 함수 호출
         showMapView()
+        // layoutfood 클릭 리스너 설정
+        binding.layoutrestaurant.setOnClickListener {
+            // Persistent Bottom Sheet 초기화 및 표시
+            val bottomSheetFragment = BottomSheetFragment()
 
-        // Persistent Bottom Sheet 초기화 및 표시
-        val bottomSheetFragment = BottomSheetFragment()
-        bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
+            // FragmentManager를 사용해 BottomSheetFragment 표시
+            bottomSheetFragment.show(
+                parentFragmentManager, // Fragment에서 parentFragmentManager를 사용
+                BottomSheetFragment::class.java.simpleName
+            )
+        }
+
+
+
 
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
