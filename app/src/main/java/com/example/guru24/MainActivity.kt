@@ -3,7 +3,6 @@ package com.example.guru24
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.guru24.databinding.ActivityMainBinding
 import kotlin.io.encoding.ExperimentalEncodingApi
@@ -133,11 +132,9 @@ class MainActivity : AppCompatActivity() {
     // Fragment 교체 함수
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment) // rootlayout은 FrameLayout ID
-            .addToBackStack(null)
+            .replace(R.id.rootlayout, fragment) // rootlayout은 FrameLayout ID
             .commit()
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
