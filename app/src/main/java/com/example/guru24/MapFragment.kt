@@ -48,6 +48,10 @@ class MapFragment : Fragment() {
         // 지도 표시 함수 호출
         showMapView()
 
+        // Persistent Bottom Sheet 초기화 및 표시
+        val bottomSheetFragment = BottomSheetFragment()
+        bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
+
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
             val intent = Intent(requireContext(), SearchActivity::class.java)
@@ -57,7 +61,6 @@ class MapFragment : Fragment() {
         // ImageView 클릭 리스너 설정
         binding.image1.setOnClickListener {
             handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2)
-
             if (!::pinManager.isInitialized) {
                 return@setOnClickListener
             }
@@ -154,7 +157,6 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
-
         binding.image3.setOnClickListener {
             handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2)
             if (!::pinManager.isInitialized) {
@@ -229,7 +231,6 @@ class MapFragment : Fragment() {
                 setupButtonActions()
             }
         })
-
     }
 
     private fun setLocation() {
