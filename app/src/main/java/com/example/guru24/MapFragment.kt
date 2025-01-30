@@ -12,6 +12,7 @@ import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.KakaoMapSdk
+import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.camera.CameraPosition
 import com.kakao.vectormap.camera.CameraUpdateFactory
 
@@ -40,9 +41,18 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // 지도 표시 함수 호출
         showMapView()
+
+        // Persistent Bottom Sheet 초기화 및 표시
+        val bottomSheetFragment = BottomSheetFragment()
+        bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
 
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
@@ -111,7 +121,7 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의점", "누리스토어"); // 누리스토어
         }
 
-        return binding.root
+        //return binding.root
     }
 
     private fun showMapView() {
@@ -172,7 +182,7 @@ class MapFragment : Fragment() {
         val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
         kakaoMap.moveCamera(cameraUpdate)
     }
-    
+
     // 처음 맵 핀
     private fun setInitialPins() {
         // PinManager가 null인지 확인

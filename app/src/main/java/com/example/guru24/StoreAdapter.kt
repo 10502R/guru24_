@@ -2,10 +2,10 @@ package com.example.guru24
 
 import android.content.Context
 import android.view.LayoutInflater
+import com.example.guru24.Store
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class StoreAdapter(
@@ -38,7 +38,7 @@ class StoreAdapter(
         holder.storeHours.text = store.hours
 
         // 클릭 리스너 설정
-        holder.storeName.setOnClickListener {
+        holder.itemView.setOnClickListener {
             onStoreClick(store) // 클릭 시 가게 정보 전달
         }
     }

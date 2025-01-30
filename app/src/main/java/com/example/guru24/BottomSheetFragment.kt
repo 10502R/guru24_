@@ -1,53 +1,83 @@
 package com.example.guru24
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.example.guru24.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+
 class BottomSheetFragment : BottomSheetDialogFragment() {
+
+    private var _binding: FragmentBottomSheetBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var storeAdapter: StoreAdapter
     private lateinit var storeList: List<Store>
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
-    }
+        _binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view.findViewById(R.id.bottomSheetRecyclerView)
-        storeList = getStoreList() // 목록을 가져오는 메서드 호출
+        // RecyclerView 초기화
+        recyclerView = binding.bottomSheetRecyclerView
+        storeList = getStoreList() // 가게 목록 가져오기
+
+        // RecyclerView 설정
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
         storeAdapter = StoreAdapter(storeList, requireContext()) { store ->
             // 가게 이름 클릭 시 상세 페이지로 이동
             val fragment = StoreDetailFragment.newInstance(store)
-            (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
+            requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
-
         recyclerView.adapter = storeAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // BottomSheetBehavior 초기화
+        val bottomSheet = binding.bottomSheetLayout // 바텀 시트의 루트 뷰에 대한 참조
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+
+        // Bottom Sheet 초기 상태 설정
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        bottomSheetBehavior.peekHeight = 300  // 항상 보이는 높이
+
+        // Bottom Sheet가 숨겨지지 않도록 설정
+        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                // 슬라이드 시 추가 행동을 정의할 수 있음
+            }
+        })
     }
 
     private fun getStoreList(): List<Store> {
+        // 가게 목록 정의
         return listOf(
-            Store("퀴즈노스 서울여대점", "카페/베이커리", "학생누리관", "서울 노원구 화랑로 621 101호 (공릉동, 서울여자대학교 학생누리관)",
-                "02-977-7923", "\"월-금 08:00 - 17:00\n" +
-                        "토, 일, 공휴일 정기 휴무\"\n"),
-            Store("츄츄바앤츄밥", "음식점", "학생누리관", "서울 노원구 화랑로 621 105호", "02-970-5378", "\"월-금 11:00 - 17:30\n" +
-                    "토, 일, 공휴일 정기 휴무\"\n"),
+            Store("퀴즈노스 서울여대점", "카페/베이커리", "학생누리관", "서울 노원구 화랑로 621 101호", "02-977-7923", "월-금 08:00 - 17:00\n토, 일, 공휴일 정기 휴무"),
+            Store("츄츄바앤츄밥", "음식점", "학생누리관", "서울 노원구 화랑로 621 105호", "02-970-5378", "월-금 11:00 - 17:30\n토, 일, 공휴일 정기 휴무"),
             Store("카페 딕셔너리", "카페/베이커리", "중앙도서관", "서울 노원구 화랑로 621 서울여자대학교 1층", "", "\"월-금 08:00 - 19:00\n" +
                     "토, 일, 공휴일 정기 휴무\"\n"),
             Store("CU 편의점", "편의점", "50주년 기념관", "서울 노원구 화랑로 621 50주년기념관 1층", "", "\"월-금 09:00 - 18:00\n" +
@@ -92,7 +122,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                     "토, 일, 공휴일 정기 휴무\"\n"),
             Store("교육심리학과", "학과사무실", "인문사회관", "서울 노원구 화랑로 621 인문사회관 517호", "02-970-5561", "\"월-금 09:00 - 17:30\n" +
                     "토, 일, 공휴일 정기 휴무\"\n")
-
         )
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

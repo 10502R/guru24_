@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.guru24.Store
 
 class StoreDetailFragment : Fragment() {
 
@@ -21,7 +22,7 @@ class StoreDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            store = it.getParcelable("store") ?: Store("", "", "", "", "", "")
+            store = it.getSerializable("store") as Store
         }
     }
 
@@ -52,7 +53,7 @@ class StoreDetailFragment : Fragment() {
     companion object {
         fun newInstance(store: Store) = StoreDetailFragment().apply {
             arguments = Bundle().apply {
-                putParcelable("store", store)
+                putSerializable("store", store)
             }
         }
     }

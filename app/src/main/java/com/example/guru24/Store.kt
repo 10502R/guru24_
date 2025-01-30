@@ -1,9 +1,7 @@
 package com.example.guru24
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
 data class Store(
     val name: String,
     val category: String,
@@ -11,5 +9,4 @@ data class Store(
     val address: String,
     val phone: String,
     val hours: String
-) : Parcelable
-
+) : Serializable
