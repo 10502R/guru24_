@@ -11,11 +11,12 @@ android {
     namespace = "com.example.guru24"
     compileSdk = 35
 
-    packagingOptions {
+    packaging{
         resources {
             excludes += ("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         }
     }
+
 
     val properties = Properties().apply {
         load(FileInputStream(rootProject.file("local.properties")))
@@ -31,12 +32,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters.add("arm64-v8a")
+            abiFilters += listOf("arm64-v8a", "x86", "x86_64") // 여러 개 추가 가능
         }
 
+
         // KAKAO_MAP_KEY 추가
-        buildConfigField("String", "KAKAO_MAP_KEY",
-            "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
+        buildConfigField("String", "KAKAO_MAP_KEY", "\"${properties.getProperty("14c653776d3459d637987ee85558e0f6")}\"")
     }
 
     buildTypes {
@@ -46,6 +47,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
 
