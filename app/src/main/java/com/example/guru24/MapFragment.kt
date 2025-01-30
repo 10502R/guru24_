@@ -105,11 +105,11 @@ class MapFragment : Fragment() {
                 return@setOnClickListener }
             // 모든 핀 삭제
             pinManager.removeAllPins()
-            // 편의점 투어
-            pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store, "편의점", "CU 편의점"); // CU 편의점
-            pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
-            pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store, "편의점", "GS25 편의점"); // GS25 편의점
-            pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store, "편의점", "누리스토어"); // 누리스토어
+            // 카페 투어
+            pinManager.addPin(37.62858586289631, 127.09055652113533, R.drawable.icon_cafe, "카페/베이커리", "퀴즈노스 서울여대점"); // 퀴즈노스 서울여대점
+            pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe, "카페/베이커리", "카페ING"); // 카페ING
+            pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe, "카페/베이커리", "에땅"); // 에땅
+            pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
         }
 
         return binding.root
@@ -143,7 +143,7 @@ class MapFragment : Fragment() {
                 pinManager = PinManager(kakaoMap)
 
                 // 지도 위치 변경
-                setSeoulWomenUniversityLocation()
+                setLocation()
 
                 // 초기 맵 핀 설정
                 setInitialPins()
@@ -154,20 +154,14 @@ class MapFragment : Fragment() {
         })
     }
 
-    private fun setSeoulWomenUniversityLocation() {
+    private fun setLocation() {
         // 서울여자대학교 좌표
         val latitude = 37.62613777291973
         val longitude = 127.09301456807785
 
         // 카메라 위치 설정
-        val cameraPosition = CameraPosition.from(
-            latitude,
-            longitude,
-            18,     // 줌 레벨 (15으로 설정하면 대학 캠퍼스를 자세히 볼 수 있음)
-            0.0,    // 기울기
-            0.0,    // 회전 각도
-            0.0     // 고도
-        )
+        val cameraPosition =
+            CameraPosition.from(latitude, longitude, 18, 0.0, 0.0, 0.0)
 
         // 카메라 이동
         val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
