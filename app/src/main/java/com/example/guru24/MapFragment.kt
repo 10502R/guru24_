@@ -109,10 +109,7 @@ class MapFragment : Fragment() {
 
         binding.image2.setOnClickListener {
             handleImageClick(binding.image2, R.drawable.ic_tour_air, R.drawable.ic_tour_air2)
-
-            if (!::pinManager.isInitialized) {
-                return@setOnClickListener
-            }
+            if (!::pinManager.isInitialized) { return@setOnClickListener }
 
             // 모든 핀 삭제
             pinManager.removeAllPins()
@@ -139,9 +136,16 @@ class MapFragment : Fragment() {
                 RouteLineStyles.from(RouteLineStyle.from(8f, Color.BLUE))
             )
 
-            // RouteLineSegment 생성 (공강 투어는 경로 없음)
             val segment = RouteLineSegment.from(
-                Arrays.asList()
+                Arrays.asList(
+                    LatLng.from(37.626347381443864, 127.0928505722139),
+                    LatLng.from(37.62655199375479, 127.09330961495466),
+                    LatLng.from(37.62696892541316, 127.09302409993029),
+                    LatLng.from(37.62752591750924, 127.09221765614906),
+                    LatLng.from(37.62785649159762, 127.08999771732479),
+                    LatLng.from(37.628635792096446, 127.09006662752111),
+                    LatLng.from(37.62885613457392, 127.09058800230274)
+                )
             ).setStyles(stylesSet.getStyles(0))
 
             // RouteLineOptions 생성
@@ -165,9 +169,8 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food2, "음식점", "버거ING"); // 버거ING
         }
         binding.image4.setOnClickListener {
-            handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store)
-            if (!::pinManager.isInitialized) {
-                return@setOnClickListener }
+            handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store2)
+            if (!::pinManager.isInitialized) { return@setOnClickListener }
             // 모든 핀 삭제
             pinManager.removeAllPins()
             // 편의점 투어
@@ -187,7 +190,6 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe2, "카페/베이커리", "에땅"); // 에땅
             pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
         }
-
         return binding.root
     }
 

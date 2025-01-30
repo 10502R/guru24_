@@ -3,19 +3,23 @@
 
     <item
         android:id="@+id/tabHome"
-        android:icon="@android:drawable/ic_dialog_map"
+        android:icon="@drawable/ic_home"
+        android:iconTint="@color/black"
         android:title="홈"/>
     <item
         android:id="@+id/tabMap"
-        android:icon="@android:drawable/ic_dialog_map"
+        android:icon="@drawable/ic_map"
+        android:iconTint="@color/black"
         android:title="지도"/>
     <item
         android:id="@+id/tabTrophy"
-        android:icon="@android:drawable/ic_dialog_map"
+        android:icon="@drawable/ic_stamp"
+        android:iconTint="@color/black"
         android:title="도장"/>
 
     <item
         android:id="@+id/tabMypage"
-        android:icon="@android:drawable/ic_dialog_map"
+        android:icon="@drawable/ic_person"
+        android:iconTint="@color/black"
         android:title="마이페이지"/>
 </menu>
