@@ -29,7 +29,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val searchEditText = binding.searchView.findViewById<android.widget.EditText>(
-            androidx.appcompat.R.id.search_src_text
+            R.id.search_text
         )
         searchEditText.setTextColor(resources.getColor(android.R.color.black))
         searchEditText.setHintTextColor(resources.getColor(android.R.color.darker_gray))
