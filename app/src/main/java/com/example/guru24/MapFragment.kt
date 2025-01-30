@@ -154,6 +154,7 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
+
         binding.image3.setOnClickListener {
             handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2)
             if (!::pinManager.isInitialized) {
