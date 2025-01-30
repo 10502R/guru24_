@@ -44,7 +44,7 @@
                 android:layout_marginBottom="20dp"
                 >
                 <ImageView
-                    android:id="@+id/ryrkg04zdxdm"
+                    android:id="@+id/storeImage"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
                     android:src="@mipmap/ic_launcher"
@@ -214,7 +214,7 @@
                 android:text="메뉴판 이미지"
                 />
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/rxr0682uwudp"
+                android:id="@+id/storeMenu"
                 android:layout_width="111dp"
                 android:layout_height="112dp"
                 android:layout_marginBottom="16dp"

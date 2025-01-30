@@ -13,13 +13,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var storeList: List<Store>
     private lateinit var recyclerView: RecyclerView
-//    private lateinit var storeAdapter: StoreAdapter
+    private lateinit var storeAdapter: StoreAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // LoginActivity에서 전달된 이메일 데이터 받기
         val email = intent.getStringExtra("USER_EMAIL")
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.rootlayout, fragment) // rootlayout은 FrameLayout ID
             .commit()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
