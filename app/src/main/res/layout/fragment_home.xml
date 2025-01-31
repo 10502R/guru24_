@@ -22,22 +22,23 @@
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:padding="16dp"
-        android:background="#F7F7F7"
+        android:backgroundTint="#EDF7FF"
+        android:padding="20dp"
+        android:background="@drawable/design_stamp"
         android:gravity="center_vertical">
 
         <!-- 아이콘 -->
-        <LinearLayout
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="#D9D9D9"
-            android:layout_marginEnd="8dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_stamp"/>
 
         <!-- 텍스트 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -59,12 +60,10 @@
         </LinearLayout>
 
         <!-- 화살표 아이콘 -->
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=">"
-            android:textSize="24sp"
-            android:textColor="#111111" />
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
 
     <ScrollView
