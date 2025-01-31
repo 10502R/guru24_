@@ -8,5 +8,7 @@ data class Store(
     val building: String,
     val address: String,
     val phone: String,
-    val hours: String
+    val hours: String,
+    val image: Int,
+    val menu: Int
 ) : Serializable
