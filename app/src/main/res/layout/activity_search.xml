@@ -8,18 +8,13 @@
     android:padding="16dp"
     android:background="@color/white">
 
-    <LinearLayout
+    <!-- Search Bar -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:queryHint="검색어를 입력하세요"
-            android:iconifiedByDefault="false"/>
-    </LinearLayout>
+        android:queryHint="검색어를 입력하세요"
+        android:iconifiedByDefault="false"/>
 
     <!-- Recent Searches Title -->
     <TextView
@@ -32,13 +27,14 @@
         android:textSize="14sp"
         android:textStyle="bold" />
 
-    <!-- RecyclerView for Recent Searches -->
+    <!-- RecyclerView for Search List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recent_search_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:visibility="gone"/>
 
     <!-- Clear All Button -->
     <Button
