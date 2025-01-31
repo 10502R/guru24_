@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecentSearchAdapter(
-    private var searchList: MutableList<String>,
+    private var searchList: List<String>, // 🔹 MutableList 대신 List 사용
     private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<RecentSearchAdapter.SearchViewHolder>() {
 
@@ -25,9 +25,8 @@ class RecentSearchAdapter(
     override fun getItemCount(): Int = searchList.size
 
     fun updateList(newList: List<String>) {
-        searchList.clear()
-        searchList.addAll(newList)
-        notifyDataSetChanged()
+        searchList = newList // 🔹 직접 할당하여 리스트 업데이트
+        notifyDataSetChanged() // 🔹 변경된 데이터 적용
     }
 
     inner class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,3 +36,4 @@ class RecentSearchAdapter(
         }
     }
 }
+
