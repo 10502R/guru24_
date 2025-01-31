@@ -27,7 +27,7 @@ class MypageFragment : Fragment() {
         binding.tvID.text = email // 이메일 정보를 TextView에 설정
 
         // ">" 아이콘 클릭 시 MypageTerms 액티비티로 이동
-        binding.mypageTerms.setOnClickListener {
+        binding.myTerm.setOnClickListener {
             val intent = Intent(requireContext(), MypageTerms::class.java)
             startActivity(intent)
         }

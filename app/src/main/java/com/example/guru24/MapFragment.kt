@@ -89,7 +89,7 @@ class MapFragment : Fragment() {
             // RouteLineSegment 생성 - 핀 위치를 경로로 연결
             val segment = RouteLineSegment.from(
                 Arrays.asList(
-                    LatLng.from(37.626347381443864, 127.0928505722139),
+                    LatLng.from(37.625747563384124, 127.09368809677129),
                     LatLng.from(37.62655199375479, 127.09330961495466),
                     LatLng.from(37.62696892541316, 127.09302409993029),
                     LatLng.from(37.62752591750924, 127.09221765614906),
@@ -138,13 +138,13 @@ class MapFragment : Fragment() {
 
             val segment = RouteLineSegment.from(
                 Arrays.asList(
-                    LatLng.from(37.626347381443864, 127.0928505722139),
-                    LatLng.from(37.62655199375479, 127.09330961495466),
+                    LatLng.from(37.625747563384124, 127.09368809677129),
+                    LatLng.from(37.626297368965304, 127.0934310733595),
                     LatLng.from(37.62696892541316, 127.09302409993029),
                     LatLng.from(37.62752591750924, 127.09221765614906),
-                    LatLng.from(37.62785649159762, 127.08999771732479),
-                    LatLng.from(37.628635792096446, 127.09006662752111),
-                    LatLng.from(37.62885613457392, 127.09058800230274)
+                    LatLng.from(37.62769089417866, 127.09151550679731),
+                    LatLng.from(37.62860978933795, 127.091658238682),
+                    LatLng.from(37.628709537222, 127.09083138565916)
                 )
             ).setStyles(stylesSet.getStyles(0))
 
@@ -160,14 +160,56 @@ class MapFragment : Fragment() {
             handleImageClick(binding.image3, R.drawable.ic_tour_zz, R.drawable.ic_tour_zz2)
             if (!::pinManager.isInitialized) {
                 return@setOnClickListener }
+
+            // 카메라 위치 이동
+            setLocation()
+
             // 모든 핀 삭제
             pinManager.removeAllPins()
+
             // 벼락치기 투어
             pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
             pinManager.addPin(37.62852947084557, 127.09066124045721, R.drawable.icon_market2, "편의시설", "SWEET U"); // SWEET U
             pinManager.addPin(37.62846158944593, 127.09106048389674, R.drawable.icon_market2, "편의시설", "멀티플렉스존"); // 멀티플렉스존
             pinManager.addPin(37.62885625188801, 127.09043506831497, R.drawable.icon_food2, "음식점", "버거ING"); // 버거ING
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+            // RouteLineStylesSet 생성하기 (파란색 스타일)
+            val stylesSet = RouteLineStylesSet.from(
+                "blueStyles",
+                RouteLineStyles.from(RouteLineStyle.from(8f, Color.BLUE))
+            )
+
+            val segment = RouteLineSegment.from(
+                Arrays.asList(
+                    LatLng.from(37.625747563384124, 127.09368809677129),
+                    LatLng.from(37.626297368965304, 127.0934310733595),
+                    LatLng.from(37.62696892541316, 127.09302409993029),
+                    LatLng.from(37.62752591750924, 127.09221765614906),
+                    LatLng.from(37.62769089417866, 127.09151550679731),
+                    LatLng.from(37.62860978933795, 127.091658238682),
+                    LatLng.from(37.628709537222, 127.09083138565916), // 여기까지
+                    LatLng.from(37.628748413099615, 127.09006959553334),
+                    LatLng.from(37.62785874406125, 127.08999772004076),
+                    LatLng.from(37.62780864335826, 127.09071134222198),
+                    LatLng.from(37.627619475591814, 127.09066013512412)
+                )
+            ).setStyles(stylesSet.getStyles(0))
+
+            // RouteLineOptions 생성
+            val options = RouteLineOptions.from(segment)
+                .setStylesSet(stylesSet)
+
+            // RouteLineLayer에 추가하여 새로운 RouteLine 생성
+            currentRouteLine = layer.addRouteLine(options)
         }
+
         binding.image4.setOnClickListener {
             handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store2)
             if (!::pinManager.isInitialized) { return@setOnClickListener }
@@ -178,6 +220,42 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store2, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
             pinManager.addPin(37.62833893940938, 127.092368761627, R.drawable.icon_store2, "편의점", "GS25 편의점"); // GS25 편의점
             pinManager.addPin(37.62884700720883, 127.09074092533572, R.drawable.icon_store2, "편의점", "누리스토어"); // 누리스토어
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+            // RouteLineStylesSet 생성하기 (파란색 스타일)
+            val stylesSet = RouteLineStylesSet.from(
+                "blueStyles",
+                RouteLineStyles.from(RouteLineStyle.from(8f, Color.BLUE))
+            )
+
+            val segment = RouteLineSegment.from(
+                Arrays.asList(
+                    LatLng.from(37.625747563384124, 127.09368809677129),
+                    LatLng.from(37.626297368965304, 127.0934310733595),
+                    LatLng.from(37.62696892541316, 127.09302409993029),
+                    LatLng.from(37.62752591750924, 127.09221765614906),
+                    LatLng.from(37.62769089417866, 127.09151550679731),
+                    LatLng.from(37.62860978933795, 127.091658238682),
+                    LatLng.from(37.628709537222, 127.09083138565916), // 여기까지
+                    LatLng.from(37.628748413099615, 127.09006959553334),
+                    LatLng.from(37.62886330385718, 127.09004990938365),
+                    LatLng.from(37.628886435302846, 127.08925128095119),
+                    LatLng.from(37.628683777840536, 127.08916607540247)
+                )
+            ).setStyles(stylesSet.getStyles(0))
+
+            // RouteLineOptions 생성
+            val options = RouteLineOptions.from(segment)
+                .setStylesSet(stylesSet)
+
+            // RouteLineLayer에 추가하여 새로운 RouteLine 생성
+            currentRouteLine = layer.addRouteLine(options)
         }
         binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2)
             if (!::pinManager.isInitialized) {
@@ -189,6 +267,42 @@ class MapFragment : Fragment() {
             pinManager.addPin(37.626029518338456, 127.09318718556041, R.drawable.icon_cafe2, "카페/베이커리", "카페ING"); // 카페ING
             pinManager.addPin(37.62881539645281, 127.09084001082321, R.drawable.icon_cafe2, "카페/베이커리", "에땅"); // 에땅
             pinManager.addPin(37.627626246037536, 127.09064315094663, R.drawable.icon_cafe2, "카페/베이커리", "카페 팬도로시"); // 카페 팬도로시
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+            // RouteLineStylesSet 생성하기 (파란색 스타일)
+            val stylesSet = RouteLineStylesSet.from(
+                "blueStyles",
+                RouteLineStyles.from(RouteLineStyle.from(8f, Color.BLUE))
+            )
+
+            val segment = RouteLineSegment.from(
+                Arrays.asList(
+                    LatLng.from(37.625747563384124, 127.09368809677129),
+                    LatLng.from(37.626297368965304, 127.0934310733595),
+                    LatLng.from(37.62696892541316, 127.09302409993029),
+                    LatLng.from(37.62752591750924, 127.09221765614906),
+                    LatLng.from(37.62769089417866, 127.09151550679731),
+                    LatLng.from(37.62860978933795, 127.091658238682),
+                    LatLng.from(37.628709537222, 127.09083138565916), // 여기까지
+                    LatLng.from(37.628748413099615, 127.09006959553334),
+                    LatLng.from(37.62785874406125, 127.08999772004076),
+                    LatLng.from(37.62780864335826, 127.09071134222198),
+                    LatLng.from(37.627619475591814, 127.09066013512412)
+                )
+            ).setStyles(stylesSet.getStyles(0))
+
+            // RouteLineOptions 생성
+            val options = RouteLineOptions.from(segment)
+                .setStylesSet(stylesSet)
+
+            // RouteLineLayer에 추가하여 새로운 RouteLine 생성
+            currentRouteLine = layer.addRouteLine(options)
         }
         return binding.root
     }
