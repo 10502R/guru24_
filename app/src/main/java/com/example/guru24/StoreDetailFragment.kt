@@ -1,6 +1,7 @@
 package com.example.guru24
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,10 @@ class StoreDetailFragment : Fragment() {
         storeImageView = view.findViewById(R.id.storeImage)
         storeMenuView = view.findViewById(R.id.storeMenu)
 
+        Log.d("StoreDetailFragment", "Store Name: ${store.name}")
+        Log.d("StoreDetailFragment", "Building: ${store.building}")
+        Log.d("StoreDetailFragment", "Menu Resource ID: ${store.menu}")
+
         // 가게 정보 설정
         storeNameTextView.text = store.name
         storeCategoryTextView.text = store.category
@@ -53,6 +58,10 @@ class StoreDetailFragment : Fragment() {
         storeHoursTextView.text = store.hours
         storeImageView.setImageResource(store.image)
         storeMenuView.setImageResource(store.menu)
+
+        // Visibility 설정
+        storeBuildingTextView.visibility = View.VISIBLE
+        storeMenuView.visibility = View.VISIBLE
 
         return view
     }
