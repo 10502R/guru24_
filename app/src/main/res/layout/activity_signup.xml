@@ -63,7 +63,8 @@
                     android:hint="이메일을 입력하세요"
                     android:inputType="text"
                     android:paddingVertical="15dp"
-                    android:textColor="#9B9A99"
+                    android:textColorHint="#9B9A99"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
                 <TextView
                     android:textColor="#000000"
@@ -107,7 +108,8 @@
                     android:hint="학번을 입력하세요"
                     android:inputType="text"
                     android:paddingVertical="15dp"
-                    android:textColor="#9B9A99"
+                    android:textColorHint="#9B9A99"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
             </LinearLayout>
             <Button
@@ -140,13 +142,10 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="246dp"
-                android:layout_marginStart="89dp"
-                android:layout_marginEnd="100dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:textColor="#696866"
@@ -154,10 +153,6 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="이미 계정이 있으신가요?" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
                 <TextView
                     android:id="@+id/login"
                     android:textColor="#30303D"
@@ -165,22 +160,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textStyle="bold"
+                    android:layout_marginStart="10dp"
                     android:text="로그인" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/re6f3aksqn2i"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:paddingHorizontal="113dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/rf3og28yrsb8"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="21dp"
-                    android:orientation="vertical">
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

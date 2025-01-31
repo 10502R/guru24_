@@ -72,7 +72,8 @@
                     android:hint="이메일을 입력하세요"
                     android:inputType="text"
                     android:paddingVertical="15dp"
-                    android:textColor="#9B9A99"
+                    android:textColorHint="#9B9A99"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
                 <TextView
                     android:id="@+id/rwemgodqe6j"
@@ -118,7 +119,8 @@
                     android:hint=" 비밀번호를 입력하세요"
                     android:inputType="textPassword"
                     android:paddingVertical="15dp"
-                    android:textColor="#9B9A99"
+                    android:textColorHint="#9B9A99"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -155,23 +157,15 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="246dp"
-                android:layout_marginStart="89dp"
-                android:layout_marginEnd="100dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:textColor="#696866"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="이미 계정이 있으신가요?"
-                    />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:text="계정이 없으신가요?" />
                 <TextView
                     android:id="@+id/signup"
                     android:textColor="#30303D"
@@ -179,8 +173,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textStyle="bold"
+                    android:layout_marginStart="10dp"
                     android:text="회원가입" />
-                <!--나중에 언더라인 추가-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
