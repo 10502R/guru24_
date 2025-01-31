@@ -51,25 +51,6 @@ class MapFragment : Fragment() {
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
 
-//        // RecyclerView 설정
-//        binding.recyclerView.apply {
-//            storeAdapter = StoreAdapter(
-//                storeList, requireContext() // ✅ Context 수정
-//            ) { store -> // ✅ 클릭 리스너 구현
-//                val fragment = StoreDetailFragment.newInstance(store)
-//                parentFragmentManager.beginTransaction() // ✅ Fragment에서 올바른 FragmentManager 사용
-//                    .replace(R.id.fragment_container, fragment) // 'fragment_container'는 Fragment가 표시될 View ID
-//                    .addToBackStack(null)
-//                    .commit()
-//            }
-//            adapter = storeAdapter
-//            layoutManager = LinearLayoutManager(requireContext())
-//        }
-
-//        binding.recyclerView.adapter = storeAdapter
-//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
             val intent = Intent(requireContext(), SearchActivity::class.java)
@@ -464,7 +445,7 @@ class MapFragment : Fragment() {
         //mapView = binding.mapView
 
         // KakaoMapSDK 초기화
-        KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_MAP_KEY)
+        //KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_MAP_KEY)
 
         binding.mapView.start(object : MapLifeCycleCallback() {
             override fun onMapDestroy() {
