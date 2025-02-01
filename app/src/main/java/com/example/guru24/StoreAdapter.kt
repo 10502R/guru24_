@@ -2,7 +2,6 @@ package com.example.guru24
 
 import android.content.Context
 import android.view.LayoutInflater
-import com.example.guru24.Store
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class StoreAdapter(
     private val storeList: List<Store>,
     private val context: Context,
-    private val onStoreClick: (Store) -> Unit
+    private val onStoreClick: (Store, String) -> Unit
 ) : RecyclerView.Adapter<StoreAdapter.StoreViewHolder>() {
 
     class StoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -33,6 +32,7 @@ class StoreAdapter(
 
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
         val store = storeList[position]
+
         holder.storeName.text = store.name
         holder.storeCategory.text = store.category
         holder.storeBuilding.text = store.building
@@ -44,7 +44,7 @@ class StoreAdapter(
 
         // 클릭 리스너 설정
         holder.itemView.setOnClickListener {
-            onStoreClick(store) // 클릭 시 가게 정보 전달
+            onStoreClick(store, store.category)
         }
     }
 

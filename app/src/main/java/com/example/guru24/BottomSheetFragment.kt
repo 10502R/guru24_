@@ -29,23 +29,31 @@ class BottomSheetFragment(private val category: String) : BottomSheetDialogFragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 카테고리 인자 받기
+        val category = arguments?.getString("category") ?: return
+
+        // 가게 목록 초기화
+        storeList = getStoreListByCategory(category) // 카테고리에 따른 목록 가져오기
+
         // RecyclerView 설정
-        val storeList = getStoreListByCategory(category) // 목록을 가져오는 메서드 호출
-        val storeAdapter = StoreAdapter(storeList, requireContext()) { store ->
+        setupRecyclerView(category)
+        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 뷰 참조 해제
+    }
+
+    private fun setupRecyclerView(category: String) {
+        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        storeAdapter = StoreAdapter(storeList, requireContext()) { store, category ->
             // 가게 이름 클릭 시 상세 페이지로 이동
-            val fragment = StoreDetailFragment.newInstance(store)
+            val fragment = StoreDetailFragment.newInstance(store, category)
             (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
-
-        binding.bottomSheetRecyclerView.adapter = storeAdapter
-        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null // 뷰 참조 해제
+        binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
     }
 
     companion object {

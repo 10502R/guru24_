@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -307,76 +308,64 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // RecyclerView 설정
-        //binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        // 지도 표시 함수 호출
+        showMapView()
 
         // 카테고리 클릭 리스너 설정
         setCategoryClickListeners()
 
-        // 지도 표시 함수 호출
-        showMapView()
-
-        storeList = getStoreListByCategory("음식점")
-        storeList = getStoreListByCategory("카페/베이커리")
-        storeList = getStoreListByCategory("편의점")
-        storeList = getStoreListByCategory("편의시설")
-        storeList = getStoreListByCategory("학습 공간")
-        storeList = getStoreListByCategory("동아리")
-        storeList = getStoreListByCategory("은행")
-        storeList = getStoreListByCategory("주차/셔틀")
-        storeList = getStoreListByCategory("학과사무실")
-
+        // 가게 목록 초기화
+        initializeStoreList()
 
         // RecyclerView 설정
-        storeAdapter = StoreAdapter(storeList, requireContext()) { store ->
+        setupRecyclerView()
+    }
+
+    private fun initializeStoreList() {
+        val categories = listOf(
+            "음식점",
+            "카페/베이커리",
+            "편의점",
+            "편의시설",
+            "학습 공간",
+            "동아리",
+            "은행",
+            "주차/셔틀",
+            "학과사무실"
+        )
+        storeList = categories.flatMap { getStoreListByCategory(it) }
+    }
+
+    private fun setupRecyclerView() {
+        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // LayoutManager 설정
+        storeAdapter = StoreAdapter(storeList, requireContext()) { store,category ->
             // 가게 이름 클릭 시 상세 페이지로 이동
-            val fragment = StoreDetailFragment.newInstance(store)
+            val fragment = StoreDetailFragment.newInstance(store, store.category) // 카테고리도 전달
             (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
+        binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
     }
-
-       // binding.bottomSheetRecyclerView.adapter = storeAdapter
-        //binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
 
     private fun setCategoryClickListeners() {
-        binding.filterRestaurant.setOnClickListener {
-            showBottomSheet("음식점")
-        }
-        binding.filterCafe.setOnClickListener {
-            showBottomSheet("카페/베이커리")
-        }
-        binding.filterConvenience.setOnClickListener {
-            showBottomSheet("편의점")
-        }
-        binding.filterRest.setOnClickListener {
-            showBottomSheet("편의시설")
-        }
-        binding.filterStudy.setOnClickListener {
-            showBottomSheet("학습 공간")
-        }
-        binding.filterClub.setOnClickListener {
-            showBottomSheet("동아리")
-        }
-        binding.filterBank.setOnClickListener {
-            showBottomSheet("은행")
-        }
-        binding.filterCar.setOnClickListener {
-            showBottomSheet("주차/셔틀")
-        }
-        binding.filterOffice.setOnClickListener {
-            showBottomSheet("학과사무실")
-        }
+        binding.filterRestaurant.setOnClickListener { showBottomSheet("음식점") }
+        binding.filterCafe.setOnClickListener { showBottomSheet("카페/베이커리") }
+        binding.filterConvenience.setOnClickListener { showBottomSheet("편의점") }
+        binding.filterRest.setOnClickListener { showBottomSheet("편의시설") }
+        binding.filterStudy.setOnClickListener { showBottomSheet("학습 공간") }
+        binding.filterClub.setOnClickListener { showBottomSheet("동아리") }
+        binding.filterBank.setOnClickListener { showBottomSheet("은행") }
+        binding.filterCar.setOnClickListener { showBottomSheet("주차/셔틀") }
+        binding.filterOffice.setOnClickListener { showBottomSheet("학과사무실") }
     }
-
 
     private fun showBottomSheet(category: String) {
         val bottomSheetFragment = BottomSheetFragment.newInstance(category)
         bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
     }
+
 
 
     private fun getStoreListByCategory(category: String): List<Store> {
@@ -929,7 +918,7 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // ✅ RecyclerView 토글 (보이게 / 숨기기)
-            binding.recyclerView.visibility = if (binding.recyclerView.visibility == View.GONE) {
+            binding.bottomSheetRecyclerView.visibility = if (binding.bottomSheetRecyclerView.visibility == View.GONE) {
                 View.VISIBLE
             } else {
                 View.GONE

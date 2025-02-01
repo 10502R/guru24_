@@ -22,11 +22,13 @@ class StoreDetailFragment : Fragment() {
     private lateinit var storeMenuView: ImageView
 
     private lateinit var store: Store
+    private var category: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             store = it.getSerializable("store") as Store
+            category = it.getString("category")
         }
     }
 
@@ -41,33 +43,38 @@ class StoreDetailFragment : Fragment() {
 
         // 버튼 클릭 리스너 설정
         backButton.setOnClickListener {
-            activity?.supportFragmentManager?.popBackStack() // 뒤로 가기
+            // 현재 Fragment를 제거하고 이전 Fragment로 돌아갑니다.
+            requireActivity().supportFragmentManager.popBackStack() // 현재 Fragment 없애기
+
+            // 이전 Fragment에서 카테고리 값을 사용하여 바텀 시트 표시
+            val bottomSheetFragment = BottomSheetFragment.newInstance(category ?: "기본 카테고리") // 기본 카테고리 값 설정
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
         }
 
         closeButton.setOnClickListener {
-            activity?.finish() // 앱 종료
+            // MapFragment로 돌아가기
+            requireActivity().supportFragmentManager.popBackStack("MapFragment", 0) // MapFragment로 돌아가기
         }
 
 
         // UI 요소 초기화
-        storeNameTextView = view.findViewById(R.id.storeName)
-        storeCategoryTextView = view.findViewById(R.id.storeCategory)
-        storeBuildingTextView = view.findViewById(R.id.storeBuilding)
-        storeAddressTextView = view.findViewById(R.id.storeAddress)
-        storePhoneTextView = view.findViewById(R.id.storePhone)
-        storeHoursTextView = view.findViewById(R.id.storeHours)
-        storeImageView = view.findViewById(R.id.storeImage)
-        storeMenuView = view.findViewById(R.id.storeMenu)
+        val storeImageView: ImageView = view.findViewById(R.id.storeImage)
+        val storeNameTextView: TextView = view.findViewById(R.id.storeName)
+        val storeCategoryTextView: TextView = view.findViewById(R.id.storeCategory)
+        val storeBuildingTextView: TextView = view.findViewById(R.id.storeBuilding)
+        val storeAddressTextView: TextView = view.findViewById(R.id.storeAddress)
+        val storePhoneTextView: TextView = view.findViewById(R.id.storePhone)
+        val storeHoursTextView: TextView = view.findViewById(R.id.storeHours)
+        val storeMenuView: ImageView = view.findViewById(R.id.storeMenu)
 
-        // 가게 정보 설정
+        // Store 객체에서 정보 설정
+        storeImageView.setImageResource(store.image ?: R.drawable.default_image)
         storeNameTextView.text = store.name
         storeCategoryTextView.text = store.category
         storeBuildingTextView.text = store.building
         storeAddressTextView.text = store.address
         storePhoneTextView.text = store.phone
         storeHoursTextView.text = store.hours
-        storeImageView.setImageResource(store.image ?: R.drawable.default_image) // 기본 이미지 사용
-        //storeMenuView.setImageResource(store.menu ?: R.drawable.default_menu_image) // 기본 메뉴 이미지 사용
 
         // 메뉴판 이미지 설정
         store.menu?.let { menuResId ->
@@ -78,16 +85,17 @@ class StoreDetailFragment : Fragment() {
         }
 
 //        // Visibility 설정
-//        storeBuildingTextView.visibility = View.VISIBLE
-//        storeMenuView.visibility = View.VISIBLE
+        storeBuildingTextView.visibility = View.VISIBLE
+        storeMenuView.visibility = View.VISIBLE
 
         return view
     }
 
     companion object {
-        fun newInstance(store: Store) = StoreDetailFragment().apply {
+        fun newInstance(store: Store, category: String) = StoreDetailFragment().apply {
             arguments = Bundle().apply {
                 putSerializable("store", store)
+                putString("category", category)
             }
         }
     }
