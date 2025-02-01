@@ -56,8 +56,8 @@ class StoreDetailFragment : Fragment() {
         storeAddressTextView.text = store.address
         storePhoneTextView.text = store.phone
         storeHoursTextView.text = store.hours
-        storeImageView.setImageResource(store.image)
-        storeMenuView.setImageResource(store.menu)
+        storeImageView.setImageResource(store.image ?: R.drawable.default_image) // 기본 이미지 사용
+        storeMenuView.setImageResource(store.menu ?: R.drawable.default_menu_image) // 기본 메뉴 이미지 사용
 
         // Visibility 설정
         storeBuildingTextView.visibility = View.VISIBLE

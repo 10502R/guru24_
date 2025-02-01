@@ -39,8 +39,8 @@ class StoreAdapter(
         holder.storeAddress.text = store.address
         holder.storePhone.text = store.phone
         holder.storeHours.text = store.hours
-        holder.storeImage.setImageResource(store.image)
-        holder.storeMenu.setImageResource(store.menu)
+        holder.storeImage.setImageResource(store.image ?: R.drawable.default_image) // 기본 이미지 사용
+        holder.storeMenu.setImageResource(store.menu ?: R.drawable.default_menu_image) // 기본 메뉴 이미지 사용
 
         // 클릭 리스너 설정
         holder.itemView.setOnClickListener {
