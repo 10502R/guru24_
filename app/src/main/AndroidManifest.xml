@@ -19,9 +19,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SearchActivity"
+            android:name=".BadgeActivity"
             android:exported="false" />
-        <!-- StampInstructionsActivity와 QrCodeScanActivity 선언 -->
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" /> <!-- StampInstructionsActivity와 QrCodeScanActivity 선언 -->
         <activity android:name=".QrCodeScanActivity" />
         <activity android:name=".StampInstructionsActivity" /> <!-- Kakao Map API Key 설정 -->
         <meta-data

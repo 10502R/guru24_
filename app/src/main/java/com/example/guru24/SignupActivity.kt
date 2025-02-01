@@ -4,6 +4,8 @@ import DBHelper
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,11 @@ import com.example.guru24.databinding.ActivitySignupBinding
 class SignupActivity : AppCompatActivity() {
     private var mBinding: ActivitySignupBinding? = null
     private val binding get() = mBinding!!
-    private lateinit var dbHelper: DBHelper // DBHelper 선언
+    private lateinit var dbHelper: DBHelper
+
+    companion object {
+        const val REQUEST_CODE_PASSWORD = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +27,42 @@ class SignupActivity : AppCompatActivity() {
 
         dbHelper = DBHelper(this)
 
-        // 예시: DB_student_info 테이블에 이메일과 학번 삽입
+        // DB_student_info 테이블에 이메일과 학번 삽입
         dbHelper.insertStudentInfo("minjukim30604", 2023111741)
         dbHelper.insertStudentInfo("koyejun23", 2023111735)
+        dbHelper.insertStudentInfo("dayeon053", 2023111419)
+
+        // 초기 버튼 상태 설정 (비활성화)
+        binding.ButtonCheckSignup.isEnabled = false
+        binding.ButtonCheckSignup.setBackgroundColor(resources.getColor(android.R.color.darker_gray))
+        binding.ButtonUncheckSignup.visibility = android.view.View.VISIBLE
+        binding.ButtonCheckSignup.visibility = android.view.View.GONE
+
+        // 이메일 및 학번 입력 감지하여 버튼 활성화/비활성화
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val email = binding.email.text.toString()
+                val number = binding.number.text.toString()
+
+                if (email.isNotBlank() && number.isNotBlank()) {
+                    binding.ButtonCheckSignup.isEnabled = true
+                    binding.ButtonCheckSignup.setBackgroundColor(resources.getColor(R.color.black))
+                    binding.ButtonUncheckSignup.visibility = android.view.View.GONE
+                    binding.ButtonCheckSignup.visibility = android.view.View.VISIBLE
+                } else {
+                    binding.ButtonCheckSignup.isEnabled = false
+                    binding.ButtonCheckSignup.setBackgroundColor(resources.getColor(android.R.color.darker_gray))
+                    binding.ButtonUncheckSignup.visibility = android.view.View.VISIBLE
+                    binding.ButtonCheckSignup.visibility = android.view.View.GONE
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
+
+        binding.email.addTextChangedListener(textWatcher)
+        binding.number.addTextChangedListener(textWatcher)
 
         binding.ButtonCheckSignup.setOnClickListener {
             val email = binding.email.text.toString()
@@ -35,19 +74,14 @@ class SignupActivity : AppCompatActivity() {
                 if (number != null) {
                     if (isEmailExists(email)) {
                         Toast.makeText(this, "겹치는 이메일입니다!", Toast.LENGTH_SHORT).show()
+                    } else if (isEmailAndNumberInStudentInfo(email, number)) {
+                        // PasswordActivity로 이동하여 비밀번호를 입력받음
+                        val intent = Intent(this, PasswordActivity::class.java)
+                        intent.putExtra("user_email", email)
+                        intent.putExtra("user_number", number)
+                        startActivityForResult(intent, REQUEST_CODE_PASSWORD)
                     } else {
-                        if (isEmailAndNumberInStudentInfo(email, number)) {
-                            saveData(email, number) // DB_login에 데이터 저장
-                            saveStudentInfo(email, number) // DB_student_info에 데이터 저장
-                            val intent = Intent(this, PasswordActivity::class.java)
-                            intent.putExtra("user_email", email)
-                            startActivity(intent)
-
-                            // 현재 액티비티 종료
-                            finish()
-                        } else {
-                            Toast.makeText(this, "이메일과 학번 정보가 일치하지 않습니다!", Toast.LENGTH_SHORT).show()
-                        }
+                        Toast.makeText(this, "이메일과 학번 정보가 일치하지 않습니다!", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this, "학번을 올바르게 입력하세요", Toast.LENGTH_SHORT).show()
@@ -57,7 +91,6 @@ class SignupActivity : AppCompatActivity() {
             }
         }
 
-        // 로그인 버튼 클릭 시 SignupActivity로 이동
         binding.login.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -66,27 +99,34 @@ class SignupActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mBinding = null // 메모리 누수 방지
-        // dbHelper.close()는 불필요, SQLiteOpenHelper가 자동으로 처리합니다.
+        mBinding = null
     }
 
-    // 이메일과 학번 정보가 DB_student_info에 저장되도록 변경
-    private fun saveStudentInfo(email: String, number: Int) {
-        dbHelper.insertStudentInfo(email, number)  // DB_student_info에 데이터 삽입
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_PASSWORD && resultCode == RESULT_OK) {
+            val email = data?.getStringExtra("user_email") ?: return
+            val number = data.getIntExtra("user_number", -1)
+            val password = data.getStringExtra("user_password") ?: return
+
+            if (email.isNotBlank() && number != -1 && password.isNotBlank()) {
+                saveData(email, number, password)
+            }
+        }
     }
 
-    // 데이터 저장 함수
-    private fun saveData(email: String, number: Int) {
+    private fun saveData(email: String, number: Int, password: String) {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put("user_email", email)
             put("user_number", number)
+            put("user_password", password)
         }
 
         try {
             val newRowId = db.insert("DB_login", null, values)
             if (newRowId != -1L) {
-                Toast.makeText(this, "이메일과 학번 정보가 일치합니다 :)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "회원가입 성공!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "데이터 저장 실패!", Toast.LENGTH_SHORT).show()
             }
@@ -98,36 +138,34 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    // 이메일 중복 체크 함수
     private fun isEmailExists(email: String): Boolean {
         val db = dbHelper.readableDatabase
         val cursor = db.query(
-            "DB_login", // 테이블명
-            arrayOf("user_email"), // 검색할 컬럼
-            "user_email = ?", // WHERE 조건
-            arrayOf(email), // ?에 들어갈 값
+            "DB_login",
+            arrayOf("user_email"),
+            "user_email = ?",
+            arrayOf(email),
             null, null, null
         )
 
-        val isExists = cursor.moveToFirst() // 결과가 있으면 true
+        val isExists = cursor.moveToFirst()
         cursor.close()
         db.close()
 
         return isExists
     }
 
-    // 이메일과 학번이 두 번째 테이블에 있는지 확인하는 메서드
     private fun isEmailAndNumberInStudentInfo(email: String, number: Int): Boolean {
         val db = dbHelper.readableDatabase
         val cursor = db.query(
-            "DB_student_info", // 테이블명
-            arrayOf("user_email", "user_number"), // 검색할 컬럼
-            "user_email = ? AND user_number = ?", // WHERE 조건
-            arrayOf(email, number.toString()), // ?에 들어갈 값
+            "DB_student_info",
+            arrayOf("user_email", "user_number"),
+            "user_email = ? AND user_number = ?",
+            arrayOf(email, number.toString()),
             null, null, null
         )
 
-        val isExists = cursor.moveToFirst() // 결과가 있으면 true
+        val isExists = cursor.moveToFirst()
         cursor.close()
         db.close()
 
