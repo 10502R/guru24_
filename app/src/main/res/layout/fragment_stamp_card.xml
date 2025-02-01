@@ -3,4 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 스탬프 카드 목록 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stampCardRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

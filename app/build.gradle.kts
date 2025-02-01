@@ -1,5 +1,4 @@
 import java.io.FileInputStream
-import java.lang.System.load
 import java.util.Properties
 
 plugins {
@@ -11,7 +10,7 @@ android {
     namespace = "com.example.guru24"
     compileSdk = 35
 
-    packagingOptions {
+    packaging {
         resources {
             excludes += ("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         }
@@ -79,5 +78,4 @@ dependencies {
     implementation("com.google.android.material:material:1.7.0")
     implementation("com.google.zxing:core:3.4.1")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
-
 }

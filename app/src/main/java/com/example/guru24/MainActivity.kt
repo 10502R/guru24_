@@ -70,5 +70,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         mBinding = null // 메모리 누수 방지
     }
-
 }
