@@ -2,7 +2,6 @@ package com.example.guru24
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -75,18 +74,6 @@ class MainActivity : AppCompatActivity() {
             Store("교육심리학과", "학과사무실", "인문사회관", "서울 노원구 화랑로 621 인문사회관 517호", "02-970-5561", "\"월-금 09:00 - 17:30\n" +
                     "토, 일, 공휴일 정기 휴무\"\n")
             )
-
-        // RecyclerView 설정
-        recyclerView = binding.recy // ViewBinding을 사용하여 RecyclerView 참조
-        storeAdapter = StoreAdapter(
-            storeList, this@MainActivity // MainActivity의 Context를 전달
-        ) { store -> // 클릭 리스너 구현
-            val fragment = StoreDetailFragment.newInstance(store)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment) // 'fragment_container'는 Fragment가 표시될 View ID
-                .addToBackStack(null)
-                .commit()
-        }
 
         recyclerView.adapter = storeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
