@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 스탬프 카드 목록 -->
+    <!-- 달성 뱃지 목록 -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stampCardRecyclerView"
+        android:id="@+id/badgeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"

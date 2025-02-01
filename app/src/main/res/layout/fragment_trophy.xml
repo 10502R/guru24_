@@ -44,15 +44,26 @@
             <!-- 설명 텍스트 -->
             <TextView
                 android:id="@+id/descriptionText"
+                android:layout_width="269dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="21dp"
+                android:contentDescription="@string/content_description_stamp_description"
+
+                android:text="@string/stamp_description"
                 android:textColor="#111111"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="21dp"
-                android:layout_marginStart="32dp"
-                android:layout_height="wrap_content"
-                android:layout_width="185dp"
-                android:text="@string/stamp_description"
-                android:contentDescription="@string/content_description_stamp_description" />
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/rvrapus5x2u"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="32dp"
+                android:src="@drawable/ic_main_stamp"
+                android:scaleType="fitXY"
+                android:layout_gravity="end" />
+
 
             <!-- QR 스캔 버튼 -->
             <Button

@@ -14,8 +14,12 @@
     <string name="content_description_tab_layout">탭 레이아웃</string>
 
     <!-- 추가할 문자열 리소스 -->
-    <string name="instructions_detail">스탬프 적립 방법에 대한 세부 설명을 여기에 작성하세요.</string>
+
     <string name="stamp_method_title">캠퍼슈 스탬프 적립 방법</string>
+    <string name="step_1">1</string>
+    <string name="step_2">2</string>
+    <string name="step_3">3</string>
+    <string name="step_4">4</string>
     <string name="stamp_check">스탬프 확인하기</string>
     <string name="stamp_check_description">홈 화면의 스탬프 메뉴에서 현재 진행 가능한 스탬프 종류를 확인합니다.</string>
     <string name="qr_scan">장소 방문 후 큐알 스캔하기</string>
@@ -24,6 +28,6 @@
     <string name="stamp_progress_description">방문 후, 스탬프가 자동으로 반영되며 몇 개가 완료되었는지 실시간으로 확인 가능합니다.</string>
     <string name="stamp_complete">스탬프 완료 후 뱃지 획득</string>
     <string name="stamp_complete_description">지정된 모든 장소를 방문하고 스탬프를 모두 찍으면 스탬프 완료 상태가 되며 뱃지를 획득합니다.</string>
-    <string name="confirm">확인</string>
+    <string name="confirm_button">확인</string>
     <string name="qr_scan_prompt">QR 코드를 스캔해주세요</string> <!-- 추가된 문자열 리소스 -->
 </resources>

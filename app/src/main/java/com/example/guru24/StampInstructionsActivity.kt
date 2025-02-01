@@ -13,6 +13,9 @@ class StampInstructionsActivity : AppCompatActivity() {
         binding = ActivityStampInstructionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 창의 배경을 투명하게 설정
+        window.setBackgroundDrawableResource(android.R.color.transparent)
+
         // 확인 버튼 클릭 시 팝업 닫기
         binding.confirmButton.setOnClickListener {
             finish() // 현재 액티비티를 종료하여 팝업 닫기
