@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -34,6 +35,19 @@ class StoreDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_store_detail, container, false)
+        val backButton: ImageButton = view.findViewById(R.id.backButton)
+        val closeButton: ImageButton = view.findViewById(R.id.close)
+
+
+        // 버튼 클릭 리스너 설정
+        backButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack() // 뒤로 가기
+        }
+
+        closeButton.setOnClickListener {
+            activity?.finish() // 앱 종료
+        }
+
 
         // UI 요소 초기화
         storeNameTextView = view.findViewById(R.id.storeName)
@@ -45,10 +59,6 @@ class StoreDetailFragment : Fragment() {
         storeImageView = view.findViewById(R.id.storeImage)
         storeMenuView = view.findViewById(R.id.storeMenu)
 
-        Log.d("StoreDetailFragment", "Store Name: ${store.name}")
-        Log.d("StoreDetailFragment", "Building: ${store.building}")
-        Log.d("StoreDetailFragment", "Menu Resource ID: ${store.menu}")
-
         // 가게 정보 설정
         storeNameTextView.text = store.name
         storeCategoryTextView.text = store.category
@@ -57,11 +67,19 @@ class StoreDetailFragment : Fragment() {
         storePhoneTextView.text = store.phone
         storeHoursTextView.text = store.hours
         storeImageView.setImageResource(store.image ?: R.drawable.default_image) // 기본 이미지 사용
-        storeMenuView.setImageResource(store.menu ?: R.drawable.default_menu_image) // 기본 메뉴 이미지 사용
+        //storeMenuView.setImageResource(store.menu ?: R.drawable.default_menu_image) // 기본 메뉴 이미지 사용
 
-        // Visibility 설정
-        storeBuildingTextView.visibility = View.VISIBLE
-        storeMenuView.visibility = View.VISIBLE
+        // 메뉴판 이미지 설정
+        store.menu?.let { menuResId ->
+            storeMenuView.setImageResource(menuResId) // menu가 null이 아닐 때만 설정
+            storeMenuView.visibility = View.VISIBLE // 메뉴판 이미지 표시
+        } ?: run {
+            storeMenuView.visibility = View.GONE // menu가 null일 때 숨김
+        }
+
+//        // Visibility 설정
+//        storeBuildingTextView.visibility = View.VISIBLE
+//        storeMenuView.visibility = View.VISIBLE
 
         return view
     }
