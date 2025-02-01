@@ -1,0 +1,106 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+    <!-- 닫기 버튼 -->
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="start"
+        android:src="@drawable/close"
+        android:scaleType="fitXY" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@drawable/gradient_red"
+        android:paddingHorizontal="20dp">
+
+        <!-- 타이틀 -->
+        <TextView
+            android:id="@+id/badgeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="축하합니다!\n뱃지를 획득했어요!"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- 설명 -->
+        <TextView
+            android:id="@+id/badgeDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="떡볶이 투어를 완료해서 보상을 드려요."
+            android:textSize="14sp"
+            android:textColor="#444240"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- 뱃지 정보 -->
+        <LinearLayout
+            android:id="@+id/badgeContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="21dp"
+            android:layout_marginBottom="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/badgeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="떡볶이 먹짱"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#2A2926"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/badge_tteokbokki_big"/>
+        </LinearLayout>
+
+        <!-- 추가 설명 -->
+        <TextView
+            android:id="@+id/badgeMotto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="떡볶이를 하루라도 못 먹으면 죽을 것 같아요"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:gravity="center"
+            android:layout_marginBottom="30dp"/>
+
+        <!-- 버튼 -->
+        <Button
+            android:id="@+id/checkBadgeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="17dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/line"
+            android:backgroundTint="#31313E"
+            android:text="달성 뱃지 확인하기"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center">
+        </Button>
+
+    </LinearLayout>
+</LinearLayout>
