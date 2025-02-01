@@ -314,8 +314,12 @@ class MapFragment : Fragment() {
         // 카테고리 클릭 리스너 설정
         setCategoryClickListeners()
 
+        // 카테고리 인자 받기
+        val category = arguments?.getString("category") ?: return
+
         // 가게 목록 초기화
         initializeStoreList()
+        //storeList = getStoreListByCategory(category)
 
         // RecyclerView 설정
         setupRecyclerView()
@@ -362,8 +366,12 @@ class MapFragment : Fragment() {
     }
 
     private fun showBottomSheet(category: String) {
-        val bottomSheetFragment = BottomSheetFragment.newInstance(category)
-        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+        val bottomSheetFragment = BottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString("category", category) // 카테고리 정보를 전달
+            }
+        }
+        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag) // BottomSheetFragment 표시
     }
 
 

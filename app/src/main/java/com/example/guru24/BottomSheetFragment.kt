@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetFragment(private val category: String) : BottomSheetDialogFragment() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentBottomSheetBinding? = null
     private val binding get() = _binding!!
@@ -36,14 +36,11 @@ class BottomSheetFragment(private val category: String) : BottomSheetDialogFragm
         storeList = getStoreListByCategory(category) // 카테고리에 따른 목록 가져오기
 
         // RecyclerView 설정
-        setupRecyclerView(category)
-        }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null // 뷰 참조 해제
+        setupRecyclerView()
     }
 
-    private fun setupRecyclerView(category: String) {
+
+    private fun setupRecyclerView() {
         binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         storeAdapter = StoreAdapter(storeList, requireContext()) { store, category ->
             // 가게 이름 클릭 시 상세 페이지로 이동
@@ -57,7 +54,7 @@ class BottomSheetFragment(private val category: String) : BottomSheetDialogFragm
     }
 
     companion object {
-        fun newInstance(category: String) = BottomSheetFragment(category)
+        fun newInstance(category: String) = BottomSheetFragment()
     }
 
     private fun getStoreListByCategory(category: String): List<Store> {
@@ -480,6 +477,10 @@ class BottomSheetFragment(private val category: String) : BottomSheetDialogFragm
             else -> emptyList()
 
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 뷰 참조 해제
     }
 }
 
