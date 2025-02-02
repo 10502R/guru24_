@@ -64,10 +64,13 @@ class StoreDetailFragment : Fragment() {
             requireActivity().supportFragmentManager.popBackStack() // 현재 Fragment 없애기
         }
 
-//        closeButton.setOnClickListener {
-//            // MapFragment로 돌아가기
-//            requireActivity().supportFragmentManager.popBackStack("MapFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE) // MapFragment로 돌아가기
-//        }
+        closeButton.setOnClickListener {
+            val mapFragment = MapFragment() // MapFragment 인스턴스 생성
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, mapFragment) // Fragment 컨테이너에 MapFragment를 추가
+                .addToBackStack(null) // 현재 Fragment를 백 스택에 추가
+                .commit()
+        }
 
 
         // Visibility 설정
