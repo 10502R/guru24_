@@ -3,7 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
-
     <string name="tab_layout_description" translatable="false">탭 레이아웃</string>
     <string name="stamp_count" translatable="false">스탬프: 0</string>
     <string name="badge_count" translatable="false">뱃지: 0</string>

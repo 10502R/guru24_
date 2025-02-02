@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import DividerItemDecoration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentBottomSheetBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetFragment(private val category: String) : BottomSheetDialogFragment() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentBottomSheetBinding? = null
     private val binding get() = _binding!!
@@ -29,27 +31,50 @@ class BottomSheetFragment(private val category: String) : BottomSheetDialogFragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        // 핸들러 높이를 고려하여 peekHeight 설정
+        val handlerHeight = resources.getDimensionPixelSize(R.dimen.drag_handle_height)
+        val listItemHeight = resources.getDimensionPixelSize(R.dimen.list_item_height)
+        val screenHeight = resources.displayMetrics.heightPixels
+        bottomSheetBehavior.peekHeight = screenHeight / 3 + handlerHeight + (listItemHeight * 2)
+        // 드래그 핸들 항상 보이도록 설정
+        binding.dragHandle.visibility = View.VISIBLE
+
+
+        // 카테고리 인자 받기
+        val category = arguments?.getString("category") ?: return
+
+        // 가게 목록 초기화
+        storeList = getStoreListByCategory(category) // 카테고리에 따른 목록 가져오기
+
         // RecyclerView 설정
-        val storeList = getStoreListByCategory(category) // 목록을 가져오는 메서드 호출
-        val storeAdapter = StoreAdapter(storeList, requireContext()) { store ->
+        setupRecyclerView()
+    }
+
+
+    private fun setupRecyclerView() {
+        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        storeAdapter = StoreAdapter(storeList, requireContext()) { store, category ->
             // 가게 이름 클릭 시 상세 페이지로 이동
-            val fragment = StoreDetailFragment.newInstance(store)
+            val fragment = StoreDetailFragment.newInstance(store, category)
             (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
-
-        binding.bottomSheetRecyclerView.adapter = storeAdapter
-        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null // 뷰 참조 해제
+        binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
+        // DividerItemDecoration 추가
+        binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
     }
 
     companion object {
-        fun newInstance(category: String) = BottomSheetFragment(category)
+        fun newInstance(category: String) = BottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString("category", category)
+            }
+        }
+
     }
 
     private fun getStoreListByCategory(category: String): List<Store> {
@@ -473,8 +498,8 @@ class BottomSheetFragment(private val category: String) : BottomSheetDialogFragm
 
         }
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 뷰 참조 해제
+    }
 }
-
-
-
-
