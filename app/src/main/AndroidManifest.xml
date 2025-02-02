@@ -4,8 +4,8 @@
     package="com.example.guru24">
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -30,8 +30,11 @@
         <activity
             android:name=".SearchActivity"
             android:exported="false" /> <!-- StampInstructionsActivity와 QrCodeScanActivity 선언 -->
-        <!-- QrCodeScanActivity 선언 -->
-        <activity android:name=".QrCodeScanActivity" /> <!-- Kakao Map API Key 설정 -->
+
+        <!--QrCodeScanActivity 선언 -->
+        <activity android:name=".QrCodeScanActivity" />
+
+        <!-- Kakao Map API Key 설정 -->
         <meta-data
             android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
             android:value="KAKAO_MAP_KEY" />
@@ -56,7 +59,8 @@
             android:exported="false" />
         <activity
             android:name=".StampInstructionsActivity"
-            android:theme="@style/PopupTheme" />
+            android:theme="@style/PopupTheme"
+            android:exported="false" />
         <activity
             android:name=".IntroActivity"
             android:exported="true">
