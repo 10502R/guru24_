@@ -41,7 +41,6 @@
     <string name="cu_description">교내 편의점 구석구석을 탐방해보세요!</string>
     <string name="coffee_tour">카페 투어</string>
     <string name="coffee_description">교내 인기 카페만을 모아봤어요</string>
-    <string name="app_name">guru24</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 

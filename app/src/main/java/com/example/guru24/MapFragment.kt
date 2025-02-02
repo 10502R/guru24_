@@ -51,6 +51,9 @@ class MapFragment : Fragment() {
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
 
+        // UI 보이기
+        showUIElements()
+        
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
             val intent = Intent(requireContext(), SearchActivity::class.java)
@@ -329,7 +332,7 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 지도 표시 함수 호출
-        showMapView()
+        //showMapView()
 
         // 카테고리 클릭 리스너 설정
         setCategoryClickListeners()
@@ -362,18 +365,44 @@ class MapFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // LayoutManager 설정
-        storeAdapter = StoreAdapter(storeList, requireContext()) { store,category ->
-            // 가게 이름 클릭 시 상세 페이지로 이동
-            val fragment = StoreDetailFragment.newInstance(store, category) // 카테고리도 전달
+        storeAdapter = StoreAdapter(storeList, requireContext()) { store, category ->
+            // 클릭 시 UI 요소 숨기기
+            hideUIElements()
+
+            // 상세 프래그먼트로 이동
+            val fragment = StoreDetailFragment.newInstance(store, category)
+            Log.d("StoreDetail", "Navigating to StoreDetailFragment with store: ${store.name}")
             (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
-        binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
-        // DividerItemDecoration 추가
+        binding.bottomSheetRecyclerView.adapter = storeAdapter
         binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
     }
+
+    // UI 숨기기
+    private fun hideUIElements() {
+        Log.d("UI Debug", "hideUIElements() 실행됨")  // 로그 추가
+        binding.root.post {
+            binding.mapView.visibility = View.GONE
+            binding.searchView.visibility = View.GONE
+            binding.horizontalView.visibility = View.GONE
+            binding.mappinID.visibility = View.GONE
+            binding.bottomViewCategory.visibility = View.GONE
+        }
+    }
+
+
+    // UI 복원
+    private fun showUIElements() {
+        binding.mapView.visibility = View.VISIBLE
+        binding.searchView.visibility = View.VISIBLE
+        binding.horizontalView.visibility = View.VISIBLE
+        binding.mappinID.visibility = View.VISIBLE
+        binding.bottomViewCategory.visibility = View.VISIBLE
+    }
+
     private fun setCategoryClickListeners() {
         binding.filterRestaurant.setOnClickListener { showBottomSheet("음식점") }
         binding.filterCafe.setOnClickListener { showBottomSheet("카페/베이커리") }
