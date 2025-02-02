@@ -103,6 +103,7 @@
         android:layout_gravity="bottom"
         android:orientation="vertical">
         <ImageView
+            android:id="@+id/mappinID"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:layout_marginBottom="270dp"
@@ -173,7 +174,7 @@
                         android:id="@+id/filter_restaurant"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_food"
                         android:scaleType="fitXY" />
                     <TextView
                         android:textColor="#2A2926"
@@ -193,7 +194,7 @@
                         android:id="@+id/filter_cafe"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_cafe"
                         android:scaleType="fitXY" />
                     <TextView
                         android:layout_marginTop="3dp"
@@ -214,7 +215,7 @@
                         android:id="@+id/filter_convenience"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_store"
                         android:scaleType="fitXY" />
                     <TextView
                         android:textColor="#2A2926"
@@ -234,7 +235,7 @@
                         android:id="@+id/filter_rest"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_market"
                         android:scaleType="fitXY"
                         />
                     <TextView
@@ -258,7 +259,7 @@
                         android:id="@+id/filter_study"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_study"
                         android:scaleType="fitXY"
                         />
                     <TextView
@@ -286,7 +287,7 @@
                         android:id="@+id/filter_club"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_club"
                         android:scaleType="fitXY"/>
                     <TextView
                         android:textColor="#2A2926"
@@ -307,7 +308,7 @@
                         android:layout_width="46dp"
                         android:layout_height="46dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@drawable/icon_bank" />
                     <TextView
                         android:textColor="#2A2926"
                         android:textSize="12sp"
@@ -326,7 +327,7 @@
                         android:id="@+id/filter_car"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_bus"
                         android:scaleType="fitXY"/>
                     <TextView
                         android:textColor="#2A2926"
@@ -347,7 +348,7 @@
                         android:layout_width="46dp"
                         android:layout_height="46dp"
                         android:layout_marginLeft="2dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/icon_office"
                         android:scaleType="fitXY"/>
                     <TextView
                         android:textColor="#2A2926"

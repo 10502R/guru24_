@@ -57,6 +57,24 @@ class MapFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.mappinID.setOnClickListener {
+            // 카메라 위치 이동
+            setLocation()
+
+            pinManager.removeAllPins()
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+            setInitialPins()
+
+        }
+
+
         // ImageView 클릭 리스너 설정
         binding.image1.setOnClickListener {
             handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2)
@@ -90,7 +108,7 @@ class MapFragment : Fragment() {
 
             // RouteLineSegment 생성 - 핀 위치를 경로로 연결
             val segment = RouteLineSegment.from(
-                Arrays.asList(
+                listOf(
                     LatLng.from(37.625747563384124, 127.09368809677129),
                     LatLng.from(37.62655199375479, 127.09330961495466),
                     LatLng.from(37.62696892541316, 127.09302409993029),
@@ -257,7 +275,7 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
-        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2)
+        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_cafe, R.drawable.ic_tour_cafe2)
             if (!::pinManager.isInitialized) {
                 return@setOnClickListener }
             // 모든 핀 삭제
@@ -356,7 +374,6 @@ class MapFragment : Fragment() {
         // DividerItemDecoration 추가
         binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
     }
-
     private fun setCategoryClickListeners() {
         binding.filterRestaurant.setOnClickListener { showBottomSheet("음식점") }
         binding.filterCafe.setOnClickListener { showBottomSheet("카페/베이커리") }
@@ -803,10 +820,10 @@ class MapFragment : Fragment() {
 
     private fun showMapView() {
         // 바인딩된 mapView 초기화
-        //mapView = binding.mapView
+        mapView = binding.mapView
 
         // KakaoMapSDK 초기화
-        //KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_MAP_KEY)
+        KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_MAP_KEY)
 
         binding.mapView.start(object : MapLifeCycleCallback() {
             override fun onMapDestroy() {
