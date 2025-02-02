@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.guru24">
-
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -19,9 +18,16 @@
         android:theme="@style/Theme.Guru24"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".BadgeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" /> <!-- StampInstructionsActivity와 QrCodeScanActivity 선언 -->
 
         <!--QrCodeScanActivity 선언 -->
         <activity android:name=".QrCodeScanActivity" />
+        <activity android:name=".StampInstructionsActivity" /> <!-- Kakao Map API Key 설정 -->
 
 
         <!-- Kakao Map API Key 설정 -->
@@ -39,6 +45,9 @@
             android:name=".ActivityTermsOfService"
             android:exported="false" />
         <activity
+            android:name=".MypageTerms"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
@@ -53,6 +62,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

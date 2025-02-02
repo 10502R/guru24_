@@ -22,7 +22,7 @@ class IntroActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent) // MainActivity 시작
             finish() // IntroActivity 종료
-        }, 2000) // 2000ms = 2초
+        }, 3000) // 2000ms = 2초
     }
 
     override fun onDestroy() {

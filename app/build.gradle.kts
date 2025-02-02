@@ -1,4 +1,5 @@
 import java.io.FileInputStream
+import java.lang.System.load
 import java.util.Properties
 
 plugins {
@@ -10,7 +11,7 @@ android {
     namespace = "com.example.guru24"
     compileSdk = 35
 
-    packaging {
+    packagingOptions {
         resources {
             excludes += ("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         }
@@ -71,11 +72,13 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation("com.kakao.maps.open:android:2.12.8")
-    implementation(libs.identity.android.legacy) // Kakao Maps 라이브러리
+    implementation(libs.identity.android.legacy)
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.android.material:material:1.7.0")
     implementation("com.google.zxing:core:3.4.1")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
 }
