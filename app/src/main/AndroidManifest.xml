@@ -27,8 +27,6 @@
 
         <!--QrCodeScanActivity 선언 -->
         <activity android:name=".QrCodeScanActivity" />
-        <activity android:name=".StampInstructionsActivity" /> <!-- Kakao Map API Key 설정 -->
-
 
         <!-- Kakao Map API Key 설정 -->
         <meta-data
@@ -53,10 +51,10 @@
         <activity
             android:name=".PasswordActivity"
             android:exported="false" />
-
         <activity
             android:name=".StampInstructionsActivity"
-            android:theme="@style/PopupTheme" />
+            android:theme="@style/PopupTheme"
+            android:exported="false" />
         <activity
             android:name=".IntroActivity"
             android:exported="true">

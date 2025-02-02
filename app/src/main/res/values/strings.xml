@@ -1,47 +1,46 @@
 <resources>
     <!-- 기존 문자열 리소스들 -->
-    <string name="app_name">Guru24</string>
-    <string name="stamp_title">스탬프</string>
-    <string name="stamp_description">매장에서 QR을 스캔하고\n스탬프를 적립하세요</string>
+    <string name="stamp_title" translatable="false">스탬프</string>
+    <string name="stamp_description" translatable="false">매장에서 QR을 스캔하고\n스탬프를 적립하세요</string>
     <string name="btn_scan_qr">QR 찍고 스탬프 적립하기</string>
     <string name="btn_learn_how">스탬프 적립 방법 알아보기</string>
-    <string name="tab_stamp_card">스탬프 카드</string>
-    <string name="tab_badge">달성 뱃지</string>
-    <string name="content_description_stamp_title">스탬프 제목</string>
-    <string name="content_description_stamp_description">스탬프 설명</string>
-    <string name="content_description_btn_scan_qr">QR 코드 스캔 버튼</string>
-    <string name="content_description_btn_learn_how">스탬프 적립 방법 버튼</string>
-    <string name="content_description_tab_layout">탭 레이아웃</string>
+    <string name="tab_stamp_card" translatable="false">스탬프 카드</string>
+    <string name="tab_badge" translatable="false">달성 뱃지</string>
+    <string name="content_description_stamp_title" translatable="false">스탬프 제목</string>
+    <string name="content_description_stamp_description" translatable="false">스탬프 설명</string>
+    <string name="content_description_btn_scan_qr" translatable="false">QR 코드 스캔 버튼</string>
+    <string name="content_description_btn_learn_how" translatable="false">스탬프 적립 방법 버튼</string>
+    <string name="content_description_tab_layout" translatable="false">탭 레이아웃</string>
 
     <!-- 추가할 문자열 리소스 -->
 
-    <string name="stamp_method_title">캠퍼슈 스탬프 적립 방법</string>
-    <string name="step_1">1</string>
-    <string name="step_2">2</string>
-    <string name="step_3">3</string>
-    <string name="step_4">4</string>
-    <string name="stamp_check">스탬프 확인하기</string>
-    <string name="stamp_check_description">홈 화면의 스탬프 메뉴에서 현재 진행 가능한 스탬프 종류를 확인합니다.</string>
-    <string name="qr_scan">장소 방문 후 큐알 스캔하기</string>
-    <string name="qr_scan_description">장소에 도착하면 큐알코드를 스캔하여 스탬프를 찍습니다.</string>
-    <string name="stamp_progress">스탬프 진행 상황 확인</string>
-    <string name="stamp_progress_description">방문 후, 스탬프가 자동으로 반영되며 몇 개가 완료되었는지 실시간으로 확인 가능합니다.</string>
-    <string name="stamp_complete">스탬프 완료 후 뱃지 획득</string>
-    <string name="stamp_complete_description">지정된 모든 장소를 방문하고 스탬프를 모두 찍으면 스탬프 완료 상태가 되며 뱃지를 획득합니다.</string>
-    <string name="confirm_button">확인</string>
-    <string name="qr_scan_prompt">QR 코드를 스캔해주세요</string>
+    <string name="stamp_method_title" translatable="false">캠퍼슈 스탬프 적립 방법</string>
+    <string name="step_1" translatable="false">1</string>
+    <string name="step_2" translatable="false">2</string>
+    <string name="step_3" translatable="false">3</string>
+    <string name="step_4" translatable="false">4</string>
+    <string name="stamp_check" translatable="false">스탬프 확인하기</string>
+    <string name="stamp_check_description" translatable="false">홈 화면의 스탬프 메뉴에서 현재 진행 가능한 스탬프 종류를 확인합니다.</string>
+    <string name="qr_scan" translatable="false">장소 방문 후 큐알 스캔하기</string>
+    <string name="qr_scan_description" translatable="false">장소에 도착하면 큐알코드를 스캔하여 스탬프를 찍습니다.</string>
+    <string name="stamp_progress" translatable="false">스탬프 진행 상황 확인</string>
+    <string name="stamp_progress_description" translatable="false">방문 후, 스탬프가 자동으로 반영되며 몇 개가 완료되었는지 실시간으로 확인 가능합니다.</string>
+    <string name="stamp_complete" translatable="false">스탬프 완료 후 뱃지 획득</string>
+    <string name="stamp_complete_description" translatable="false">지정된 모든 장소를 방문하고 스탬프를 모두 찍으면 스탬프 완료 상태가 되며 뱃지를 획득합니다.</string>
+    <string name="confirm_button" translatable="false">확인</string>
+    <string name="qr_scan_prompt" translatable="false">QR 코드를 스캔해주세요</string>
 
-    <string name="tteokbokki_tour">떡볶이 투어</string>
-    <string name="tteokbokki_description">교내 인기 떡볶이 맛집을 방문해보세요!</string>
-    <string name="gonggang_tour">공강 투어</string>
-    <string name="gonggang_description">여유로운 공강 시간에 공강 투어는 어때요?</string>
-    <string name="study_tour">벼락치기 투어</string>
-    <string name="study_description">벼락치기 중이라면 반드시 거쳐야 하는 코스예요</string>
-    <string name="cu_tour">편의점 투어</string>
-    <string name="cu_description">교내 편의점 구석구석을 탐방해보세요!</string>
-    <string name="coffee_tour">카페 투어</string>
-    <string name="coffee_description">교내 인기 카페만을 모아봤어요</string>
-    <string name="app_name">guru24</string>
+    <string name="tteokbokki_tour" translatable="false">떡볶이 투어</string>
+    <string name="tteokbokki_description" translatable="false">교내 인기 떡볶이 맛집을 방문해보세요!</string>
+    <string name="gonggang_tour" translatable="false">공강 투어</string>
+    <string name="gonggang_description" translatable="false">여유로운 공강 시간에 공강 투어는 어때요?</string>
+    <string name="study_tour" translatable="false">벼락치기 투어</string>
+    <string name="study_description" translatable="false">벼락치기 중이라면 반드시 거쳐야 하는 코스예요</string>
+    <string name="cu_tour" translatable="false">편의점 투어</string>
+    <string name="cu_description" translatable="false">교내 편의점 구석구석을 탐방해보세요!</string>
+    <string name="coffee_tour" translatable="false">카페 투어</string>
+    <string name="coffee_description" translatable="false">교내 인기 카페만을 모아봤어요</string>
+    <string name="app_name" translatable="false">guru24</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
@@ -49,6 +48,4 @@
     <string name="stamp_count" translatable="false">스탬프: 0</string>
     <string name="badge_count" translatable="false">뱃지: 0</string>
     <string name="instructions_detail" translatable="false">1. 원하는 카테고리를 선택합니다.\n2. 해당 장소에 도착하여 QR 코드를 찍습니다.</string>
-    <string name="btn_scan_qr" translatable="false">QR 찍고 스탬프 적립하기</string>
-    <string name="btn_learn_how" translatable="false">스탬프 적립 방법 알아보기</string>
 </resources>
