@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import DividerItemDecoration
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -319,7 +320,7 @@ class MapFragment : Fragment() {
 
         // 가게 목록 초기화
         initializeStoreList()
-        //storeList = getStoreListByCategory(category)
+        storeList = getStoreListByCategory(category)
 
         // RecyclerView 설정
         setupRecyclerView()
@@ -344,13 +345,15 @@ class MapFragment : Fragment() {
         binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // LayoutManager 설정
         storeAdapter = StoreAdapter(storeList, requireContext()) { store,category ->
             // 가게 이름 클릭 시 상세 페이지로 이동
-            val fragment = StoreDetailFragment.newInstance(store, store.category) // 카테고리도 전달
+            val fragment = StoreDetailFragment.newInstance(store, category) // 카테고리도 전달
             (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
         binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
+        // DividerItemDecoration 추가
+        binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
     }
 
     private fun setCategoryClickListeners() {

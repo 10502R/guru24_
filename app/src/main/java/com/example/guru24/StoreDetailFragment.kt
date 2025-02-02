@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 class StoreDetailFragment : Fragment() {
 
@@ -37,37 +38,46 @@ class StoreDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_store_detail, container, false)
-        val backButton: ImageButton = view.findViewById(R.id.backButton)
-        val closeButton: ImageButton = view.findViewById(R.id.close)
-
-
-        // 버튼 클릭 리스너 설정
-        backButton.setOnClickListener {
-            // 현재 Fragment를 제거하고 이전 Fragment로 돌아갑니다.
-            requireActivity().supportFragmentManager.popBackStack() // 현재 Fragment 없애기
-
-            // 이전 Fragment에서 카테고리 값을 사용하여 바텀 시트 표시
-            val bottomSheetFragment = BottomSheetFragment.newInstance(category ?: "기본 카테고리") // 기본 카테고리 값 설정
-            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-        }
-
-        closeButton.setOnClickListener {
-            // MapFragment로 돌아가기
-            requireActivity().supportFragmentManager.popBackStack("MapFragment", 0) // MapFragment로 돌아가기
-        }
-
+        val backButton: ImageView = view.findViewById(R.id.backButton)
+        val closeButton: ImageView = view.findViewById(R.id.close)
 
         // UI 요소 초기화
-        val storeImageView: ImageView = view.findViewById(R.id.storeImage)
-        val storeNameTextView: TextView = view.findViewById(R.id.storeName)
-        val storeCategoryTextView: TextView = view.findViewById(R.id.storeCategory)
-        val storeBuildingTextView: TextView = view.findViewById(R.id.storeBuilding)
-        val storeAddressTextView: TextView = view.findViewById(R.id.storeAddress)
-        val storePhoneTextView: TextView = view.findViewById(R.id.storePhone)
-        val storeHoursTextView: TextView = view.findViewById(R.id.storeHours)
-        val storeMenuView: ImageView = view.findViewById(R.id.storeMenu)
+        storeImageView = view.findViewById(R.id.storeImage)
+        storeNameTextView = view.findViewById(R.id.storeName)
+        storeCategoryTextView = view.findViewById(R.id.storeCategory)
+        storeBuildingTextView = view.findViewById(R.id.storeBuilding)
+        storeAddressTextView = view.findViewById(R.id.storeAddress)
+        storePhoneTextView = view.findViewById(R.id.storePhone)
+        storeHoursTextView = view.findViewById(R.id.storeHours)
+        storeMenuView = view.findViewById(R.id.storeMenu)
+
 
         // Store 객체에서 정보 설정
+        updateUI()
+
+        // 클릭 리스너 설정
+        backButton.setOnClickListener {
+            val bottomSheetFragment = BottomSheetFragment.newInstance(category ?: "기본 카테고리") // 기본 카테고리 값 설정
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+
+            // 현재 Fragment를 제거하고 이전 Fragment로 돌아갑니다.
+            requireActivity().supportFragmentManager.popBackStack() // 현재 Fragment 없애기
+        }
+
+//        closeButton.setOnClickListener {
+//            // MapFragment로 돌아가기
+//            requireActivity().supportFragmentManager.popBackStack("MapFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE) // MapFragment로 돌아가기
+//        }
+
+
+        // Visibility 설정
+        storeBuildingTextView.visibility = View.VISIBLE
+        storeMenuView.visibility = View.VISIBLE
+
+        return view
+    }
+
+    private fun updateUI() {
         storeImageView.setImageResource(store.image ?: R.drawable.default_image)
         storeNameTextView.text = store.name
         storeCategoryTextView.text = store.category
@@ -78,17 +88,16 @@ class StoreDetailFragment : Fragment() {
 
         // 메뉴판 이미지 설정
         store.menu?.let { menuResId ->
-            storeMenuView.setImageResource(menuResId) // menu가 null이 아닐 때만 설정
-            storeMenuView.visibility = View.VISIBLE // 메뉴판 이미지 표시
+            storeMenuView.setImageResource(menuResId)
+            storeMenuView.visibility = View.VISIBLE
         } ?: run {
-            storeMenuView.visibility = View.GONE // menu가 null일 때 숨김
+            storeMenuView.visibility = View.GONE
         }
 
-//        // Visibility 설정
-        storeBuildingTextView.visibility = View.VISIBLE
-        storeMenuView.visibility = View.VISIBLE
+        // 가시성 설정
+        storeBuildingTextView.visibility = if (store.building.isNotEmpty()) View.VISIBLE else View.GONE
 
-        return view
+
     }
 
     companion object {

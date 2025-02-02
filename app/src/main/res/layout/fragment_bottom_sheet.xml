@@ -8,9 +8,11 @@
     <LinearLayout
         android:id="@+id/bottomSheetLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@android:color/white"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <!-- 드래그 핸들 -->
@@ -26,8 +28,9 @@
             android:id="@+id/bottomSheetRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-             />
+            android:layout_marginTop="0dp"
+            android:paddingTop="0dp"
+            android:nestedScrollingEnabled="false" />
 
 
         <FrameLayout

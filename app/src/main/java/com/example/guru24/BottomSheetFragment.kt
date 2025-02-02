@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import DividerItemDecoration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,10 +52,17 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 .commit()
         }
         binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
+        // DividerItemDecoration 추가
+        binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
     }
 
     companion object {
-        fun newInstance(category: String) = BottomSheetFragment()
+        fun newInstance(category: String) = BottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString("category", category)
+            }
+        }
+
     }
 
     private fun getStoreListByCategory(category: String): List<Store> {
@@ -483,7 +491,3 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         _binding = null // 뷰 참조 해제
     }
 }
-
-
-
-
