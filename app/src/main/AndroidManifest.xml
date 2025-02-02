@@ -27,7 +27,7 @@
 
         <!--QrCodeScanActivity 선언 -->
         <activity android:name=".QrCodeScanActivity" />
-        <activity android:name=".StampInstructionsActivity" /> <!-- Kakao Map API Key 설정 -->
+
 
 
         <!-- Kakao Map API Key 설정 -->
