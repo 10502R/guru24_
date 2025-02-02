@@ -31,6 +31,17 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        // 핸들러 높이를 고려하여 peekHeight 설정
+        val handlerHeight = resources.getDimensionPixelSize(R.dimen.drag_handle_height)
+        val listItemHeight = resources.getDimensionPixelSize(R.dimen.list_item_height)
+        val screenHeight = resources.displayMetrics.heightPixels
+        bottomSheetBehavior.peekHeight = screenHeight / 3 + handlerHeight + (listItemHeight * 2)
+        // 드래그 핸들 항상 보이도록 설정
+        binding.dragHandle.visibility = View.VISIBLE
+
+
         // 카테고리 인자 받기
         val category = arguments?.getString("category") ?: return
 
