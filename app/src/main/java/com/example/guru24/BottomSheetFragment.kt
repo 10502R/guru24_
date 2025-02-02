@@ -37,7 +37,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         val handlerHeight = resources.getDimensionPixelSize(R.dimen.drag_handle_height)
         val listItemHeight = resources.getDimensionPixelSize(R.dimen.list_item_height)
         val screenHeight = resources.displayMetrics.heightPixels
-        bottomSheetBehavior.peekHeight = screenHeight / 3 + handlerHeight + (listItemHeight * 2)
+        bottomSheetBehavior.peekHeight = handlerHeight + (listItemHeight * 2)
         // 드래그 핸들 항상 보이도록 설정
         binding.dragHandle.visibility = View.VISIBLE
 
