@@ -29,5 +29,16 @@
     <string name="stamp_complete">스탬프 완료 후 뱃지 획득</string>
     <string name="stamp_complete_description">지정된 모든 장소를 방문하고 스탬프를 모두 찍으면 스탬프 완료 상태가 되며 뱃지를 획득합니다.</string>
     <string name="confirm_button">확인</string>
-    <string name="qr_scan_prompt">QR 코드를 스캔해주세요</string> <!-- 추가된 문자열 리소스 -->
+    <string name="qr_scan_prompt">QR 코드를 스캔해주세요</string>
+
+    <string name="tteokbokki_tour">떡볶이 투어</string>
+    <string name="tteokbokki_description">교내 인기 떡볶이 맛집을 방문해보세요!</string>
+    <string name="gonggang_tour">공강 투어</string>
+    <string name="gonggang_description">여유로운 공강 시간에 공강 투어는 어때요?</string>
+    <string name="study_tour">벼락치기 투어</string>
+    <string name="study_description">벼락치기 중이라면 반드시 거쳐야 하는 코스예요</string>
+    <string name="cu_tour">편의점 투어</string>
+    <string name="cu_description">교내 편의점 구석구석을 탐방해보세요!</string>
+    <string name="coffee_tour">카페 투어</string>
+    <string name="coffee_description">교내 인기 카페만을 모아봤어요</string>
 </resources>

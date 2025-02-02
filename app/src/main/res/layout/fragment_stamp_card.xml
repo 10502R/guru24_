@@ -1,14 +1,383 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!-- 달성 뱃지 목록 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/badgeRecyclerView"
+    <ScrollView
+        android:id="@+id/rvjkv70ymtms"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:clipToPadding="false" />
+        android:background="#FFFFFF"
+        android:paddingTop="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 떡볶이 투어 -->
+            <LinearLayout
+                android:id="@+id/rzf8tr5u29ti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/line"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="30dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginHorizontal="14dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/rn0gderdfw1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start">
+                    <LinearLayout
+                        android:id="@+id/r454k95dl4n3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="68dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/rzzsbrlkdwj9"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/stmap_tteokbokki"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/tteokbokki_tour" />
+                        <TextView
+                            android:id="@+id/ru7h5k5str"
+                            android:textColor="#111111"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/tteokbokki_tour"
+                            android:gravity="start"/>
+                        <ImageView
+                            android:id="@+id/rs0ta7414ckc"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/stamp_ckeck"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/tteokbokki_tour" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/r04xo0zq2gjd"
+                        android:textColor="#696866"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="start"
+                        android:text="@string/tteokbokki_description" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/rjosjx78edp9"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/stamp_down"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/tteokbokki_tour" />
+            </LinearLayout>
+            <!-- 공강 투어 -->
+            <LinearLayout
+                android:id="@+id/rfvbu4hcxlgj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/line"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="31dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginHorizontal="14dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/r6amfwpfdwbr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/rp10zjdwfmwf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="96dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/r2vsh3g298gd"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="6dp"
+                            android:src="@drawable/stamp_gonggang"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/gonggang_tour" />
+                        <TextView
+                            android:id="@+id/ra2r4ob9tcxg"
+                            android:textColor="#111111"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/gonggang_tour" />
+                        <ImageView
+                            android:id="@+id/rp9tkvych30a"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/stamp_ckeck"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/gonggang_tour" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/ryocqr8c22o"
+                        android:textColor="#696866"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="start"
+                        android:text="@string/gonggang_description" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/rodre89kfxgs"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/stamp_down"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/gonggang_tour" />
+            </LinearLayout>
+            <!-- 벼락치기 투어 -->
+            <LinearLayout
+                android:id="@+id/r6yah52bs4x2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/line"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="31dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginHorizontal="14dp"
+                android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:id="@+id/rw40wqmzisv"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/r1a75rnl9kmo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="98dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/r7zg33iza4s"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="6dp"
+                            android:contentDescription="@string/study_tour"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/stamp_study" />
+
+                        <TextView
+                            android:id="@+id/rl1ed17hekv8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:singleLine="true"
+                            android:text="@string/study_tour"
+                            android:textColor="#111111"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/rta3h3mnlm"
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/study_tour"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/stamp_ckeck" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/rnf0v8zp8es"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/study_description"
+                        android:textColor="#696866"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:id="@+id/rxvpmlbtlpke"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/stamp_down"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/study_tour" />
+            </LinearLayout>
+            <!-- 편의점 투어 -->
+            <LinearLayout
+                android:id="@+id/rcbtfjijgea8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/line"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="32dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginHorizontal="14dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/rc6yj0aaq7ij"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start">
+                    <LinearLayout
+                        android:id="@+id/rdgrklrxz0pp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="66dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/r5jg6sqay0dg"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="7dp"
+                            android:src="@drawable/stamp_cu"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/cu_tour" />
+                        <TextView
+                            android:id="@+id/r6yw9tpozs4c"
+                            android:textColor="#111111"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/cu_tour"
+                            android:singleLine="true"
+                            android:gravity="start"/>
+                        <ImageView
+                            android:id="@+id/refzzdw2mznt"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/stamp_ckeck"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/cu_tour" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/r8j2cxhww6rq"
+                        android:textColor="#696866"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="start"
+                        android:text="@string/cu_description"
+                        android:singleLine="true" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/r1k8o9swwn23"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/stamp_down"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/cu_tour" />
+            </LinearLayout>
+            <!-- 카페 투어 -->
+            <LinearLayout
+                android:id="@+id/rex3prsr1lj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/line"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="32dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="14dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/rgin0igz4b3r"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/rwf84uyr3cq"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="45dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/rt2d1fna8bof"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="7dp"
+                            android:src="@drawable/stamp_coffee"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/coffee_tour" />
+                        <TextView
+                            android:id="@+id/r0t2e7obig2ui"
+                            android:textColor="#111111"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/coffee_tour" />
+                        <ImageView
+                            android:id="@+id/rivjmyys239g"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/stamp_ckeck"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/coffee_tour" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/r55zu06ylvb8"
+                        android:textColor="#696866"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="start"
+                        android:text="@string/coffee_description" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/r9swpmxvmgf"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/stamp_down"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/coffee_tour" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
