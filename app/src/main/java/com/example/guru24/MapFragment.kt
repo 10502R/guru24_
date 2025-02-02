@@ -59,12 +59,16 @@ class MapFragment : Fragment() {
             // 카메라 위치 이동
             setLocation()
 
+            pinManager.removeAllPins()
+
             // RouteLineLayer 가져오기
             val layer = kakaoMap.routeLineManager!!.layer
 
             // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
             currentRouteLine?.remove()
             layer.removeAll()
+
+            setInitialPins()
 
         }
 
