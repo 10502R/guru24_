@@ -55,6 +55,22 @@ class MapFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.mappinID.setOnClickListener {
+            // 카메라 위치 이동
+            setLocation()
+
+            // 모든 핀 삭제 후 새로운 핀 추가
+            pinManager.removeAllPins()
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
+        }
+
 
         // ImageView 클릭 리스너 설정
         binding.image1.setOnClickListener {
@@ -335,6 +351,7 @@ class MapFragment : Fragment() {
                 .commit()
         }
     }
+
     private fun setCategoryClickListeners() {
         binding.filterRestaurant.setOnClickListener {
             showBottomSheet("음식점")
@@ -364,7 +381,6 @@ class MapFragment : Fragment() {
             showBottomSheet("학과사무실")
         }
     }
-
 
     private fun showBottomSheet(category: String) {
         val bottomSheetFragment = BottomSheetFragment.newInstance(category)
