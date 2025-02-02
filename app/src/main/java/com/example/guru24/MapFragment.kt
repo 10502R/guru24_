@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import DividerItemDecoration
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -944,7 +946,7 @@ class MapFragment : Fragment() {
             pinManager.removeAllPins()
 
             // ✅ RecyclerView 토글 (보이게 / 숨기기)
-            binding.recyclerView.visibility = if (binding.recyclerView.visibility == View.GONE) {
+            binding.bottomSheetRecyclerView.visibility = if (binding.bottomSheetRecyclerView.visibility == View.GONE) {
                 View.VISIBLE
             } else {
                 View.GONE
