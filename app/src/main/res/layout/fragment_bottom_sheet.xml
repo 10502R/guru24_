@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/bottomSheetLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@android:color/white"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -28,7 +28,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bottomSheetRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:nestedScrollingEnabled="false" />
 

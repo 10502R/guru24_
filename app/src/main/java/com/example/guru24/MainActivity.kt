@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tabHome -> {
-                    replaceFragment(MapFragment())
+                    replaceFragment(HomeFragment())
                     true
                 }
                 R.id.tabMap -> {
