@@ -335,11 +335,6 @@ class MapFragment : Fragment() {
                 .commit()
         }
     }
-
-       // binding.bottomSheetRecyclerView.adapter = storeAdapter
-        //binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
     private fun setCategoryClickListeners() {
         binding.filterRestaurant.setOnClickListener {
             showBottomSheet("음식점")
