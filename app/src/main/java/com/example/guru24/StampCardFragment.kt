@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,15 +43,23 @@ class StampCardFragment : Fragment() {
     }
 
     // 스탬프 획득 로직
-    fun onStampAcquired() {
-        // 스탬프 획득 시 이미지 변경
-        stampCheckImage.setImageResource(R.drawable.stamp_ckeck_black)
-        // 스탬프 획득 팝업 표시
-        showStampPopup()
+    fun onStampAcquired(isSuccess: Boolean) {
+        if (isSuccess) {
+            // 스탬프 획득 시 이미지 변경
+            stampCheckImage.setImageResource(R.drawable.stamp_ckeck_black)
+            // 스탬프 획득 팝업 표시
+            showStampPopup(StampSuccessActivity::class.java)
+        } else {
+            // 스탬프 획득 실패 시 팝업 표시
+            showStampPopup(StampFailActivity::class.java)
+        }
     }
 
-    private fun showStampPopup() {
+    private fun showStampPopup(activityClass: Class<*>) {
         // 팝업 표시 로직 구현
+        // StampSuccessActivity를 Intent로 실행
+        val intent = Intent(requireContext(), StampSuccessActivity::class.java)
+        startActivity(intent)
     }
 
     // 뱃지 획득 로직
