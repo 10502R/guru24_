@@ -74,22 +74,6 @@ class MainActivity : AppCompatActivity() {
                     "토, 일, 공휴일 정기 휴무\"\n")
             )
 
-        // RecyclerView 설정
-        recyclerView = binding.recy // ViewBinding을 사용하여 RecyclerView 참조
-        storeAdapter = StoreAdapter(
-            storeList, this@MainActivity // MainActivity의 Context를 전달
-        ) { store -> // 클릭 리스너 구현
-            val fragment = StoreDetailFragment.newInstance(store)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment) // 'fragment_container'는 Fragment가 표시될 View ID
-                .addToBackStack(null)
-                .commit()
-        }
-
-        recyclerView.adapter = storeAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-
         // LoginActivity에서 전달된 이메일 데이터 받기
         val email = intent.getStringExtra("USER_EMAIL")
 

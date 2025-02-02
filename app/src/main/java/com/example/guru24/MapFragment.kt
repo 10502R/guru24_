@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.KakaoMapSdk
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.camera.CameraAnimation
@@ -31,7 +32,7 @@ class MapFragment : Fragment() {
     private var _binding: FragmentMapBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var mapView: View // 초기화 전에 lateinit 사용
+    private lateinit var mapView: View // 초기화 전에 lateinit 사용
     private lateinit var kakaoMap: KakaoMap // KakaoMap 변수 추가
     private lateinit var pinManager: PinManager
 
@@ -206,7 +207,6 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
-
         binding.image4.setOnClickListener {
             handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store2)
             if (!::pinManager.isInitialized) { return@setOnClickListener }
@@ -254,7 +254,7 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
-        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_zz2, R.drawable.ic_tour_cafe2)
+        binding.image5.setOnClickListener { handleImageClick(binding.image5, R.drawable.ic_tour_cafe, R.drawable.ic_tour_cafe2)
             if (!::pinManager.isInitialized) {
                 return@setOnClickListener }
             // 모든 핀 삭제
@@ -306,9 +306,6 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // RecyclerView 설정
-        //binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // 카테고리 클릭 리스너 설정
         setCategoryClickListeners()
@@ -803,10 +800,10 @@ class MapFragment : Fragment() {
 
     private fun showMapView() {
         // 바인딩된 mapView 초기화
-        //mapView = binding.mapView
+        mapView = binding.mapView
 
         // KakaoMapSDK 초기화
-        //KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_MAP_KEY)
+        KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_MAP_KEY)
 
         binding.mapView.start(object : MapLifeCycleCallback() {
             override fun onMapDestroy() {
