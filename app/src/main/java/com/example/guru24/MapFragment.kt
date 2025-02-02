@@ -55,6 +55,7 @@ class MapFragment : Fragment() {
             startActivity(intent)
         }
 
+
         // ImageView 클릭 리스너 설정
         binding.image1.setOnClickListener {
             handleImageClick(binding.image1, R.drawable.ic_tour_tteokbokki, R.drawable.ic_tour_tteokbokki2)
@@ -88,7 +89,7 @@ class MapFragment : Fragment() {
 
             // RouteLineSegment 생성 - 핀 위치를 경로로 연결
             val segment = RouteLineSegment.from(
-                Arrays.asList(
+                listOf(
                     LatLng.from(37.625747563384124, 127.09368809677129),
                     LatLng.from(37.62655199375479, 127.09330961495466),
                     LatLng.from(37.62696892541316, 127.09302409993029),
