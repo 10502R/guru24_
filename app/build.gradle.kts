@@ -37,7 +37,7 @@ android {
 
 
         // KAKAO_MAP_KEY 추가
-        buildConfigField("String", "KAKAO_MAP_KEY", "\"${properties.getProperty("14c653776d3459d637987ee85558e0f6")}\"")
+        buildConfigField("String", "KAKAO_MAP_KEY", "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
     }
 
     buildTypes {

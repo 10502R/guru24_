@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.KakaoMapSdk
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.camera.CameraAnimation
@@ -33,7 +34,7 @@ class MapFragment : Fragment() {
     private var _binding: FragmentMapBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var mapView: View // 초기화 전에 lateinit 사용
+    private lateinit var mapView: View // 초기화 전에 lateinit 사용
     private lateinit var kakaoMap: KakaoMap // KakaoMap 변수 추가
     private lateinit var pinManager: PinManager
 
@@ -376,7 +377,6 @@ class MapFragment : Fragment() {
         }
         bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag) // BottomSheetFragment 표시
     }
-
 
 
     private fun getStoreListByCategory(category: String): List<Store> {
