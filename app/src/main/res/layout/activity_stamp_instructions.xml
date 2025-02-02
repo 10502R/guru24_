@@ -1,20 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".StampInstructionsActivity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_gravity="center"
+    android:padding="16dp">
 
-    <!-- 스탬프 적립 방법에 대한 세부 설명 -->
-    <TextView
-        android:id="@+id/instructionsDetail"
+    <LinearLayout
+        android:id="@+id/rrmo5fadd4b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/instructions_detail"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="#FFFFFF"
+        android:paddingTop="29dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/rjo7keju1tf"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="26dp"
+            android:layout_marginStart="24dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/stamp_method_title" />
+
+        <!-- 스탬프 확인하기 -->
+        <LinearLayout
+            android:id="@+id/rbz8qcyuzupq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginHorizontal="27dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ransu0kuykbo"
+                android:textColor="#111111"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="9dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/step_1" />
+
+            <LinearLayout
+                android:id="@+id/rgnkwkyaru4f"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rumul34jaxte"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/stamp_check" />
+
+                <TextView
+                    android:id="@+id/r4b3pmmk2xpk"
+                    android:textColor="#9B9A99"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="@string/stamp_check_description" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/rn9wn9pbzwwg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_card"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/stamp_check" />
+        </LinearLayout>
+
+        <!-- 구분선 -->
+        <LinearLayout
+            android:id="@+id/r3roy9ts8rw5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="26dp"
+            android:background="#E0E0E0"
+            android:orientation="horizontal" />
+
+        <!-- 큐알 스캔하기 -->
+        <LinearLayout
+            android:id="@+id/rkq51g0wfbvs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="33dp"
+            android:layout_marginHorizontal="27dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rmg5cx44s13f"
+                android:textColor="#111111"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="7dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/step_2" />
+
+            <LinearLayout
+                android:id="@+id/rn25ikeyxnyf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rx7rkyu4nfsh"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/qr_scan" />
+
+                <TextView
+                    android:id="@+id/re1qogvtfasc"
+                    android:textColor="#9B9A99"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="@string/qr_scan_description" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/rb0lvvu035eo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_qrcode"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/qr_scan" />
+        </LinearLayout>
+
+        <!-- 구분선 -->
+        <LinearLayout
+            android:id="@+id/rfu8v0mys3c6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="26dp"
+            android:background="#E0E0E0"
+            android:orientation="horizontal" />
+
+        <!-- 스탬프 진행 상황 확인 -->
+        <LinearLayout
+            android:id="@+id/r7s8jis79vav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="21dp"
+            android:layout_marginHorizontal="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rahg17ovgrri"
+                android:textColor="#111111"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="7dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/step_3" />
+
+            <LinearLayout
+                android:id="@+id/rljy3l898vdc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/retr89sed6og"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/stamp_progress" />
+
+                <TextView
+                    android:id="@+id/ruqld4tn8vg"
+                    android:textColor="#9B9A99"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="@string/stamp_progress_description" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/r9avuaro6o2i"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_stamp"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/stamp_progress" />
+        </LinearLayout>
+
+        <!-- 구분선 -->
+        <LinearLayout
+            android:id="@+id/rekkue38oyb4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="26dp"
+            android:background="#E0E0E0"
+            android:orientation="horizontal" />
+
+        <!-- 스탬프 완료 후 뱃지 획득 -->
+        <LinearLayout
+            android:id="@+id/rtin3qt5fxg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="29dp"
+            android:layout_marginHorizontal="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rkfadqdvfv0k"
+                android:textColor="#111111"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="7dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/step_4" />
+
+            <LinearLayout
+                android:id="@+id/rqi4iiv1d0ii"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rjsyk1s2717"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/stamp_complete" />
+
+                <TextView
+                    android:id="@+id/rk3zo6xwbw6"
+                    android:textColor="#9B9A99"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="@string/stamp_complete_description" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/rqdrcu25z6pi"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_badge_img"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/stamp_complete" />
+        </LinearLayout>
+
+        <!-- 확인 버튼 -->
+        <LinearLayout
+            android:id="@+id/rkg4gjjhlgg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingVertical="15dp">
+
+            <TextView
+                android:id="@+id/confirmButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm_button"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

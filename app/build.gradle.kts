@@ -1,5 +1,5 @@
-
 import java.io.FileInputStream
+import java.lang.System.load
 import java.util.Properties
 
 plugins {
@@ -11,12 +11,11 @@ android {
     namespace = "com.example.guru24"
     compileSdk = 35
 
-    packaging{
+    packagingOptions {
         resources {
             excludes += ("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         }
     }
-
 
     val properties = Properties().apply {
         load(FileInputStream(rootProject.file("local.properties")))
@@ -32,12 +31,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters += listOf("arm64-v8a", "x86", "x86_64") // 여러 개 추가 가능
+            abiFilters.add("arm64-v8a")
         }
 
-
         // KAKAO_MAP_KEY 추가
-        buildConfigField("String", "KAKAO_MAP_KEY", "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
+        buildConfigField("String", "KAKAO_MAP_KEY",
+            "\"${properties.getProperty("KAKAO_MAP_KEY")}\"")
     }
 
     buildTypes {
@@ -47,7 +46,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
         }
     }
 
