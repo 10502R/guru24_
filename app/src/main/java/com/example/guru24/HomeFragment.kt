@@ -21,6 +21,16 @@ class HomeFragment : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.layoutStamp.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.rootlayout, TrophyFragment()) // TrophyFragment로 이동
+                .addToBackStack(null) // 뒤로 가기 가능하도록 백스택 추가
+                .commit()
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
