@@ -48,7 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="스탬프 획득에 실패했어요."
+                        android:text="스탬프 획득!"
                         />
                     <TextView
                         android:id="@+id/r6gritt9zhi9"
@@ -59,9 +59,8 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:text="이미 스캔한 적이 있거나\n
-유효하지 않은 QR 코드예요."
-                        />
+                        android:text="축하합니다! 스탬프가 적립되었어요."/>
+
                     <LinearLayout
                         android:id="@+id/confirmButtonSuccess"
                         android:layout_width="match_parent"

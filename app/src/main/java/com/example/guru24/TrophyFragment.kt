@@ -52,7 +52,7 @@ class TrophyFragment : Fragment() {
         // 버튼 클릭 리스너 설정
         binding.btnScanQr.setOnClickListener {
             val intent = Intent(context, QrCodeScanActivity::class.java)
-            qrScanLauncher.launch(intent) // Use ActivityResultLauncher instead of startActivityForResult
+            qrScanLauncher.launch(intent)
         }
 
         binding.btnLearnHow.setOnClickListener {
@@ -101,6 +101,11 @@ class TrophyFragment : Fragment() {
         childFragmentManager.beginTransaction()
             .replace(R.id.tab_layout_container, fragment, tag)
             .commit()
+    }
+
+    fun navigateToBadgeFragment() {
+        replaceFragment(BadgeFragment(), "BadgeFragment")
+        binding.tabLayout.getTabAt(1)?.select() // BadgeFragment 탭 선택
     }
 
     override fun onDestroyView() {
