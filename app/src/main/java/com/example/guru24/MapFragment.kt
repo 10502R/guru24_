@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import DividerItemDecoration
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -51,6 +48,9 @@ class MapFragment : Fragment() {
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
 
+        // UI 보이기
+        showUIElements()
+        
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
             val intent = Intent(requireContext(), SearchActivity::class.java)
@@ -227,7 +227,6 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
-
         binding.image4.setOnClickListener {
             handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store2)
             if (!::pinManager.isInitialized) { return@setOnClickListener }
@@ -329,7 +328,7 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 지도 표시 함수 호출
-        showMapView()
+        //showMapView()
 
         // 카테고리 클릭 리스너 설정
         setCategoryClickListeners()
@@ -341,8 +340,6 @@ class MapFragment : Fragment() {
         initializeStoreList()
         storeList = getStoreListByCategory(category)
 
-        // RecyclerView 설정
-        setupRecyclerView()
     }
 
     private fun initializeStoreList() {
@@ -360,20 +357,28 @@ class MapFragment : Fragment() {
         storeList = categories.flatMap { getStoreListByCategory(it) }
     }
 
-    private fun setupRecyclerView() {
-        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // LayoutManager 설정
-        storeAdapter = StoreAdapter(storeList, requireContext()) { store,category ->
-            // 가게 이름 클릭 시 상세 페이지로 이동
-            val fragment = StoreDetailFragment.newInstance(store, category) // 카테고리도 전달
-            (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
+
+    // UI 숨기기
+    private fun hideUIElements() {
+        Log.d("UI Debug", "hideUIElements() 실행됨")  // 로그 추가
+        binding.root.post {
+            binding.mapView.visibility = View.GONE
+            binding.searchView.visibility = View.GONE
+            binding.horizontalView.visibility = View.GONE
+            binding.mappinID.visibility = View.GONE
+            binding.bottomViewCategory.visibility = View.GONE
         }
-        binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
-        // DividerItemDecoration 추가
-        binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
     }
+
+    // UI 복원
+    private fun showUIElements() {
+        binding.mapView.visibility = View.VISIBLE
+        binding.searchView.visibility = View.VISIBLE
+        binding.horizontalView.visibility = View.VISIBLE
+        binding.mappinID.visibility = View.VISIBLE
+        binding.bottomViewCategory.visibility = View.VISIBLE
+    }
+
     private fun setCategoryClickListeners() {
         binding.filterRestaurant.setOnClickListener { showBottomSheet("음식점") }
         binding.filterCafe.setOnClickListener { showBottomSheet("카페/베이커리") }
@@ -394,7 +399,6 @@ class MapFragment : Fragment() {
         }
         bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag) // BottomSheetFragment 표시
     }
-
 
     private fun getStoreListByCategory(category: String): List<Store> {
         return when (category) {

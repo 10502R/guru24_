@@ -2,12 +2,13 @@ package com.example.guru24
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.example.guru24.databinding.CustomTabBinding
 import com.example.guru24.databinding.FragmentTrophyBinding
 import com.google.android.material.tabs.TabLayout
 
@@ -33,7 +34,6 @@ class TrophyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using ViewBinding
         _binding = FragmentTrophyBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,9 +59,10 @@ class TrophyFragment : Fragment() {
             startActivity(intent)
         }
 
-        // TabLayout 클릭 리스너 설정
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.d("TabLayout", "탭 선택됨: ${tab?.position}")
+
                 when (tab?.position) {
                     0 -> replaceFragment(StampCardFragment())
                     1 -> replaceFragment(BadgeFragment())
@@ -89,18 +90,20 @@ class TrophyFragment : Fragment() {
     }
 
     private fun createTabView(title: String, count: String): View {
-        val view = LayoutInflater.from(context).inflate(R.layout.custom_tab, binding.tabLayout, false)
-        view.findViewById<TextView>(R.id.tab_title).text = title
-        view.findViewById<TextView>(R.id.tab_count).text = count
-        return view
+        val tabBinding = CustomTabBinding.inflate(LayoutInflater.from(context), binding.tabLayout, false)
+        tabBinding.tabTitle.text = title
+        tabBinding.tabCount.text = count
+        return tabBinding.root
     }
 
-    // Fragment 교체 함수
     private fun replaceFragment(fragment: Fragment) {
+        Log.d("TabLayout", "replaceFragment 실행: ${fragment.javaClass.simpleName}")
+
         childFragmentManager.beginTransaction()
             .replace(R.id.tab_layout_container, fragment)
-            .commit()
+            .commitNow()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

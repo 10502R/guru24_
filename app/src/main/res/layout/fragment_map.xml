@@ -6,11 +6,6 @@
     android:background="#00ff00"
     tools:context=".MapFragment">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <com.kakao.vectormap.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
@@ -42,6 +37,7 @@
             </LinearLayout>
 
             <HorizontalScrollView
+                android:id="@+id/horizontalView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -117,6 +113,7 @@
         android:id="@+id/bottomSheetRecyclerView"
         android:visibility="gone"  />
     <LinearLayout
+        android:id="@+id/bottomViewCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

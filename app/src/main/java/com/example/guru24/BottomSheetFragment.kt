@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -54,18 +53,21 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
 
     private fun setupRecyclerView() {
-        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.bottomSheetRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext()) // LayoutManager 설정
         storeAdapter = StoreAdapter(storeList, requireContext()) { store, category ->
-            // 가게 이름 클릭 시 상세 페이지로 이동
+
+
             val fragment = StoreDetailFragment.newInstance(store, category)
-            (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.rootlayout, fragment)
                 .addToBackStack(null)
                 .commit()
         }
-        binding.bottomSheetRecyclerView.adapter = storeAdapter // 어댑터 설정
-        // DividerItemDecoration 추가
+        binding.bottomSheetRecyclerView.adapter = storeAdapter
         binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
+
     }
 
     companion object {
