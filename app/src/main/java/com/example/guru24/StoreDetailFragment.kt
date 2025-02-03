@@ -1,34 +1,24 @@
 package com.example.guru24
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.example.guru24.databinding.FragmentStoreDetailBinding
 
 class StoreDetailFragment : Fragment() {
 
-    private lateinit var storeNameTextView: TextView
-    private lateinit var storeCategoryTextView: TextView
-    private lateinit var storeBuildingTextView: TextView
-    private lateinit var storeAddressTextView: TextView
-    private lateinit var storePhoneTextView: TextView
-    private lateinit var storeHoursTextView: TextView
-    private lateinit var storeImageView: ImageView
-    private lateinit var storeMenuView: ImageView
+    private var _binding: FragmentStoreDetailBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var store: Store
+    private var store: Store? = null
     private var category: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            store = it.getSerializable("store") as Store
+            store = it.getSerializable("store") as? Store
             category = it.getString("category")
         }
     }
@@ -36,79 +26,82 @@ class StoreDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_store_detail, container, false)
-        val backButton: ImageView = view.findViewById(R.id.backButton)
-        val closeButton: ImageView = view.findViewById(R.id.close)
-
-        // UI 요소 초기화
-        storeImageView = view.findViewById(R.id.storeImage)
-        storeNameTextView = view.findViewById(R.id.storeName)
-        storeCategoryTextView = view.findViewById(R.id.storeCategory)
-        storeBuildingTextView = view.findViewById(R.id.storeBuilding)
-        storeAddressTextView = view.findViewById(R.id.storeAddress)
-        storePhoneTextView = view.findViewById(R.id.storePhone)
-        storeHoursTextView = view.findViewById(R.id.storeHours)
-        storeMenuView = view.findViewById(R.id.storeMenu)
-
-
-        // Store 객체에서 정보 설정
-        updateUI()
-
-        // 클릭 리스너 설정
-        backButton.setOnClickListener {
-            val bottomSheetFragment = BottomSheetFragment.newInstance(category ?: "기본 카테고리") // 기본 카테고리 값 설정
-            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-
-            // 현재 Fragment를 제거하고 이전 Fragment로 돌아갑니다.
-            requireActivity().supportFragmentManager.popBackStack() // 현재 Fragment 없애기
-        }
-
-        closeButton.setOnClickListener {
-            val mapFragment = MapFragment() // MapFragment 인스턴스 생성
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, mapFragment) // Fragment 컨테이너에 MapFragment를 추가
-                .addToBackStack(null) // 현재 Fragment를 백 스택에 추가
-                .commit()
-        }
-
-
-        // Visibility 설정
-        storeBuildingTextView.visibility = View.VISIBLE
-        storeMenuView.visibility = View.VISIBLE
-
-        return view
+    ): View {
+        _binding = FragmentStoreDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    private fun updateUI() {
-        storeImageView.setImageResource(store.image ?: R.drawable.default_image)
-        storeNameTextView.text = store.name
-        storeCategoryTextView.text = store.category
-        storeBuildingTextView.text = store.building
-        storeAddressTextView.text = store.address
-        storePhoneTextView.text = store.phone
-        storeHoursTextView.text = store.hours
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        store?.let {
+            updateUI(it)
+        } ?: run {
+            showErrorUI()
+        }
+
+        // 뒤로가기 버튼 클릭 리스너
+        binding.backButton.setOnClickListener {
+            val bottomSheetFragment = BottomSheetFragment.newInstance(category ?: "기본 카테고리")
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+
+            // 현재 Fragment 제거
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        // 닫기 버튼 클릭 리스너
+        binding.close.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun updateUI(store: Store) {
+        binding.storeImage.setImageResource(store.image ?: R.drawable.default_image)
+        binding.storeName.text = store.name
+        binding.storeCategory.text = store.category
+        binding.storeBuilding.text = store.building
+        binding.storeAddress.text = store.address
+        binding.storePhone.text = store.phone
+        binding.storeHours.text = store.hours
 
         // 메뉴판 이미지 설정
         store.menu?.let { menuResId ->
-            storeMenuView.setImageResource(menuResId)
-            storeMenuView.visibility = View.VISIBLE
+            binding.storeMenu.setImageResource(menuResId)
+            binding.storeMenu.visibility = View.VISIBLE
         } ?: run {
-            storeMenuView.visibility = View.GONE
+            binding.storeMenu.visibility = View.GONE
         }
 
-        // 가시성 설정
-        storeBuildingTextView.visibility = if (store.building.isNotEmpty()) View.VISIBLE else View.GONE
+        // 건물 정보 가시성 설정
+        binding.storeBuilding.visibility = if (store.building.isNotEmpty()) View.VISIBLE else View.GONE
+    }
 
+    private fun showErrorUI() {
+        binding.storeName.text = "가게 정보를 찾을 수 없습니다."
+        binding.storeCategory.visibility = View.GONE
+        binding.storeBuilding.visibility = View.GONE
+        binding.storeAddress.visibility = View.GONE
+        binding.storePhone.visibility = View.GONE
+        binding.storeHours.visibility = View.GONE
+        binding.storeImage.setImageResource(R.drawable.close)
+        binding.storeMenu.visibility = View.GONE
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 메모리 누수 방지
     }
 
     companion object {
-        fun newInstance(store: Store, category: String) = StoreDetailFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable("store", store)
-                putString("category", category)
+        fun newInstance(store: Store, category: String): StoreDetailFragment {
+            return StoreDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("store", store)
+                    putString("category", category)
+                }
             }
         }
     }
+
 }
+
