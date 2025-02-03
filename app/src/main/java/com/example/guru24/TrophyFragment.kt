@@ -15,6 +15,7 @@ class TrophyFragment : Fragment() {
 
     private var _binding: FragmentTrophyBinding? = null
     private val binding get() = _binding!!
+    private var initialTabIndex: Int = 0 // 기본 탭 인덱스 설정
 
     // ActivityResultLauncher for QR code scanning
     private val qrScanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -23,10 +24,16 @@ class TrophyFragment : Fragment() {
             val scanResult = data?.getStringExtra("SCAN_RESULT")
             // scanResult를 사용하여 처리
             if (scanResult != null) {
-                println("QR 스캔 결과: $scanResult")
                 val stampCardFragment = childFragmentManager.findFragmentByTag("StampCardFragment") as? StampCardFragment
                 stampCardFragment?.onStampAcquired(scanResult)
             }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            initialTabIndex = it.getInt("selectedTab", 0) // 전달받은 탭 인덱스
         }
     }
 
@@ -34,7 +41,7 @@ class TrophyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using ViewBinding
+        // ViewBinding 초기화
         _binding = FragmentTrophyBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,17 +51,22 @@ class TrophyFragment : Fragment() {
 
         setupTabs()
 
-        // 기본 탭 설정
+        // 초기 탭 설정
         if (savedInstanceState == null) {
-            replaceFragment(StampCardFragment(), "StampCardFragment")
+            when (initialTabIndex) {
+                0 -> replaceFragment(StampCardFragment(), "StampCardFragment")
+                1 -> replaceFragment(BadgeFragment(), "BadgeFragment")
+            }
+            binding.tabLayout.getTabAt(initialTabIndex)?.select() // 초기 탭 선택
         }
 
-        // 버튼 클릭 리스너 설정
+        // QR 코드 스캔 버튼 리스너
         binding.btnScanQr.setOnClickListener {
             val intent = Intent(context, QrCodeScanActivity::class.java)
             qrScanLauncher.launch(intent)
         }
 
+        // 학습 방법 보기 버튼 리스너
         binding.btnLearnHow.setOnClickListener {
             val intent = Intent(context, StampInstructionsActivity::class.java)
             startActivity(intent)
@@ -92,7 +104,6 @@ class TrophyFragment : Fragment() {
     private fun createTabView(title: String, count: String): View {
         val view = LayoutInflater.from(context).inflate(R.layout.custom_tab, binding.tabLayout, false)
         view.findViewById<TextView>(R.id.tab_title).text = title
-        view.findViewById<TextView>(R.id.tab_count).text = count
         return view
     }
 
@@ -104,12 +115,23 @@ class TrophyFragment : Fragment() {
     }
 
     fun navigateToBadgeFragment() {
+        // BadgeFragment로 이동 및 탭 선택
         replaceFragment(BadgeFragment(), "BadgeFragment")
-        binding.tabLayout.getTabAt(1)?.select() // BadgeFragment 탭 선택
+        binding.tabLayout.getTabAt(1)?.select()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // 메모리 누수 방지
+    }
+
+    companion object {
+        fun newInstance(selectedTab: Int): TrophyFragment {
+            return TrophyFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("selectedTab", selectedTab)
+                }
+            }
+        }
     }
 }

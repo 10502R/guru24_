@@ -18,7 +18,8 @@ class BadgeActivity : AppCompatActivity() {
         binding.checkBadgeButton.setOnClickListener {
             // "달성 뱃지 확인하기" 버튼 클릭 시 TrophyFragment의 BadgeFragment로 이동
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("navigateTo", "BadgeFragment")
+            intent.putExtra("navigateTo", "TrophyFragment")
+            intent.putExtra("selectedTab", 1) // TabLayout 두 번째 탭 (인덱스 1)
             startActivity(intent)
             finish() // 현재 액티비티 종료
         }

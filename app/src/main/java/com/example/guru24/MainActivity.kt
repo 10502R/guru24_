@@ -44,8 +44,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 인텐트를 통해 TrophyFragment -> BadgeFragment 이동 처리
-        if (intent?.getStringExtra("navigateTo") == "BadgeFragment") {
-            moveToBadgeFragment()
+        if (intent?.getStringExtra("navigateTo") == "TrophyFragment") {
+            val selectedTab = intent.getIntExtra("selectedTab", 0) // 기본값 0 (첫 번째 탭)
+            replaceFragment(TrophyFragment.newInstance(selectedTab)) // TrophyFragment로 이동
         } else {
             binding.bottomNav.selectedItemId = R.id.tabHome // 기본 화면 설정
         }
