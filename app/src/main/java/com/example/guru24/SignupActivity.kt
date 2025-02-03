@@ -31,6 +31,9 @@ class SignupActivity : AppCompatActivity() {
         dbHelper.insertStudentInfo("minjukim30604", 2023111741)
         dbHelper.insertStudentInfo("koyejun23", 2023111735)
         dbHelper.insertStudentInfo("dayeon053", 2023111419)
+        dbHelper.insertStudentInfo("bspart22", 2019120065)
+        dbHelper.insertStudentInfo("freshman25", 2025111415)
+        dbHelper.insertStudentInfo("signup25", 2025120041)
 
         // 초기 버튼 상태 설정 (비활성화)
         binding.ButtonCheckSignup.isEnabled = false

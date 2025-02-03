@@ -58,11 +58,17 @@ class PasswordActivity : AppCompatActivity() {
                     putExtra("user_password", password)
                 }
                 setResult(RESULT_OK, resultIntent)
-                finish()
+
+                // ✅ ActivityTermsOfService로 이동
+                val termsIntent = Intent(this, ActivityTermsOfService::class.java)
+                startActivity(termsIntent)
+
+                finish() // 현재 액티비티 종료
             } else {
                 Toast.makeText(this, "비밀번호 조건을 만족하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         // 로그인 텍스트 클릭 시 LoginActivity로 이동
         binding.login.setOnClickListener {
