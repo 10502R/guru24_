@@ -59,7 +59,6 @@ class StoreDetailFragment : Fragment() {
         binding.storeImage.setImageResource(store.image ?: R.drawable.default_image)
         binding.storeName.text = store.name
         binding.storeCategory.text = store.category
-        binding.storeBuilding.text = store.building
         binding.storeAddress.text = store.address
         binding.storePhone.text = store.phone
         binding.storeHours.text = store.hours
@@ -71,15 +70,11 @@ class StoreDetailFragment : Fragment() {
         } ?: run {
             binding.storeMenu.visibility = View.GONE
         }
-
-        // 건물 정보 가시성 설정
-        binding.storeBuilding.visibility = if (store.building.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun showErrorUI() {
         binding.storeName.text = "가게 정보를 찾을 수 없습니다."
         binding.storeCategory.visibility = View.GONE
-        binding.storeBuilding.visibility = View.GONE
         binding.storeAddress.visibility = View.GONE
         binding.storePhone.visibility = View.GONE
         binding.storeHours.visibility = View.GONE
