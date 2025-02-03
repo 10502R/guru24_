@@ -12,13 +12,13 @@ class StoreDetailFragment : Fragment() {
     private var _binding: FragmentStoreDetailBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var store: Store
+    private var store: Store? = null
     private var category: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            store = it.getSerializable("store") as Store
+            store = it.getSerializable("store") as? Store
             category = it.getString("category")
         }
     }
@@ -34,8 +34,11 @@ class StoreDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // UI 업데이트
-        updateUI()
+        store?.let {
+            updateUI(it)
+        } ?: run {
+            showErrorUI()
+        }
 
         // 뒤로가기 버튼 클릭 리스너
         binding.backButton.setOnClickListener {
@@ -52,7 +55,7 @@ class StoreDetailFragment : Fragment() {
         }
     }
 
-    private fun updateUI() {
+    private fun updateUI(store: Store) {
         binding.storeImage.setImageResource(store.image ?: R.drawable.default_image)
         binding.storeName.text = store.name
         binding.storeCategory.text = store.category
@@ -69,8 +72,19 @@ class StoreDetailFragment : Fragment() {
             binding.storeMenu.visibility = View.GONE
         }
 
-        // 가시성 설정
+        // 건물 정보 가시성 설정
         binding.storeBuilding.visibility = if (store.building.isNotEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun showErrorUI() {
+        binding.storeName.text = "가게 정보를 찾을 수 없습니다."
+        binding.storeCategory.visibility = View.GONE
+        binding.storeBuilding.visibility = View.GONE
+        binding.storeAddress.visibility = View.GONE
+        binding.storePhone.visibility = View.GONE
+        binding.storeHours.visibility = View.GONE
+        binding.storeImage.setImageResource(R.drawable.close)
+        binding.storeMenu.visibility = View.GONE
     }
 
     override fun onDestroyView() {
@@ -79,11 +93,15 @@ class StoreDetailFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(store: Store, category: String) = StoreDetailFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable("store", store)
-                putString("category", category)
+        fun newInstance(store: Store, category: String): StoreDetailFragment {
+            return StoreDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("store", store)
+                    putString("category", category)
+                }
             }
         }
     }
+
 }
+

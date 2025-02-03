@@ -48,8 +48,6 @@ class MapFragment : Fragment() {
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
 
-        // UI 보이기
-        showUIElements()
         
         // 검색창 클릭 시 SearchActivity로 이동
         binding.searchView.setOnClickListener {
@@ -328,7 +326,7 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 지도 표시 함수 호출
-        //showMapView()
+        showMapView()
 
         // 카테고리 클릭 리스너 설정
         setCategoryClickListeners()
@@ -357,27 +355,6 @@ class MapFragment : Fragment() {
         storeList = categories.flatMap { getStoreListByCategory(it) }
     }
 
-
-    // UI 숨기기
-    private fun hideUIElements() {
-        Log.d("UI Debug", "hideUIElements() 실행됨")  // 로그 추가
-        binding.root.post {
-            binding.mapView.visibility = View.GONE
-            binding.searchView.visibility = View.GONE
-            binding.horizontalView.visibility = View.GONE
-            binding.mappinID.visibility = View.GONE
-            binding.bottomViewCategory.visibility = View.GONE
-        }
-    }
-
-    // UI 복원
-    private fun showUIElements() {
-        binding.mapView.visibility = View.VISIBLE
-        binding.searchView.visibility = View.VISIBLE
-        binding.horizontalView.visibility = View.VISIBLE
-        binding.mappinID.visibility = View.VISIBLE
-        binding.bottomViewCategory.visibility = View.VISIBLE
-    }
 
     private fun setCategoryClickListeners() {
         binding.filterRestaurant.setOnClickListener { showBottomSheet("음식점") }
@@ -1087,7 +1064,6 @@ class MapFragment : Fragment() {
             imageView
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
