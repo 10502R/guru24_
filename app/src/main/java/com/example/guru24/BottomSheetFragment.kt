@@ -80,7 +80,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         fun getStoreListByCategory(category: String): List<Store> {
             return when (category) {
-
                 "음식점" -> listOf(
                     Store(
                         "츄츄바앤츄밥",
@@ -91,7 +90,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                         "\"월-금 11:00 - 17:30\n토, 일, 공휴일 정기 휴무\"\n",
                         R.drawable.img_chubab_1,
                         R.drawable.img_chubab_menu1
-
                     ),
                     Store(
                         "감탄떡볶이",
@@ -497,7 +495,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 )
 
                 else -> emptyList()
-
             }
         }
     }

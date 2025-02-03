@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         // 기본 Fragment 설정
         val isSecond = intent.getBooleanExtra("isSecondActivity", false)
         val selectedSearch = intent.getStringExtra("selectedSearch") ?: ""
+        val selectedCategory = intent.getStringExtra("selectedCategory") ?: ""
 
         Log.d("isSecond", isSecond.toString())
 
@@ -39,12 +40,12 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(HomeFragment())
         } else if (isSecond) {
             Log.d("isSecond", selectedSearch)
-            val categoryList = BottomSheetFragment.getStoreListByCategory("편의점")
+            val categoryList = BottomSheetFragment.getStoreListByCategory(selectedCategory)
             val store = categoryList.find { it.name == selectedSearch }
             Log.d("isSecond", store?.name.toString())
             if (store != null) {
                 Log.d("isSecond", store.name.toString())
-                val fragment = StoreDetailFragment.newInstance(store, "편의점")
+                val fragment = StoreDetailFragment.newInstance(store, selectedCategory)
                 replaceFragment(fragment)
             } else {
                 // 검색 결과가 없을 경우 처리
