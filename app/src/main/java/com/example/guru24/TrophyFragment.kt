@@ -2,26 +2,44 @@ package com.example.guru24
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.example.guru24.databinding.CustomTabBinding
 import com.example.guru24.databinding.FragmentTrophyBinding
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 class TrophyFragment : Fragment() {
 
     private var _binding: FragmentTrophyBinding? = null
     private val binding get() = _binding!!
 
+    // ActivityResultLauncher for QR code scanning
+    private val qrScanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == android.app.Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            val scanResult = data?.getStringExtra("SCAN_RESULT")
+            // scanResult를 사용하여 처리
+            if (scanResult != null) {
+                println("QR 스캔 결과: $scanResult")
+                // 여기에 스탬프 적립 로직 추가
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTrophyBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupTabs()
 
@@ -33,7 +51,7 @@ class TrophyFragment : Fragment() {
         // 버튼 클릭 리스너 설정
         binding.btnScanQr.setOnClickListener {
             val intent = Intent(context, QrCodeScanActivity::class.java)
-            startActivityForResult(intent, QR_SCAN_REQUEST_CODE)
+            qrScanLauncher.launch(intent) // Use ActivityResultLauncher instead of startActivityForResult
         }
 
         binding.btnLearnHow.setOnClickListener {
@@ -41,9 +59,10 @@ class TrophyFragment : Fragment() {
             startActivity(intent)
         }
 
-        // TabLayout 클릭 리스너 설정
-        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.d("TabLayout", "탭 선택됨: ${tab?.position}")
+
                 when (tab?.position) {
                     0 -> replaceFragment(StampCardFragment())
                     1 -> replaceFragment(BadgeFragment())
@@ -53,41 +72,41 @@ class TrophyFragment : Fragment() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
-
-        return view
     }
 
     private fun setupTabs() {
+        // 동적으로 count 값을 전달 (예: 스탬프 카운트와 뱃지 카운트)
+        val stampCount = "5" // 예시 값
+        val badgeCount = "0" // 예시 값
+
         val stampTab = binding.tabLayout.newTab().apply {
-            customView = createTabView("스탬프 카드", "0")
+            customView = createTabView(getString(R.string.tab_stamp_card), stampCount)
         }
         val badgeTab = binding.tabLayout.newTab().apply {
-            customView = createTabView("달성 뱃지", "0")
+            customView = createTabView(getString(R.string.tab_badge), badgeCount)
         }
         binding.tabLayout.addTab(stampTab)
         binding.tabLayout.addTab(badgeTab)
     }
 
     private fun createTabView(title: String, count: String): View {
-        val view = LayoutInflater.from(context).inflate(R.layout.custom_tab, null)
-        view.findViewById<TextView>(R.id.tab_title).text = title
-        view.findViewById<TextView>(R.id.tab_count).text = count
-        return view
+        val tabBinding = CustomTabBinding.inflate(LayoutInflater.from(context), binding.tabLayout, false)
+        tabBinding.tabTitle.text = title
+        tabBinding.tabCount.text = count
+        return tabBinding.root
     }
 
-    // Fragment 교체 함수
     private fun replaceFragment(fragment: Fragment) {
+        Log.d("TabLayout", "replaceFragment 실행: ${fragment.javaClass.simpleName}")
+
         childFragmentManager.beginTransaction()
             .replace(R.id.tab_layout_container, fragment)
-            .commit()
+            .commitNow()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // 메모리 누수 방지
-    }
-
-    companion object {
-        const val QR_SCAN_REQUEST_CODE = 1001
     }
 }

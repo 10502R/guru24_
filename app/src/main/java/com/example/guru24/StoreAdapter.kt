@@ -2,45 +2,46 @@ package com.example.guru24
 
 import android.content.Context
 import android.view.LayoutInflater
-import com.example.guru24.Store
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.guru24.databinding.ItemStoreBinding
 
 class StoreAdapter(
     private val storeList: List<Store>,
     private val context: Context,
-    private val onStoreClick: (Store) -> Unit
+    private val onStoreClick: (Store, String) -> Unit
 ) : RecyclerView.Adapter<StoreAdapter.StoreViewHolder>() {
 
-    class StoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val storeName: TextView = itemView.findViewById(R.id.storeName)
-        val storeCategory: TextView = itemView.findViewById(R.id.storeCategory)
-        val storeBuilding: TextView = itemView.findViewById(R.id.storeBuilding)
-        val storeAddress: TextView = itemView.findViewById(R.id.storeAddress)
-        val storePhone: TextView = itemView.findViewById(R.id.storePhone)
-        val storeHours: TextView = itemView.findViewById(R.id.storeHours)
+    class StoreViewHolder(private val binding: ItemStoreBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(store: Store, onStoreClick: (Store, String) -> Unit) {
+            binding.storeName.text = store.name
+            binding.storeCategory.text = store.category
+            binding.storeBuilding.text = store.building
+            binding.storeAddress.text = store.address
+            binding.storePhone.text = store.phone
+            binding.storeHours.text = store.hours
+
+            // 이미지 설정
+            binding.storeImage.setImageResource(store.image ?: R.drawable.default_image)
+            binding.storeMenu.setImageResource(store.menu ?: R.drawable.default_menu_image)
+
+            // 클릭 리스너 설정
+            binding.root.setOnClickListener {
+                onStoreClick(store, store.category)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_store, parent, false)
-        return StoreViewHolder(view)
+        val binding = ItemStoreBinding.inflate(LayoutInflater.from(context), parent, false)
+        return StoreViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
         val store = storeList[position]
-        holder.storeName.text = store.name
-        holder.storeCategory.text = store.category
-        holder.storeBuilding.text = store.building
-        holder.storeAddress.text = store.address
-        holder.storePhone.text = store.phone
-        holder.storeHours.text = store.hours
-
-        // 클릭 리스너 설정
-        holder.itemView.setOnClickListener {
-            onStoreClick(store) // 클릭 시 가게 정보 전달
-        }
+        holder.bind(store, onStoreClick)
     }
 
     override fun getItemCount(): Int = storeList.size

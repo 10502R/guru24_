@@ -1,6 +1,8 @@
 package com.example.guru24
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -28,25 +30,49 @@ class MainActivity : AppCompatActivity() {
         val email = intent.getStringExtra("USER_EMAIL")
 
         // 기본 Fragment 설정
-        if (savedInstanceState == null) {
+        val isSecond = intent.getBooleanExtra("isSecondActivity", false)
+        val selectedSearch = intent.getStringExtra("selectedSearch") ?: ""
+        val selectedCategory = intent.getStringExtra("selectedCategory") ?: ""
+
+        Log.d("isSecond", isSecond.toString())
+
+        if (savedInstanceState == null && !isSecond) {
             replaceFragment(HomeFragment())
+        } else if (isSecond) {
+            Log.d("isSecond", selectedSearch)
+            val categoryList = BottomSheetFragment.getStoreListByCategory(selectedCategory)
+            val store = categoryList.find { it.name == selectedSearch }
+            Log.d("isSecond", store?.name.toString())
+            if (store != null) {
+                Log.d("isSecond", store.name.toString())
+                val fragment = StoreDetailFragment.newInstance(store, selectedCategory)
+                replaceFragment(fragment)
+            } else {
+                // 검색 결과가 없을 경우 처리
+                Toast.makeText(this, "검색 결과를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
+
 
         // BottomNavigationView 클릭 리스너 설정
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tabHome -> {
-                    replaceFragment(MapFragment())
+                    replaceFragment(HomeFragment())
                     true
                 }
+
                 R.id.tabMap -> {
                     replaceFragment(MapFragment())
                     true
                 }
+
                 R.id.tabTrophy -> {
                     replaceFragment(TrophyFragment())
                     true
                 }
+
                 R.id.tabMypage -> {
                     // 이메일 데이터를 MypageFragment로 전달
                     val mypageFragment = MypageFragment().apply {
@@ -57,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(mypageFragment)
                     true
                 }
+
                 else -> false
             }
         }
@@ -484,6 +511,7 @@ class MainActivity : AppCompatActivity() {
                     R.drawable.kyo2
                 )
             )
+
             else -> emptyList()
         }
     }
@@ -510,5 +538,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         mBinding = null // 메모리 누수 방지
     }
-
 }

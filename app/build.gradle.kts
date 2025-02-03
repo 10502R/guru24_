@@ -1,5 +1,5 @@
-
 import java.io.FileInputStream
+import java.lang.System.load
 import java.util.Properties
 
 plugins {
@@ -31,7 +31,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters.add("arm64-v8a")
+            abiFilters += listOf("arm64-v8a", "x86_64")
         }
 
         // KAKAO_MAP_KEY 추가

@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
-        android:id="@+id/rj3sa35515um"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -15,30 +14,18 @@
         android:paddingTop="4dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/r6l54y93khcp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="3dp"
                 android:layout_marginHorizontal="15dp"
                 android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/rll7k3d8dsmq"
-                    android:textColor="#171D1B"
-                    android:textSize="14sp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    />
-
-
             </LinearLayout>
+
             <RelativeLayout
-                android:id="@+id/ryrkg04zdxdm_rl"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:layout_marginBottom="20dp"
@@ -47,40 +34,61 @@
                     android:id="@+id/storeImage"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:src="@mipmap/ic_launcher"
                     android:scaleType="fitXY"
-                    />
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:clickable="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginBottom="137dp"
+                    android:src="@drawable/arrow_forward_ios"
+                    android:contentDescription="뒤로 가기"/>
+
+                <ImageView
+                    android:id="@+id/close"
+                    android:clickable="true"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="138dp"
+                    android:src="@drawable/close_icon"
+                    android:contentDescription="닫기"/>
             </RelativeLayout>
+
             <LinearLayout
-                android:id="@+id/raf2y39hewri"
-                android:layout_width="match_parent"
+                android:layout_width="389dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="13dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="162dp"
+                android:layout_marginBottom="13dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/storeName"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
                     android:text="퀴즈노스 서울여대점"
-                    />
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/storeCategory"
-                    android:layout_width="142dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="134dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="카페/베이커리"
                     android:textColor="#9B9A99"
                     android:textSize="14sp" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rmgiqjmpestc"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
@@ -88,7 +96,6 @@
                 android:orientation="vertical">
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rjq6skpt776p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="17dp"
@@ -109,13 +116,12 @@
                     android:textSize="14sp"
                     android:layout_marginTop="3dp"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_weight="1"
                     android:text="서울 노원구 화랑로 621 101호 \n(공릉동, 서울여자대학교 학생누리관)"
                     />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rv1mnmmuvak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -142,7 +148,6 @@
                     />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rxjm8ylm6ju"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
@@ -169,7 +174,6 @@
                     />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rlstc5xj4puo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -178,14 +182,13 @@
                 android:layout_marginEnd="166dp"
                 android:orientation="horizontal">
                 <ImageView
-                    android:id="@+id/r0959o3z6p08a"
+                    android:id="@+id/icon_building"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="6dp"
                     android:src="@drawable/storefront"
                     android:scaleType="fitXY"
                     />
-
                 <TextView
                     android:id="@+id/storeBuilding"
                     android:layout_width="wrap_content"
@@ -196,7 +199,6 @@
                     android:textSize="14sp" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rn2igxgc3xs"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
@@ -204,7 +206,7 @@
                 android:orientation="vertical">
             </LinearLayout>
             <TextView
-                android:id="@+id/r9bhpl3ktc8d"
+                android:id="@+id/menuText"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:layout_marginBottom="14dp"
@@ -213,13 +215,14 @@
                 android:layout_width="wrap_content"
                 android:text="메뉴판 이미지"
                 />
-            <com.google.android.material.imageview.ShapeableImageView
+            <ImageView
                 android:id="@+id/storeMenu"
                 android:layout_width="111dp"
                 android:layout_height="112dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"
                 android:src="@mipmap/ic_launcher"
+                android:visibility="gone"
                 android:scaleType="fitXY"
                 />
         </LinearLayout>
