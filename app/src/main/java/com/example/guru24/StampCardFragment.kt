@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
-import androidx.activity.result.contract.ActivityResultContracts
 import com.example.guru24.databinding.FragmentStampCardBinding
 
 class StampCardFragment : Fragment() {
@@ -34,8 +32,6 @@ class StampCardFragment : Fragment() {
         setupAccordion(binding.rxvpmlbtlpke, binding.accordionStudy) // 벼락치기 투어
         setupAccordion(binding.r1k8o9swwn23, binding.accordionCu) // 편의점 투어
         setupAccordion(binding.r9swpmxvmgf, binding.accordionCoffee) // 카페 투어
-
-
 
         return view
     }
@@ -76,24 +72,31 @@ class StampCardFragment : Fragment() {
 
     // QR 코드 스캔 결과 처리 함수
     fun onStampAcquired(scanResult: String) {
-        // scanResult에 따라 스탬프 이미지 업데이트
-        when (scanResult) {
-            //츄밥
-            "https://m.site.naver.com/1BpDN" -> updateStamp(binding.stamp11, R.drawable.stamp_swuri_color)
-            //더큰
-            "https://m.site.naver.com/1BpEy" -> updateStamp(binding.stamp12, R.drawable.stamp_swuri_color)
-            //감탄
-            "https://m.site.naver.com/1BpEL" -> updateStamp(binding.stamp13, R.drawable.stamp_swuri_color)
-            //구시아
-            "https://m.site.naver.com/1BpEU" -> updateStamp(binding.stamp14, R.drawable.stamp_swuri_color)
-            "gonggang" -> updateStamp(binding.rodre89kfxgs, R.drawable.stamp_usi_color)
-            "study" -> updateStamp(binding.rxvpmlbtlpke, R.drawable.stamp_wendy_color)
-            "cu" -> updateStamp(binding.r1k8o9swwn23, R.drawable.stamp_swuri_color)
-            "coffee" -> updateStamp(binding.r9swpmxvmgf, R.drawable.stamp_usi_color)
+        val stampImageView = when (scanResult) {
+            "https://m.site.naver.com/1BpDN" -> binding.stamp11
+            "https://m.site.naver.com/1BpEy" -> binding.stamp12
+            "https://m.site.naver.com/1BpEL" -> binding.stamp13
+            "https://m.site.naver.com/1BpEU" -> binding.stamp14
+            "gonggang" -> binding.rodre89kfxgs
+            "study" -> binding.rxvpmlbtlpke
+            "cu" -> binding.r1k8o9swwn23
+            "coffee" -> binding.r9swpmxvmgf
+            else -> null
         }
 
-        // 스탬프 획득 팝업 표시
-        showStampPopup()
+        if (stampImageView != null) {
+            if (stampImageView.drawable.constantState == ResourcesCompat.getDrawable(resources, R.drawable.stamp_swuri_color, null)?.constantState) {
+                // 이미 획득한 스탬프 -> 실패 팝업
+                showStampPopup(false)
+            } else {
+                // 새로운 스탬프 획득 -> 성공 팝업 및 이미지 업데이트
+                updateStamp(stampImageView, R.drawable.stamp_swuri_color)
+                showStampPopup(true)
+            }
+        } else {
+            // 정의되지 않은 QR 코드 -> 실패 팝업
+            showStampPopup(false)
+        }
 
         // 모든 스탬프를 찍은 경우
         if (checkAllStampsAcquired()) {
@@ -101,9 +104,20 @@ class StampCardFragment : Fragment() {
         }
     }
 
+    // 스탬프 획득 팝업 표시 함수
+    private fun showStampPopup(isSuccess: Boolean) {
+        val activityClass = if (isSuccess) {
+            StampSuccessActivity::class.java
+        } else {
+            StampFailActivity::class.java
+        }
+        val intent = Intent(requireContext(), activityClass)
+        startActivity(intent)
+    }
+
     // 스탬프 업데이트 함수
-    private fun updateStamp(stampImage: ImageView, stampResourceId: Int) {
-        stampImage.setImageResource(stampResourceId)
+    private fun updateStamp(stampImage: ImageView?, stampResourceId: Int) {
+        stampImage?.setImageResource(stampResourceId)
     }
 
     // 모든 스탬프 획득 여부 확인 함수
@@ -118,15 +132,6 @@ class StampCardFragment : Fragment() {
         return stampImages.all { stampImage ->
             stampImage.drawable.constantState == ResourcesCompat.getDrawable(resources, R.drawable.stamp_swuri_color, null)?.constantState
         }
-    }
-
-    // 스탬프 획득 팝업 표시 함수
-    private fun showStampPopup() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("스탬프 획득")
-            .setMessage("스탬프를 획득했습니다!")
-            .setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
-            .show()
     }
 
     // 뱃지 획득 팝업 표시 함수
