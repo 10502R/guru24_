@@ -93,54 +93,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         return isExist
     }
 
-    // 🔹 최근 검색어 저장 (중복 방지)
-    fun insertSearchQuery(query: String) {
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put("search_text", query)
-        }
-
-        try {
-            db.insertWithOnConflict("RecentSearches", null, values, SQLiteDatabase.CONFLICT_IGNORE) // 중복 방지
-            Log.d("DBHelper", "검색어 저장 성공: $query")
-        } catch (e: Exception) {
-            Log.e("DBHelper", "검색어 저장 실패: ${e.message}")
-        } finally {
-            db.close()
-        }
-    }
-
-    // 🔹 최근 검색어 불러오기 (최신순)
-    fun getRecentSearches(): List<String> {
-        val db = readableDatabase
-        val searchList = mutableListOf<String>()
-        val cursor = db.query("RecentSearches", arrayOf("search_text"), null, null, null, null, "id DESC")
-
-        while (cursor.moveToNext()) {
-            searchList.add(cursor.getString(0))
-        }
-
-        cursor.close()
-        db.close()
-        return searchList
-    }
-
-    // 🔹 특정 검색어 삭제
-    fun deleteSearchQuery(query: String) {
-        val db = writableDatabase
-        db.delete("RecentSearches", "search_text = ?", arrayOf(query))
-        db.close()
-    }
-
-    // 🔹 전체 검색어 삭제
-    fun clearAllSearchQueries() {
-        val db = writableDatabase
-        db.delete("RecentSearches", null, null)
-        db.close()
-    }
-
     companion object {
         private const val DATABASE_NAME = "Login.db"
-        private const val DATABASE_VERSION = 18 // 🔹 버전 증가 (테이블 변경됨)
+        private const val DATABASE_VERSION = 19 // 🔹 버전 증가 (테이블 변경됨)
     }
 }

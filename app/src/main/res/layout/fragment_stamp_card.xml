@@ -19,6 +19,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <!-- 떡볶이 투어 -->
@@ -26,17 +27,16 @@
                     android:id="@+id/rzf8tr5u29ti"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:background="@drawable/line"
                     android:paddingVertical="20dp"
-                    android:paddingHorizontal="30dp"
-                    android:layout_marginBottom="12dp"
+                    android:paddingHorizontal="31dp"
                     android:layout_marginHorizontal="14dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/rn0gderdfw1"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginEnd="4dp"
@@ -54,8 +54,8 @@
 
                             <ImageView
                                 android:id="@+id/rzzsbrlkdwj9"
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
                                 android:src="@drawable/stmap_tteokbokki"
                                 android:scaleType="fitXY"
@@ -100,125 +100,126 @@
                         android:contentDescription="@string/tteokbokki_tour_down" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
                 <!-- 떡볶이 투어 아코디언 레이아웃 -->
                 <LinearLayout
                     android:id="@+id/accordion_tteokbokki"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:padding="16dp">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:background="@drawable/line"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone">
 
-                    <!-- 스탬프 이미지들 -->
+                        <!-- 첫 번째 이미지와 텍스트 -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="15dp"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/stamp1_1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:contentDescription="@string/stamp1_1_desc"
+                                android:src="@drawable/stamp_swuri" />
+
+                            <TextView
+                                android:id="@+id/r1otzw58f07x_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tteokbokki_place1"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 두 번째 이미지와 텍스트 -->
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
                         android:gravity="center">
 
-                        <ImageView
-                            android:id="@+id/stamp1_1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp1_1_desc" />
+                            <ImageView
+                                android:id="@+id/stamp1_2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp1_2_desc" />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
+                            <TextView
+                                android:id="@+id/rvcpo17odbkg_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tteokbokki_place2"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/stamp1_2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp1_2_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp1_3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp1_3_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp1_4"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp1_4_desc" />
-
-
-                    </LinearLayout>
-
+                        <!-- 세 번째 이미지와 텍스트 -->
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/r1otzw58f07x_1"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/tteokbokki_place1" />
+                            <ImageView
+                                android:id="@+id/stamp1_3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp1_3_desc" />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
+                            <TextView
+                                android:id="@+id/rkm45erf50hj_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tteokbokki_place3"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/rvcpo17odbkg_1"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/tteokbokki_place2" />
+                        <!-- 네 번째 이미지와 텍스트 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
+                            <ImageView
+                                android:id="@+id/stamp1_4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp1_4_desc" />
 
-                        <TextView
-                            android:id="@+id/rkm45erf50hj_1"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/tteokbokki_place3" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rzlqbv4f8kr_1"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/tteokbokki_place4" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/rzlqbv4f8kr_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tteokbokki_place4"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                 </LinearLayout>
 
                 <!-- 공강 투어 -->
@@ -230,7 +231,6 @@
                     android:background="@drawable/line"
                     android:paddingVertical="20dp"
                     android:paddingHorizontal="31dp"
-                    android:layout_marginBottom="12dp"
                     android:layout_marginHorizontal="14dp"
                     android:orientation="horizontal">
 
@@ -240,7 +240,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginEnd="4dp"
-
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -254,8 +253,8 @@
 
                             <ImageView
                                 android:id="@+id/r2vsh3g298gd"
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="6dp"
                                 android:src="@drawable/stamp_gonggang"
                                 android:scaleType="fitXY"
@@ -300,135 +299,134 @@
                         android:contentDescription="@string/gonggang_tour_down" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
                 <!-- 공강 투어 아코디언 레이아웃 -->
                 <LinearLayout
                     android:id="@+id/accordion_gonggang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:padding="16dp">
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/line"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone">
 
-                    <!-- 스탬프 이미지들 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/stamp2_1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp2_1_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp2_2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp2_2_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp2_3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp2_3_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp2_4"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp2_4_desc" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/r1otzw58f07x_2"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
+                        <!-- 첫 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/gonggang_place1" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rvcpo17odbkg_2"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp2_1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp2_1_desc" />
+
+                            <TextView
+                                android:id="@+id/r1otzw58f07x_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gonggang_place1"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 두 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/gonggang_place2" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rkm45erf50hj_2"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp2_2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp2_2_desc" />
+
+                            <TextView
+                                android:id="@+id/rvcpo17odbkg_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gonggang_place2"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 세 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/gonggang_place3" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rzlqbv4f8kr_2"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp2_3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp2_3_desc" />
+
+                            <TextView
+                                android:id="@+id/rkm45erf50hj_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gonggang_place3"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 네 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/gonggang_place4" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp2_4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp2_4_desc" />
+
+                            <TextView
+                                android:id="@+id/rzlqbv4f8kr_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gonggang_place4"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                 </LinearLayout>
+
 
                 <!-- 벼락치기 투어 -->
                 <LinearLayout
                     android:id="@+id/r6yah52bs4x2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:background="@drawable/line"
                     android:paddingVertical="20dp"
                     android:paddingHorizontal="31dp"
-                    android:layout_marginBottom="12dp"
                     android:layout_marginHorizontal="14dp"
                     android:orientation="horizontal">
 
@@ -449,8 +447,8 @@
 
                             <ImageView
                                 android:id="@+id/r7zg33iza4s"
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="6dp"
                                 android:contentDescription="@string/study_tour"
                                 android:scaleType="fitXY"
@@ -501,122 +499,124 @@
                         android:contentDescription="@string/study_tour_down" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
                 <!-- 벼락치기 투어 아코디언 레이아웃 -->
                 <LinearLayout
                     android:id="@+id/accordion_study"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/line"
                     android:visibility="gone"
-                    android:padding="16dp">
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginHorizontal="14dp">
 
-                    <!-- 스탬프 이미지들 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/stamp3_1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_wendy"
-                            android:contentDescription="@string/stamp3_1_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp3_2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_wendy"
-                            android:contentDescription="@string/stamp3_2_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp3_3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_wendy"
-                            android:contentDescription="@string/stamp3_3_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp3_4"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_wendy"
-                            android:contentDescription="@string/stamp3_4_desc" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/r1otzw58f07x_3"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
+                        <!-- 첫 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/study_place1" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rvcpo17odbkg_3"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_margin="10dp">
+
+                            <ImageView
+                                android:id="@+id/stamp3_1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_wendy"
+                                android:contentDescription="@string/stamp3_1_desc" />
+
+                            <TextView
+                                android:id="@+id/r1otzw58f07x_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/study_place1"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 두 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/study_place2" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rkm45erf50hj_3"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="10dp">
+
+                            <ImageView
+                                android:id="@+id/stamp3_2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_wendy"
+                                android:contentDescription="@string/stamp3_2_desc" />
+
+                            <TextView
+                                android:id="@+id/rvcpo17odbkg_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/study_place2"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 세 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/study_place3" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rzlqbv4f8kr_3"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="10dp">
+
+                            <ImageView
+                                android:id="@+id/stamp3_3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_wendy"
+                                android:contentDescription="@string/stamp3_3_desc" />
+
+                            <TextView
+                                android:id="@+id/rkm45erf50hj_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/study_place3"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 네 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/study_place4" />
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="10dp">
+
+                            <ImageView
+                                android:id="@+id/stamp3_4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_wendy"
+                                android:contentDescription="@string/stamp3_4_desc" />
+
+                            <TextView
+                                android:id="@+id/rzlqbv4f8kr_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/study_place4"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -625,11 +625,10 @@
                     android:id="@+id/rcbtfjijgea8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:background="@drawable/line"
                     android:paddingVertical="20dp"
                     android:paddingHorizontal="32dp"
-                    android:layout_marginBottom="12dp"
                     android:layout_marginHorizontal="14dp"
                     android:orientation="horizontal">
 
@@ -651,8 +650,8 @@
 
                             <ImageView
                                 android:id="@+id/r5jg6sqay0dg"
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="7dp"
                                 android:src="@drawable/stamp_cu"
                                 android:scaleType="fitXY"
@@ -699,122 +698,124 @@
                         android:contentDescription="@string/cu_tour_down" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
                 <!-- 편의점 투어 아코디언 레이아웃 -->
                 <LinearLayout
                     android:id="@+id/accordion_cu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/line"
                     android:visibility="gone"
-                    android:padding="16dp">
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginHorizontal="14dp">
 
-                    <!-- 스탬프 이미지들 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/stamp4_1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp4_1_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp4_2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp4_2_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp4_3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp4_3_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp4_4"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_swuri"
-                            android:contentDescription="@string/stamp4_4_desc" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/r1otzw58f07x_4"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
+                        <!-- 첫 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/cu_place1" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rvcpo17odbkg_4"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp4_1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp4_1_desc" />
+
+                            <TextView
+                                android:id="@+id/r1otzw58f07x_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cu_place1"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 두 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/cu_place2" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rkm45erf50hj_4"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp4_2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp4_2_desc" />
+
+                            <TextView
+                                android:id="@+id/rvcpo17odbkg_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cu_place2"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 세 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/cu_place3" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rzlqbv4f8kr_4"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp4_3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp4_3_desc" />
+
+                            <TextView
+                                android:id="@+id/rkm45erf50hj_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cu_place3"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 네 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/cu_place4" />
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp4_4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_swuri"
+                                android:contentDescription="@string/stamp4_4_desc" />
+
+                            <TextView
+                                android:id="@+id/rzlqbv4f8kr_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cu_place4"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -823,11 +824,11 @@
                     android:id="@+id/rex3prsr1lj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:background="@drawable/line"
                     android:paddingVertical="20dp"
                     android:paddingHorizontal="32dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="14dp"
                     android:orientation="horizontal">
 
@@ -850,8 +851,8 @@
 
                             <ImageView
                                 android:id="@+id/rt2d1fna8bof"
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="7dp"
                                 android:src="@drawable/stamp_coffee"
                                 android:scaleType="fitXY"
@@ -900,119 +901,122 @@
                     android:id="@+id/accordion_coffee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:padding="16dp">
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/line"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone">
 
-                    <!-- 스탬프 이미지들 -->
+                    <!-- 스탬프 이미지와 텍스트 묶음 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center">
 
-                        <ImageView
-                            android:id="@+id/stamp5_1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp5_1_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp5_2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp5_2_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp5_3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp5_3_desc" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/stamp5_4"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/stamp_usi"
-                            android:contentDescription="@string/stamp5_4_desc" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/r1otzw58f07x_5"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
+                        <!-- 첫 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/coffee_place1" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rvcpo17odbkg_5"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp5_1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp5_1_desc" />
+
+                            <TextView
+                                android:id="@+id/r1otzw58f07x_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/coffee_place1"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 두 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/coffee_place2" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rkm45erf50hj_5"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp5_2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp5_2_desc" />
+
+                            <TextView
+                                android:id="@+id/rvcpo17odbkg_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/coffee_place2"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 세 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/coffee_place3" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/rzlqbv4f8kr_5"
-                            android:textColor="#444240"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp5_3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp5_3_desc" />
+
+                            <TextView
+                                android:id="@+id/rkm45erf50hj_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/coffee_place3"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- 네 번째 이미지와 텍스트 -->
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:text="@string/coffee_place4" />
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/stamp5_4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/stamp_usi"
+                                android:contentDescription="@string/stamp5_4_desc" />
+
+                            <TextView
+                                android:id="@+id/rzlqbv4f8kr_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/coffee_place4"
+                                android:textColor="#444240"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
