@@ -117,7 +117,11 @@ class StampCardFragment : Fragment() {
 
     // 스탬프 업데이트 함수
     private fun updateStamp(stampImage: ImageView?, stampResourceId: Int) {
-        stampImage?.setImageResource(stampResourceId)
+        // 이미지가 없거나, 이미 획득한 스탬프인 경우에는 업데이트하지 않음
+        if (stampImage?.drawable?.constantState !=
+            ResourcesCompat.getDrawable(resources, R.drawable.stamp_swuri_color, null)?.constantState) {
+            stampImage?.setImageResource(stampResourceId)
+        }
     }
 
     // 모든 스탬프 획득 여부 확인 함수
@@ -130,7 +134,8 @@ class StampCardFragment : Fragment() {
             binding.r9swpmxvmgf
         )
         return stampImages.all { stampImage ->
-            stampImage.drawable.constantState == ResourcesCompat.getDrawable(resources, R.drawable.stamp_swuri_color, null)?.constantState
+            stampImage.drawable.constantState ==
+                    ResourcesCompat.getDrawable(resources, R.drawable.stamp_swuri_color, null)?.constantState
         }
     }
 
