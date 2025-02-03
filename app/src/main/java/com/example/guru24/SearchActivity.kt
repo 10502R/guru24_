@@ -1,6 +1,7 @@
 package com.example.guru24
 
 import DBHelper
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -73,6 +74,12 @@ class SearchActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         recentSearchAdapter = RecentSearchAdapter(allSearchItems) { selectedSearch ->
             binding.searchView.setQuery(selectedSearch, true) // 리스트에서 클릭하면 검색 실행
+            //TODO 화면 이동
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("isSecondActivity", true)
+            intent.putExtra("selectedSearch", selectedSearch)
+            startActivity(intent)
+
         }
         binding.recentSearchRecycler.apply {
             layoutManager = LinearLayoutManager(this@SearchActivity)
