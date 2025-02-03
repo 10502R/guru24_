@@ -92,4 +92,3 @@
     <!-- 추가할 문자열 리소스들 -->
     <string name="qr_scan_prompt" translatable="false">QR 코드를 스캔해주세요</string>
 </resources>
-
