@@ -12,39 +12,45 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.guru24.databinding.FragmentStampCardBinding
 
 class StampCardFragment : Fragment() {
 
     // 각 투어의 아코디언 상태를 저장할 변수
     private val isExpandedMap = mutableMapOf<Int, Boolean>()
+    private var _binding: FragmentStampCardBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_stamp_card, container, false)
+        _binding = FragmentStampCardBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         // 각 투어에 대한 아코디언 설정
-        setupAccordion(view, R.id.rjosjx78edp9, R.id.accordion_tteokbokki) // 떡볶이 투어
-        setupAccordion(view, R.id.rodre89kfxgs, R.id.accordion_gonggang) // 공강 투어
-        setupAccordion(view, R.id.rxvpmlbtlpke, R.id.accordion_study) // 벼락치기 투어
-        setupAccordion(view, R.id.r1k8o9swwn23, R.id.accordion_cu) // 편의점 투어
-        setupAccordion(view, R.id.r9swpmxvmgf, R.id.accordion_coffee) // 카페 투어
+        setupAccordion(binding.rjosjx78edp9, binding.accordionTteokbokki) // 떡볶이 투어
+        setupAccordion(binding.rodre89kfxgs, binding.accordionGonggang) // 공강 투어
+        setupAccordion(binding.rxvpmlbtlpke, binding.accordionStudy) // 벼락치기 투어
+        setupAccordion(binding.r1k8o9swwn23, binding.accordionCu) // 편의점 투어
+        setupAccordion(binding.r9swpmxvmgf, binding.accordionCoffee) // 카페 투어
 
         return view
     }
 
-    // 아코디언 설정 함수
-    private fun setupAccordion(view: View, stampDownId: Int, accordionLayoutId: Int) {
-        val stampDownImage = view.findViewById<ImageView>(stampDownId)
-        val accordionLayout = view.findViewById<LinearLayout>(accordionLayoutId)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
+    // 아코디언 설정 함수
+    private fun setupAccordion(stampDownImage: ImageView, accordionLayout: LinearLayout) {
         // 초기 상태 설정
-        isExpandedMap[stampDownId] = false
+        isExpandedMap[stampDownImage.id] = false
 
         // 클릭 리스너 설정
         stampDownImage.setOnClickListener {
-            toggleAccordion(stampDownImage, accordionLayout, stampDownId)
+            toggleAccordion(stampDownImage, accordionLayout, stampDownImage.id)
         }
     }
 
@@ -80,11 +86,11 @@ class StampCardFragment : Fragment() {
     private fun onStampAcquired(scanResult: String) {
         // scanResult에 따라 스탬프 이미지 업데이트
         when (scanResult) {
-            "tteokbokki" -> updateStamp(R.id.rjosjx78edp9, R.drawable.stamp_swuri_color)
-            "gonggang" -> updateStamp(R.id.rodre89kfxgs, R.drawable.stamp_usi_color)
-            "study" -> updateStamp(R.id.rxvpmlbtlpke, R.drawable.stamp_wendy_color)
-            "cu" -> updateStamp(R.id.r1k8o9swwn23, R.drawable.stamp_swuri_color)
-            "coffee" -> updateStamp(R.id.r9swpmxvmgf, R.drawable.stamp_usi_color)
+            "tteokbokki" -> updateStamp(binding.rjosjx78edp9, R.drawable.stamp_swuri_color)
+            "gonggang" -> updateStamp(binding.rodre89kfxgs, R.drawable.stamp_usi_color)
+            "study" -> updateStamp(binding.rxvpmlbtlpke, R.drawable.stamp_wendy_color)
+            "cu" -> updateStamp(binding.r1k8o9swwn23, R.drawable.stamp_swuri_color)
+            "coffee" -> updateStamp(binding.r9swpmxvmgf, R.drawable.stamp_usi_color)
         }
 
         // 스탬프 획득 팝업 표시
@@ -97,22 +103,20 @@ class StampCardFragment : Fragment() {
     }
 
     // 스탬프 업데이트 함수
-    private fun updateStamp(stampId: Int, stampResourceId: Int) {
-        val stampImage = requireView().findViewById<ImageView>(stampId)
+    private fun updateStamp(stampImage: ImageView, stampResourceId: Int) {
         stampImage.setImageResource(stampResourceId)
     }
 
     // 모든 스탬프 획득 여부 확인 함수
     private fun checkAllStampsAcquired(): Boolean {
-        val stampIds = listOf(
-            R.id.rjosjx78edp9,
-            R.id.rodre89kfxgs,
-            R.id.rxvpmlbtlpke,
-            R.id.r1k8o9swwn23,
-            R.id.r9swpmxvmgf
+        val stampImages = listOf(
+            binding.rjosjx78edp9,
+            binding.rodre89kfxgs,
+            binding.rxvpmlbtlpke,
+            binding.r1k8o9swwn23,
+            binding.r9swpmxvmgf
         )
-        return stampIds.all { id ->
-            val stampImage = requireView().findViewById<ImageView>(id)
+        return stampImages.all { stampImage ->
             stampImage.drawable.constantState == ResourcesCompat.getDrawable(resources, R.drawable.stamp_swuri_color, null)?.constantState
         }
     }
