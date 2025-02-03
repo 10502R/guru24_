@@ -96,6 +96,14 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "모든 필드를 입력해주세요", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.login.setOnClickListener {
+            // LoginActivity로 이동하는 인텐트 생성
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent) // LoginActivity 시작
+            finish() // 현재 액티비티 종료 (선택 사항)
+        }
+
     }
 
         override fun onDestroy() {
