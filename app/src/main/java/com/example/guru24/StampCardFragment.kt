@@ -23,6 +23,8 @@ class StampCardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+
         _binding = FragmentStampCardBinding.inflate(inflater, container, false)
         val view = binding.root
 
