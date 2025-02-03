@@ -1,5 +1,6 @@
 package com.example.guru24
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.guru24.databinding.ActivityBadgeBinding
@@ -14,6 +15,18 @@ class BadgeActivity : AppCompatActivity() {
         mBinding = ActivityBadgeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.checkBadgeButton.setOnClickListener {
+            // "달성 뱃지 확인하기" 버튼 클릭 시 TrophyFragment의 BadgeFragment로 이동
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("navigateTo", "BadgeFragment")
+            startActivity(intent)
+            finish() // 현재 액티비티 종료
+        }
+
+        binding.closeButton.setOnClickListener {
+            // 닫기 버튼 클릭 시 BadgeActivity 닫기
+            finish()
+        }
     }
 
     override fun onDestroy() {
