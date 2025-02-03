@@ -20,6 +20,15 @@ class HomeFragment : Fragment() {
 
         setClickListener()
 
+        // 버튼 클릭 시 TrophyFragment로 이동
+        binding.layoutStamp.setOnClickListener {
+            val trophyFragment = TrophyFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.rootlayout, trophyFragment) // fragment_container는 MainActivity의 FrameLayout ID
+                .addToBackStack(null) // 뒤로 가기 기능 활성화
+                .commit()
+        }
+
         return binding.root
     }
 

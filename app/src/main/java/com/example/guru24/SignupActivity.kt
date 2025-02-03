@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import DBHelper
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
@@ -31,6 +30,9 @@ class SignupActivity : AppCompatActivity() {
         dbHelper.insertStudentInfo("minjukim30604", 2023111741)
         dbHelper.insertStudentInfo("koyejun23", 2023111735)
         dbHelper.insertStudentInfo("dayeon053", 2023111419)
+        dbHelper.insertStudentInfo("bspart22", 2019120065)
+        dbHelper.insertStudentInfo("freshman25", 2025111415)
+        dbHelper.insertStudentInfo("signup25", 2025120041)
 
         // 초기 버튼 상태 설정 (비활성화)
         binding.ButtonCheckSignup.isEnabled = false
@@ -75,6 +77,9 @@ class SignupActivity : AppCompatActivity() {
                     if (isEmailExists(email)) {
                         Toast.makeText(this, "겹치는 이메일입니다!", Toast.LENGTH_SHORT).show()
                     } else if (isEmailAndNumberInStudentInfo(email, number)) {
+                        // 🔹 디버깅 로그 추가
+                        Log.d("SignupActivity", "이메일과 학번 확인 완료: 이메일=$email, 학번=$number")
+
                         // PasswordActivity로 이동하여 비밀번호를 입력받음
                         val intent = Intent(this, PasswordActivity::class.java)
                         intent.putExtra("user_email", email)
@@ -82,6 +87,7 @@ class SignupActivity : AppCompatActivity() {
                         startActivityForResult(intent, REQUEST_CODE_PASSWORD)
                     } else {
                         Toast.makeText(this, "이메일과 학번 정보가 일치하지 않습니다!", Toast.LENGTH_SHORT).show()
+                        Log.e("SignupActivity", "이메일과 학번 정보 불일치: 이메일=$email, 학번=$number")
                     }
                 } else {
                     Toast.makeText(this, "학번을 올바르게 입력하세요", Toast.LENGTH_SHORT).show()
@@ -92,12 +98,15 @@ class SignupActivity : AppCompatActivity() {
         }
 
         binding.login.setOnClickListener {
+            // LoginActivity로 이동하는 인텐트 생성
             val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(intent) // LoginActivity 시작
+            finish() // 현재 액티비티 종료 (선택 사항)
         }
+
     }
 
-    override fun onDestroy() {
+        override fun onDestroy() {
         super.onDestroy()
         mBinding = null
     }

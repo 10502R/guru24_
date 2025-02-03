@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import DBHelper
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -21,9 +20,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         dbHelper = DBHelper(this) // DBHelper 인스턴스 초기화
-
-        // SharedPreferences 초기화
-        val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 
         // 이메일과 비밀번호 입력 상태를 실시간으로 감지하기 위한 TextWatcher
         val textWatcher = object : TextWatcher {

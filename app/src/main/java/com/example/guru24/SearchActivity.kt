@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import DBHelper
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -14,7 +13,6 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
     private lateinit var recentSearchAdapter: RecentSearchAdapter
-    private lateinit var dbHelper: DBHelper
     private var selectedCategory: String? = null // 선택된 카테고리 저장
 
     // 🔹 전체 검색 리스트 (학교 내 장소, 음식점 등)
@@ -34,13 +32,10 @@ class SearchActivity : AppCompatActivity() {
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dbHelper = DBHelper(this) // 🔹 DBHelper 초기화
-
         setupCategoryButtons() // 카테고리 버튼 설정
         setupSearchView()
         setupRecyclerView()
-        setupClearAllButton()
-        loadRecentSearches() // 🔹 DB에서 최근 검색어 불러오기
+
     }
 
     private fun setupCategoryButtons() {
@@ -129,10 +124,6 @@ class SearchActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    if (it.isNotEmpty()) {
-                        dbHelper.insertSearchQuery(it) // 🔹 검색어를 DB에 저장
-                        loadRecentSearches() // 🔹 DB에서 검색어 리스트 갱신
-                    }
                 }
                 return false
             }
@@ -159,20 +150,6 @@ class SearchActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@SearchActivity)
             adapter = recentSearchAdapter
         }
-    }
-
-    private fun setupClearAllButton() {
-        binding.clearAllButton.setOnClickListener {
-            dbHelper.clearAllSearchQueries() // DB에서 검색 기록 삭제
-            loadRecentSearches()
-        }
-    }
-
-    // 🔹 DB에서 최근 검색어 불러오기
-    private fun loadRecentSearches() {
-        val recentSearches = dbHelper.getRecentSearches()
-        recentSearchAdapter.updateList(recentSearches)
-        binding.recentSearchRecycler.visibility = if (recentSearches.isEmpty()) View.GONE else View.VISIBLE
     }
 
     // 🔹 입력된 검색어에 맞게 리스트 필터링

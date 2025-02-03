@@ -32,13 +32,16 @@ class ActivityTermsOfService : AppCompatActivity() {
 
         // "전체 동의하기" 클릭 시 상태 동기화
         binding.checkboxAll.setOnClickListener {
-            isAllChecked = !isAllChecked
-            updateAllCheckboxImage()
+            isAllChecked = !isAllChecked  // 현재 상태를 반전
             isServiceChecked = isAllChecked
             isPrivacyChecked = isAllChecked
+
+            // 모든 체크박스의 UI 갱신
             updateServiceCheckboxImage()
             updatePrivacyCheckboxImage()
+            updateAllCheckboxImage()
         }
+
 
         // "서비스 이용약관" 클릭 시 상태 변경
         binding.checkboxService.setOnClickListener {
@@ -107,11 +110,12 @@ class ActivityTermsOfService : AppCompatActivity() {
     }
 
     private fun updateAllCheckboxImage() {
-        isAllChecked = isServiceChecked && isPrivacyChecked
-        if (isAllChecked) {
-            binding.checkboxAll.setImageResource(R.drawable.check_circle1) // 체크된 상태 이미지
+        if (isServiceChecked && isPrivacyChecked) {
+            isAllChecked = true
+            binding.checkboxAll.setImageResource(R.drawable.check_circle1) // 체크된 상태
         } else {
-            binding.checkboxAll.setImageResource(R.drawable.check_circle) // 체크되지 않은 상태 이미지
+            isAllChecked = false
+            binding.checkboxAll.setImageResource(R.drawable.check_circle) // 체크되지 않은 상태
         }
     }
 
