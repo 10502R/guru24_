@@ -842,6 +842,13 @@ class MapFragment : Fragment() {
         val latitude = 37.62686435849172
         val longitude = 127.09136156335997
 
+        // RouteLineLayer 가져오기
+        val layer = kakaoMap.routeLineManager!!.layer
+
+        // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+        currentRouteLine?.remove()
+        layer.removeAll()
+
         // 카메라 이동 및 설정
         val cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(latitude, longitude))
 
@@ -861,6 +868,7 @@ class MapFragment : Fragment() {
             Log.e("KakaoMap", "PinManager is not initialized")
             return
         }
+
         // 동아리
         pinManager.addPin(37.62866684063515, 127.09070105680749, R.drawable.icon_club, "동아리", "동아리"); // 동아리
 
@@ -926,6 +934,13 @@ class MapFragment : Fragment() {
             // 모든 핀 삭제
             pinManager.removeAllPins()
 
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
             // ✅ RecyclerView 토글 (보이게 / 숨기기)
             binding.bottomSheetRecyclerView.visibility = if (binding.bottomSheetRecyclerView.visibility == View.GONE) {
                 View.VISIBLE
@@ -953,6 +968,13 @@ class MapFragment : Fragment() {
             // 모든 핀 삭제
             pinManager.removeAllPins()
 
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
             // 편의점
             pinManager.addPin(37.62647582535639, 127.09278276343268, R.drawable.icon_store2, "편의점", "CU 편의점"); // CU 편의점
             pinManager.addPin(37.62883702662517, 127.0890586381962, R.drawable.icon_store2, "편의점", "세븐일레븐 편의점"); // 세븐일레븐 편의점
@@ -968,6 +990,13 @@ class MapFragment : Fragment() {
             // 모든 핀 삭제
             pinManager.removeAllPins()
 
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
             // 학과사무실
             pinManager.addPin(37.62925489443627, 127.0904921939158, R.drawable.icon_office2, "학과사무실", "정보보호학과"); // 정보보호학과
             pinManager.addPin(37.62822388842327, 127.09259235431496, R.drawable.icon_office2, "학과사무실", "교육심리학과"); // 교육심리학과
@@ -980,6 +1009,13 @@ class MapFragment : Fragment() {
             }
             // 모든 핀 삭제
             pinManager.removeAllPins()
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
 
             // 편의시설
             pinManager.addPin(37.6260586839787, 127.09333448635181, R.drawable.icon_market2, "편의시설", "카피웍스 복사실") // 카피웍스 복사실
@@ -995,6 +1031,13 @@ class MapFragment : Fragment() {
             if (!::pinManager.isInitialized) return@setOnClickListener
             pinManager.removeAllPins()
 
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
             // 학습공간
             pinManager.addPin(37.62855601126201, 127.09129566357015, R.drawable.icon_study2, "학습공간", "리딩라운지"); // 리딩라운지
             pinManager.addPin(37.62932261153444, 127.09030535535916, R.drawable.icon_study2, "학습공간", "러닝커먼스"); // 러닝커먼스
@@ -1006,6 +1049,13 @@ class MapFragment : Fragment() {
             if (!::pinManager.isInitialized) return@setOnClickListener
             pinManager.removeAllPins()
 
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
             // 동아리
             pinManager.addPin(37.62866684063515, 127.09070105680749, R.drawable.icon_club2, "동아리", "동아리"); // 동아리
         }
@@ -1014,6 +1064,13 @@ class MapFragment : Fragment() {
             if (!::pinManager.isInitialized) return@setOnClickListener
             pinManager.removeAllPins()
 
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
+
             // 은행
             pinManager.addPin(37.62869873773617, 127.09022813360964, R.drawable.icon_bank2, "은행", "우리은행"); // 우리은행
         }
@@ -1021,6 +1078,13 @@ class MapFragment : Fragment() {
         binding.layoutbus.setOnClickListener {
             if (!::pinManager.isInitialized) return@setOnClickListener
             pinManager.removeAllPins()
+
+            // RouteLineLayer 가져오기
+            val layer = kakaoMap.routeLineManager!!.layer
+
+            // 기존 경로 삭제 (remove() 또는 layer.clear() 활용)
+            currentRouteLine?.remove()
+            layer.removeAll()
 
             // 주차/셔틀
             pinManager.addPin(37.62712879896861, 127.09308943627939, R.drawable.icon_bus2, "주차/셔틀", "셔틀버스"); // 셔틀버스
