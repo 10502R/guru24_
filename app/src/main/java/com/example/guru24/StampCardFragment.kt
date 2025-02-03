@@ -24,7 +24,7 @@ class StampCardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentStampCardBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -34,6 +34,8 @@ class StampCardFragment : Fragment() {
         setupAccordion(binding.rxvpmlbtlpke, binding.accordionStudy) // 벼락치기 투어
         setupAccordion(binding.r1k8o9swwn23, binding.accordionCu) // 편의점 투어
         setupAccordion(binding.r9swpmxvmgf, binding.accordionCoffee) // 카페 투어
+
+
 
         return view
     }
@@ -72,21 +74,18 @@ class StampCardFragment : Fragment() {
         isExpandedMap[stampDownId] = !isExpanded
     }
 
-    // QR 코드 스캔 결과 처리
-    private val qrCodeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val scanResult = result.data?.getStringExtra("SCAN_RESULT")
-            if (scanResult != null) {
-                onStampAcquired(scanResult) // 스탬프 획득 처리
-            }
-        }
-    }
-
-    // 스탬프 획득 처리 함수
-    private fun onStampAcquired(scanResult: String) {
+    // QR 코드 스캔 결과 처리 함수
+    fun onStampAcquired(scanResult: String) {
         // scanResult에 따라 스탬프 이미지 업데이트
         when (scanResult) {
-            "tteokbokki" -> updateStamp(binding.rjosjx78edp9, R.drawable.stamp_swuri_color)
+            //츄밥
+            "https://m.site.naver.com/1BpDN" -> updateStamp(binding.stamp11, R.drawable.stamp_swuri_color)
+            //더큰
+            "https://m.site.naver.com/1BpEy" -> updateStamp(binding.stamp12, R.drawable.stamp_swuri_color)
+            //감탄
+            "https://m.site.naver.com/1BpEL" -> updateStamp(binding.stamp13, R.drawable.stamp_swuri_color)
+            //구시아
+            "https://m.site.naver.com/1BpEU" -> updateStamp(binding.stamp14, R.drawable.stamp_swuri_color)
             "gonggang" -> updateStamp(binding.rodre89kfxgs, R.drawable.stamp_usi_color)
             "study" -> updateStamp(binding.rxvpmlbtlpke, R.drawable.stamp_wendy_color)
             "cu" -> updateStamp(binding.r1k8o9swwn23, R.drawable.stamp_swuri_color)

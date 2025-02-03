@@ -24,7 +24,8 @@ class TrophyFragment : Fragment() {
             // scanResult를 사용하여 처리
             if (scanResult != null) {
                 println("QR 스캔 결과: $scanResult")
-                // 여기에 스탬프 적립 로직 추가
+                val stampCardFragment = childFragmentManager.findFragmentByTag("StampCardFragment") as? StampCardFragment
+                stampCardFragment?.onStampAcquired(scanResult)
             }
         }
     }
@@ -45,7 +46,7 @@ class TrophyFragment : Fragment() {
 
         // 기본 탭 설정
         if (savedInstanceState == null) {
-            replaceFragment(StampCardFragment())
+            replaceFragment(StampCardFragment(), "StampCardFragment")
         }
 
         // 버튼 클릭 리스너 설정
@@ -63,8 +64,8 @@ class TrophyFragment : Fragment() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
-                    0 -> replaceFragment(StampCardFragment())
-                    1 -> replaceFragment(BadgeFragment())
+                    0 -> replaceFragment(StampCardFragment(), "StampCardFragment")
+                    1 -> replaceFragment(BadgeFragment(), "BadgeFragment")
                 }
             }
 
@@ -96,9 +97,9 @@ class TrophyFragment : Fragment() {
     }
 
     // Fragment 교체 함수
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, tag: String) {
         childFragmentManager.beginTransaction()
-            .replace(R.id.tab_layout_container, fragment)
+            .replace(R.id.tab_layout_container, fragment, tag)
             .commit()
     }
 
