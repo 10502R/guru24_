@@ -139,4 +139,3 @@ class StampCardFragment : Fragment() {
             .show()
     }
 }
-

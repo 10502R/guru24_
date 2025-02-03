@@ -156,6 +156,12 @@
                         android:layout_height="50dp"
                         android:src="@drawable/stamp_swuri"
                         android:contentDescription="@string/stamp1_4_desc" />
+                    <Button
+                        android:id="@+id/startQrScanButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="QR 코드 스캔 시작" />
+
                 </LinearLayout>
 
                 <LinearLayout
