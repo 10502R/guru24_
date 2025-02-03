@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import DividerItemDecoration
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guru24.databinding.FragmentMapBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -230,7 +227,6 @@ class MapFragment : Fragment() {
             // RouteLineLayer에 추가하여 새로운 RouteLine 생성
             currentRouteLine = layer.addRouteLine(options)
         }
-
         binding.image4.setOnClickListener {
             handleImageClick(binding.image4, R.drawable.ic_tour_store, R.drawable.ic_tour_store2)
             if (!::pinManager.isInitialized) { return@setOnClickListener }
@@ -344,8 +340,6 @@ class MapFragment : Fragment() {
         initializeStoreList()
         storeList = getStoreListByCategory(category)
 
-        // RecyclerView 설정
-        setupRecyclerView()
     }
 
     private fun initializeStoreList() {
@@ -363,23 +357,6 @@ class MapFragment : Fragment() {
         storeList = categories.flatMap { getStoreListByCategory(it) }
     }
 
-    private fun setupRecyclerView() {
-        binding.bottomSheetRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // LayoutManager 설정
-        storeAdapter = StoreAdapter(storeList, requireContext()) { store, category ->
-            // 클릭 시 UI 요소 숨기기
-            hideUIElements()
-
-            // 상세 프래그먼트로 이동
-            val fragment = StoreDetailFragment.newInstance(store, category)
-            Log.d("StoreDetail", "Navigating to StoreDetailFragment with store: ${store.name}")
-            (requireActivity() as AppCompatActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
-        }
-        binding.bottomSheetRecyclerView.adapter = storeAdapter
-        binding.bottomSheetRecyclerView.addItemDecoration(DividerItemDecoration(requireContext()))
-    }
 
     // UI 숨기기
     private fun hideUIElements() {
@@ -392,7 +369,6 @@ class MapFragment : Fragment() {
             binding.bottomViewCategory.visibility = View.GONE
         }
     }
-
 
     // UI 복원
     private fun showUIElements() {
@@ -423,7 +399,6 @@ class MapFragment : Fragment() {
         }
         bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag) // BottomSheetFragment 표시
     }
-
 
     private fun getStoreListByCategory(category: String): List<Store> {
         return when (category) {
