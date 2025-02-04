@@ -33,9 +33,8 @@ class PasswordActivity : AppCompatActivity() {
                 if (!email.isNullOrEmpty() && number != -1) {
                     // 🔹 DB에 사용자 정보 저장
                     if (dbHelper.saveUserData(email, number, password)) {
-                        Toast.makeText(this, "회원가입 성공!", Toast.LENGTH_SHORT).show()
-                        val loginIntent = Intent(this, ActivityTermsOfService::class.java)
-                        startActivity(loginIntent)
+                        val termsIntent = Intent(this, ActivityTermsOfService::class.java)
+                        startActivity(termsIntent)
                         finish() // 현재 액티비티 종료
                     } else {
                         Toast.makeText(this, "회원 정보 저장에 실패했습니다.", Toast.LENGTH_SHORT).show()

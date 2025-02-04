@@ -61,6 +61,7 @@ class ActivityTermsOfService : AppCompatActivity() {
         binding.ButtonCheck.setOnClickListener {
             if (isAllChecked) {
                 val intent = Intent(this, LoginActivity::class.java)
+                Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "모든 필수 항목에 동의해주세요.", Toast.LENGTH_SHORT).show()
