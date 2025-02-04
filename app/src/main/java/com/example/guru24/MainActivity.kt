@@ -17,19 +17,34 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // LoginActivity에서 전달된 이메일 데이터 받기
+        val email = intent.getStringExtra("USER_EMAIL")
+
+        // 기본 Fragment 설정
         val isSecond = intent.getBooleanExtra("isSecondActivity", false)
         val selectedSearch = intent.getStringExtra("selectedSearch") ?: ""
         val selectedCategory = intent.getStringExtra("selectedCategory") ?: ""
 
-        Log.d("MainActivity", "isSecond: $isSecond")
+        Log.d("isSecond", isSecond.toString())
 
-        if (savedInstanceState == null) {
-            if (isSecond) {
-                handleSecondActivity(selectedSearch, selectedCategory)
+        if (savedInstanceState == null && !isSecond) {
+            replaceFragment(HomeFragment())
+        } else if (isSecond) {
+            Log.d("isSecond", selectedSearch)
+            val categoryList = BottomSheetFragment.getStoreListByCategory(selectedCategory)
+            val store = categoryList.find { it.name == selectedSearch }
+            Log.d("isSecond", store?.name.toString())
+            if (store != null) {
+                Log.d("isSecond", store.name.toString())
+                val fragment = StoreDetailFragment.newInstance(store, selectedCategory)
+                replaceFragment(fragment)
             } else {
-                replaceFragment(HomeFragment())
+                // 검색 결과가 없을 경우 처리
+                Toast.makeText(this, "검색 결과를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
+
 
         // BottomNavigationView 클릭 리스너 설정
         binding.bottomNav.setOnItemSelectedListener { item ->
@@ -37,36 +52,55 @@ class MainActivity : AppCompatActivity() {
                 R.id.tabHome -> replaceFragment(HomeFragment())
                 R.id.tabMap -> replaceFragment(MapFragment())
                 R.id.tabTrophy -> replaceFragment(TrophyFragment())
-                R.id.tabMypage -> navigateToMypageFragment()
+                R.id.tabMypage -> replaceFragment(MypageFragment())
                 else -> false
             }
             true
         }
 
-        // 인텐트를 통해 TrophyFragment -> BadgeFragment 이동 처리
-        if (intent?.getStringExtra("navigateTo") == "TrophyFragment") {
-            val selectedTab = intent.getIntExtra("selectedTab", 0) // 기본값 0 (첫 번째 탭)
-            replaceFragment(TrophyFragment.newInstance(selectedTab)) // TrophyFragment로 이동
+        // 추가된 부분: navigateTo 인텐트를 처리하여 BadgeFragment로 이동
+        if (intent?.getStringExtra("navigateTo") == "BadgeFragment") {
+            // TrophyFragment로 이동
+            replaceFragment(TrophyFragment())
+            // BadgeFragment 선택
+            supportFragmentManager.executePendingTransactions()
+            val trophyFragment =
+                supportFragmentManager.findFragmentById(R.id.rootlayout) as? TrophyFragment
+            trophyFragment?.navigateToBadgeFragment()
         } else {
-            binding.bottomNav.selectedItemId = R.id.tabHome // 기본 화면 설정
-        }
-    }
+            // 기본적으로 홈 화면을 표시
+            binding.bottomNav.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.tabHome -> {
+                        replaceFragment(HomeFragment())
+                        true
+                    }
 
-    // TrophyFragment로 이동한 후 BadgeFragment 호출
-    private fun moveToBadgeFragment() {
-        replaceFragment(TrophyFragment())
-        supportFragmentManager.executePendingTransactions() // 즉시 트랜잭션 적용
-        val trophyFragment = supportFragmentManager.findFragmentById(R.id.rootlayout) as? TrophyFragment
-        trophyFragment?.navigateToBadgeFragment()
-    }
+                    R.id.tabMap -> {
+                        replaceFragment(MapFragment())
+                        true
+                    }
 
-    // MypageFragment로 이동하며 이메일 전달
-    private fun navigateToMypageFragment() {
-        val email = intent.getStringExtra("USER_EMAIL") ?: ""
-        val mypageFragment = MypageFragment().apply {
-            arguments = Bundle().apply { putString("USER_EMAIL", email) }
+                    R.id.tabTrophy -> {
+                        replaceFragment(TrophyFragment())
+                        true
+                    }
+
+                    R.id.tabMypage -> {
+                        val mypageFragment = MypageFragment().apply {
+                            arguments = Bundle().apply {
+                                putString("USER_EMAIL", email)
+                            }
+                        }
+                        replaceFragment(mypageFragment)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
         }
-        replaceFragment(mypageFragment)
+
     }
 
     // Fragment 교체 함수
@@ -76,23 +110,8 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    // SecondActivity의 로직 처리
-    private fun handleSecondActivity(selectedSearch: String, selectedCategory: String) {
-        val categoryList = getStoreListByCategory(selectedCategory)
-        val store = categoryList.find { it.name == selectedSearch }
-        if (store != null) {
-            val fragment = StoreDetailFragment.newInstance(store, selectedCategory)
-            replaceFragment(fragment)
-        } else {
-            Toast.makeText(this, "검색 결과를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
-            finish()
-        }
-    }
-
-    // 카테고리별 가게 목록 반환
     private fun getStoreListByCategory(category: String): List<Store> {
         return when (category) {
-
             "음식점" -> listOf(
                 Store(
                     "츄츄바앤츄밥",
@@ -227,7 +246,7 @@ class MainActivity : AppCompatActivity() {
                     "서울 노원구 화랑로 621 샬롬기숙사 1층",
                     "02-970-5385",
                     "24시간 무인운영",
-                    R.drawable.seven1 ,
+                    R.drawable.seven1,
                     R.drawable.seven2
 
                 ),
@@ -508,10 +527,25 @@ class MainActivity : AppCompatActivity() {
             )
 
             else -> emptyList()
-
         }
     }
 
+    // 가게 목록 초기화 메서드
+    private fun initializeStoreList() {
+        val categories = listOf(
+            "음식점",
+            "카페/베이커리",
+            "편의점",
+            "편의시설",
+            "학습 공간",
+            "동아리",
+            "은행",
+            "주차/셔틀",
+            "학과사무실"
+        )
+
+        var storeList = categories.flatMap { getStoreListByCategory(it) } // storeList 초기화
+    }
     override fun onDestroy() {
         super.onDestroy()
         mBinding = null // 메모리 누수 방지
