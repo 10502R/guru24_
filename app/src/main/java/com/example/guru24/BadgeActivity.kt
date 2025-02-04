@@ -22,7 +22,7 @@ class BadgeActivity : AppCompatActivity() {
             fragment.arguments = bundle
 
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .replace(R.id.rootlayout, fragment)
                 .commit()
         }
 
