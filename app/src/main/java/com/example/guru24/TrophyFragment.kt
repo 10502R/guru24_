@@ -33,7 +33,7 @@ class TrophyFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            initialTabIndex = it.getInt("selectedTab", 0) // 전달받은 탭 인덱스
+            initialTabIndex = it.getInt("selectedTab", 1) // 전달받은 탭 인덱스
         }
     }
 

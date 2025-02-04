@@ -1,6 +1,5 @@
 package com.example.guru24
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.guru24.databinding.ActivityBadgeBinding
@@ -17,11 +16,14 @@ class BadgeActivity : AppCompatActivity() {
 
         binding.checkBadgeButton.setOnClickListener {
             // "달성 뱃지 확인하기" 버튼 클릭 시 TrophyFragment의 BadgeFragment로 이동
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("navigateTo", "TrophyFragment")
-            intent.putExtra("selectedTab", 1) // TabLayout 두 번째 탭 (인덱스 1)
-            startActivity(intent)
-            finish() // 현재 액티비티 종료
+            val fragment = TrophyFragment()
+            val bundle = Bundle()
+            bundle.putInt("selectedTab", 1)
+            fragment.arguments = bundle
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
         }
 
         binding.closeButton.setOnClickListener {
