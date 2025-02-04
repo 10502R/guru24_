@@ -2,6 +2,8 @@ package com.example.guru24
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,12 +59,15 @@ class MypageFragment : Fragment() {
     }
 
     private fun performLogout() {
-        // SharedPreferences에서 로그인 상태 변경
-        val sharedPreferences =
-            requireContext().getSharedPreferences("MyAppPrefs", AppCompatActivity.MODE_PRIVATE)
-        sharedPreferences.edit().putBoolean("isLoggedIn", false).apply() // 로그인 상태를 false로 설정
+        // 3초 동안 대기 후 로그아웃 진행
+        Handler(Looper.getMainLooper()).postDelayed({
+            // SharedPreferences에서 로그인 상태 변경
+            val sharedPreferences =
+                requireContext().getSharedPreferences("MyAppPrefs", AppCompatActivity.MODE_PRIVATE)
+            sharedPreferences.edit().putBoolean("isLoggedIn", false).apply() // 로그인 상태를 false로 설정
 
-        showLogoutCompleteDialog() // 로그아웃 완료 다이얼로그 표시
+            showLogoutCompleteDialog() // 로그아웃 완료 다이얼로그 표시
+        }, 3000) // 3초 (3000ms) 동안 딜레이
     }
 
     private fun showLogoutCompleteDialog() {
