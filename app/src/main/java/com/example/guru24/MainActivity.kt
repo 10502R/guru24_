@@ -99,6 +99,12 @@ class MainActivity : AppCompatActivity() {
                     else -> false
                 }
             }
+            if (intent?.getStringExtra("navigateTo") == "TrophyFragment") {
+                val selectedTab = intent.getIntExtra("selectedTab", 0) // 기본값 0 (첫 번째 탭)
+                replaceFragment(TrophyFragment.newInstance(selectedTab)) // TrophyFragment로 이동
+            } else {
+                binding.bottomNav.selectedItemId = R.id.tabHome // 기본 화면 설정
+            }
         }
 
     }
